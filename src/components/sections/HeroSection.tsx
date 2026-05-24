@@ -27,7 +27,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-50">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-slate-50">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -53,7 +53,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
 
       {/* Content */}
-      <div className="relative z-10 container-custom pt-24 pb-16 flex flex-col justify-center min-h-screen items-center text-center">
+      <div className="relative z-10 container-custom pt-36 lg:pt-44 pb-16 flex-grow flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl flex flex-col items-center">
           {/* Badge */}
           <motion.div

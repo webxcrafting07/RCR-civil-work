@@ -18,7 +18,7 @@ interface PageHeroProps {
 
 export default function PageHero({ badge, title, subtitle, backgroundImage }: PageHeroProps) {
   return (
-    <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '42vh' }}>
+    <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '45vh' }}>
       {backgroundImage && (
         <>
           <Image
@@ -38,7 +38,7 @@ export default function PageHero({ badge, title, subtitle, backgroundImage }: Pa
       )}
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
 
-      <div className="relative z-10 container-custom text-center py-20 pt-32">
+      <div className="relative z-10 container-custom text-center py-20 pt-36 md:pt-40">
         {badge && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
