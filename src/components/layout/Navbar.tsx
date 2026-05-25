@@ -55,7 +55,9 @@ export default function Navbar() {
             <a href="mailto:rcrenterprises786@gmail.com" className="text-xs text-slate-500 hover:text-sky-600 transition-colors hidden sm:block">
               rcrenterprises786@gmail.com
             </a>
-            <LanguageSwitcher />
+            <div className="hidden lg:block">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 
