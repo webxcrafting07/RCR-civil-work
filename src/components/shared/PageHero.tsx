@@ -5,6 +5,9 @@ import Image from 'next/image'
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import { STATS } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
+
+const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skilledWorkforce', 'stats.yearsOfExperience']
 
 // ============================================================
 // PAGE HERO
@@ -77,6 +80,7 @@ export default function PageHero({ badge, title, subtitle, backgroundImage }: Pa
 // ============================================================
 export function StatsSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
+  const { t } = useTranslation()
 
   return (
     <section className="py-16 bg-white" ref={ref}>
@@ -95,7 +99,7 @@ export function StatsSection() {
                 {inView ? <CountUp end={parseInt(stat.value)} duration={2.5 + i * 0.2} separator="," /> : '0'}
                 <span className="text-sky-400">{stat.suffix}</span>
               </div>
-              <div className="text-sm text-slate-500">{stat.label}</div>
+              <div className="text-sm text-slate-500">{t(STAT_KEYS[i])}</div>
             </motion.div>
           ))}
         </div>

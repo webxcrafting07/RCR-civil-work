@@ -8,11 +8,24 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, ChevronRight, HardHat } from 'lucide-react'
 import { NAV_ITEMS } from '@/constants'
 import { cn } from '@/utils'
+import { useTranslation } from '@/hooks/useTranslation'
+import LanguageSwitcher from '@/components/shared/LanguageSwitcher'
+
+const NAV_KEYS: Record<string, string> = {
+  '/': 'nav.home',
+  '/about': 'nav.about',
+  '/services': 'nav.services',
+  '/projects': 'nav.projects',
+  '/gallery': 'nav.gallery',
+  '/blogs': 'nav.blogs',
+  '/contact': 'nav.contact',
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -42,6 +55,7 @@ export default function Navbar() {
             <a href="mailto:rcrenterprises786@gmail.com" className="text-xs text-slate-500 hover:text-sky-600 transition-colors hidden sm:block">
               rcrenterprises786@gmail.com
             </a>
+            <LanguageSwitcher />
           </div>
         </div>
 
@@ -72,7 +86,7 @@ export default function Navbar() {
                       isActive ? 'text-sky-600' : 'text-slate-600 hover:text-slate-900'
                     )}
                   >
-                    {item.label}
+                    {t(NAV_KEYS[item.href] || item.label)}
                     <span className={cn(
                       'absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-sky-500 rounded-full transition-all duration-300',
                       isActive ? 'w-4' : 'w-0 group-hover:w-4'
@@ -82,32 +96,38 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* CTA */}
+            {/* CTA + Language Switcher for scrolled state */}
             <div className="hidden lg:flex items-center gap-3">
+              <div className={cn('transition-all duration-300', scrolled ? 'opacity-100' : 'opacity-0 pointer-events-none w-0')}>
+                <LanguageSwitcher />
+              </div>
               <Link href="/contact" className="btn-primary text-xs px-5 py-2.5">
-                Get Free Quote
+                {t('nav.getQuote')}
                 <ChevronRight size={14} />
               </Link>
             </div>
 
             {/* Mobile Toggle */}
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 transition-colors"
-              aria-label="Toggle menu"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {mobileOpen ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <X size={22} />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-                    <Menu size={22} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              <LanguageSwitcher />
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="relative w-10 h-10 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 transition-colors"
+                aria-label="Toggle menu"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {mobileOpen ? (
+                    <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                      <X size={22} />
+                    </motion.div>
+                  ) : (
+                    <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                      <Menu size={22} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -142,7 +162,7 @@ export default function Navbar() {
                           : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                       )}
                     >
-                      {item.label}
+                      {t(NAV_KEYS[item.href] || item.label)}
                       <ChevronRight size={14} className="opacity-50" />
                     </Link>
                   </motion.div>
@@ -150,7 +170,7 @@ export default function Navbar() {
               })}
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-4 pt-4 border-t border-slate-200">
                 <Link href="/contact" className="btn-primary w-full justify-center">
-                  Get Free Quote
+                  {t('nav.getQuote')}
                 </Link>
                 <a href="tel:9619439243" className="flex items-center justify-center gap-2 mt-3 text-sm text-slate-500">
                   <Phone size={14} className="text-sky-500" />

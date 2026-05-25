@@ -1,6 +1,7 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppWidget from '@/components/shared/WhatsAppWidget'
+import LanguagePopup from '@/components/shared/LanguagePopup'
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,6 +10,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <main className="flex-1">{children}</main>
       <Footer />
       <WhatsAppWidget />
+      <LanguagePopup />
     </div>
   )
 }

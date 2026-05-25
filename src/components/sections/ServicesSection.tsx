@@ -8,6 +8,7 @@ import {
   Grid3X3, Hammer, Users, Home, Building, Wrench, Anchor,
 } from 'lucide-react'
 import { SERVICES_LIST } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Building2, HardHat, Layers, Columns: Columns2, Grid3x3: Grid3X3,
@@ -15,18 +16,20 @@ const ICON_MAP: Record<string, React.ElementType> = {
 }
 
 export default function ServicesSection() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-20 lg:py-28 bg-slate-50">
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <motion.span initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-badge mb-4 inline-flex">
-            What We Offer
+            {t('services.badge')}
           </motion.span>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="section-title mb-4">
-            Our <span className="text-gradient">Construction Services</span>
+            {t('services.titleLine1')} <span className="text-gradient">{t('services.titleHighlight')}</span>
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="section-subtitle text-center">
-            From RCC work to complete civil construction, we deliver quality solutions tailored to your project needs.
+            {t('services.subtitle')}
           </motion.p>
         </div>
 
@@ -38,16 +41,16 @@ export default function ServicesSection() {
                 <Link href={`/services/${service.slug}`} className="service-card group block h-full">
                   <div className="relative w-full h-36 rounded-xl overflow-hidden mb-4 border border-sky-100 bg-sky-50/50">
                     {service.image && (
-                      <Image src={service.image} alt={service.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                      <Image src={service.image} alt={t(`servicesList.${service.id}.title`)} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <h3 className="font-display font-semibold text-slate-900 text-base mb-2 group-hover:text-sky-600 transition-colors leading-snug">
-                    {service.title}
+                    {t(`servicesList.${service.id}.title`)}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-2">{service.shortDescription}</p>
+                  <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-2">{t(`servicesList.${service.id}.shortDescription`)}</p>
                   <div className="flex items-center gap-1.5 text-xs text-sky-500/60 group-hover:text-sky-600 transition-colors font-medium">
-                    Read More <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                    {t('services.readMore')} <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                   </div>
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background: 'radial-gradient(circle at 50% 0%, rgba(14,165,233,0.04) 0%, transparent 70%)' }} />
@@ -59,7 +62,7 @@ export default function ServicesSection() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mt-12">
           <Link href="/services" className="btn-primary inline-flex">
-            View All Services <ArrowRight size={16} />
+            {t('services.viewAll')} <ArrowRight size={16} />
           </Link>
         </motion.div>
       </div>

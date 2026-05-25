@@ -1,0 +1,286 @@
+{
+  "languagePopup": {
+    "welcome": "Welcome",
+    "selectLanguage": "Choose Your Language",
+    "subtitle": "Select your preferred language to browse our website",
+    "continue": "Continue"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "gallery": "Gallery",
+    "blogs": "Blogs",
+    "contact": "Contact",
+    "getQuote": "Get Free Quote",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "hero": {
+    "badge": "RCC Work Contractor — Virar East, Maharashtra",
+    "titleLine1": "Pioneering",
+    "titleHighlight": "Structural Excellence",
+    "titleAnd": "&",
+    "titleLine2": "Turnkey Construction",
+    "subtitle": "RCR Enterprises is a premier civil contractor specializing in high-grade RCC structures, slab casting, and industrial-scale projects. Building the future of Mumbai and Palghar with unyielding strength and precision.",
+    "callBtn": "Call: 9619439243",
+    "trustBadge1": "GST Registered",
+    "trustBadge2": "Udyog Aadhaar Certified",
+    "trustBadge3": "On-Time Delivery"
+  },
+  "about": {
+    "badge": "About RCR Enterprises",
+    "titleLine1": "Building Strong Foundations",
+    "titleHighlight": "Since 2014",
+    "description1": "RCR ENTERPRISES is a premier construction firm specializing in high-performance RCC structures. Guided by the vision of",
+    "proprietorName": "Momin Noor Alam Shaikh",
+    "description1End": ", we deliver architectural excellence and unyielding quality across Maharashtra.",
+    "description2Start": "Operating as a",
+    "microEnterprise": "Micro Enterprise",
+    "description2End": "registered under Udyog Aadhaar and GST, we merge structural engineering expertise with uncompromising safety standards for residential, commercial, and industrial projects.",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "yearsOfExcellence": "Years of Excellence"
+  },
+  "aboutPage": {
+    "badge": "About Us",
+    "title": "Building Trust Through Quality Construction",
+    "subtitle": "Your trusted RCC Work Contracting partner in Virar East, Maharashtra since 2014.",
+    "storyBadge": "Our Story",
+    "storyTitle": "RCR ENTERPRISES —",
+    "storyTitleHighlight": "Our Story",
+    "storyDesc1": "was established with a clear mission: to deliver high-quality RCC construction services with integrity, professionalism, and commitment. Founded and led by",
+    "storyDesc1End": ", our company has grown to become a trusted name in civil and structural construction across the Virar-Vasai-Palghar belt.",
+    "storyDesc2Start": "Operating as a registered",
+    "storyDesc2End": "under Udyog Aadhaar and GST, we bring transparency, accountability, and craftsmanship to every project — from residential homes to large commercial structures.",
+    "yearsExperience": "Years Experience",
+    "ourVision": "Our Vision",
+    "visionText": "\"To become a trusted name in RCC and civil construction services by delivering quality work, professional commitment, and long-term client satisfaction.\"",
+    "ourMission": "Our Mission",
+    "missionText": "\"To provide durable, reliable, and cost-effective construction solutions with a focus on safety, quality, and timely completion of every project.\"",
+    "getQuote": "Get Free Quote",
+    "ourServices": "Our Services"
+  },
+  "services": {
+    "badge": "What We Offer",
+    "titleLine1": "Our",
+    "titleHighlight": "Construction Services",
+    "subtitle": "From RCC work to complete civil construction, we deliver quality solutions tailored to your project needs.",
+    "readMore": "Read More",
+    "viewAll": "View All Services"
+  },
+  "servicesList": {
+    "rcc-work-contractor": {
+      "title": "RCC Work Contractor",
+      "shortDescription": "Industrial-grade Reinforced Cement Concrete (RCC) structures engineered for maximum durability and load-bearing capacity."
+    },
+    "civil-construction": {
+      "title": "Civil Construction Work",
+      "shortDescription": "End-to-end civil engineering and turnkey construction solutions for premium residential and commercial developments."
+    },
+    "slab-casting": {
+      "title": "Slab Casting Work",
+      "shortDescription": "Flawless concrete slab pouring and casting utilizing advanced laser-leveling and high-tensile reinforcement."
+    },
+    "column-beam": {
+      "title": "Column & Beam Work",
+      "shortDescription": "Architecturally robust structural framing, columns, and beams designed to withstand extreme environmental stress."
+    },
+    "shuttering": {
+      "title": "Shuttering Work",
+      "shortDescription": "Precision formwork and shuttering systems guaranteeing perfect geometric alignment and superior concrete finishes."
+    },
+    "mason-work": {
+      "title": "Mason Work",
+      "shortDescription": "Master craftsmanship in brickwork, blockwork, and structural masonry for impeccable interior and exterior walls."
+    },
+    "labour-contract": {
+      "title": "Labour Contract Services",
+      "shortDescription": "Deployment of highly skilled, vetted, and safety-trained construction workforce for large-scale enterprise projects."
+    },
+    "residential-construction": {
+      "title": "Residential Construction",
+      "shortDescription": "Bespoke luxury home construction blending modern architectural aesthetics with unyielding structural foundations."
+    },
+    "commercial-construction": {
+      "title": "Commercial Construction",
+      "shortDescription": "Executing massive commercial complexes, corporate offices, and retail spaces with strict adherence to timelines."
+    },
+    "renovation": {
+      "title": "Renovation Work",
+      "shortDescription": "Comprehensive structural retrofitting, strengthening, and premium renovation of aging architectural assets."
+    },
+    "structural-rcc": {
+      "title": "Structural RCC Solutions",
+      "shortDescription": "Advanced structural auditing, core cutting, and customized concrete solutions for complex engineering challenges."
+    }
+  },
+  "whyChooseUs": {
+    "badge": "Why Choose Us",
+    "titleLine1": "The",
+    "titleHighlight": "RCR Enterprises",
+    "titleLine2": "Advantage",
+    "subtitle": "We deliver uncompromising safety, speed, and structural integrity, setting the benchmark for civil contracting in Maharashtra.",
+    "items": {
+      "skilled": {
+        "title": "Skilled & Experienced Workforce",
+        "description": "Our team comprises highly trained and experienced construction professionals."
+      },
+      "quality": {
+        "title": "Quality Construction Standards",
+        "description": "We maintain the highest quality standards in all our construction projects."
+      },
+      "timely": {
+        "title": "Timely Project Completion",
+        "description": "We are committed to delivering every project on time without compromising quality."
+      },
+      "management": {
+        "title": "Professional Site Management",
+        "description": "Expert site management ensures smooth operations and safety compliance."
+      },
+      "pricing": {
+        "title": "Affordable & Competitive Pricing",
+        "description": "Premium quality construction services at competitive and transparent pricing."
+      },
+      "labour": {
+        "title": "Reliable Labour Support",
+        "description": "Dependable and skilled labour support available for projects of all scales."
+      },
+      "satisfaction": {
+        "title": "Customer Satisfaction Focused",
+        "description": "Client satisfaction is our top priority — we go the extra mile every time."
+      }
+    }
+  },
+  "projects": {
+    "badge": "Our Portfolio",
+    "titleLine1": "Recent",
+    "titleHighlight": "Projects",
+    "viewAll": "View All Projects",
+    "allProjects": "All Projects",
+    "ongoing": "Ongoing",
+    "completed": "Completed"
+  },
+  "testimonials": {
+    "badge": "Client Testimonials",
+    "titleLine1": "What Our",
+    "titleHighlight": "Clients Say"
+  },
+  "gallery": {
+    "badge": "Our Gallery",
+    "titleLine1": "Project",
+    "titleHighlight": "Gallery",
+    "viewFull": "View Full Gallery"
+  },
+  "process": {
+    "badge": "How We Work",
+    "titleLine1": "Our",
+    "titleHighlight": "Work Process",
+    "subtitle": "A structured approach to ensure every project is delivered with precision and on time.",
+    "step": "STEP",
+    "steps": {
+      "consultation": {
+        "title": "Consultation",
+        "description": "Free consultation to understand your requirements and project vision."
+      },
+      "planning": {
+        "title": "Planning",
+        "description": "Detailed project planning with timeline, budget estimation, and approvals."
+      },
+      "material": {
+        "title": "Material Preparation",
+        "description": "Procurement of high-quality construction materials and site preparation."
+      },
+      "construction": {
+        "title": "RCC Construction",
+        "description": "Professional RCC construction with expert workforce and quality control."
+      },
+      "finishing": {
+        "title": "Finishing",
+        "description": "Superior finishing work and final quality inspection of the structure."
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "Timely project delivery with complete documentation and client walkthrough."
+      }
+    }
+  },
+  "cta": {
+    "badge": "Ready to Build?",
+    "titleLine1": "Need Professional",
+    "titleHighlight": "RCC Construction",
+    "titleLine2": "Services?",
+    "subtitle": "We Deliver Quality Construction With Commitment. Get a free consultation today.",
+    "contactUs": "Contact Us",
+    "getQuote": "Get Free Quote"
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "titleLine1": "Contact",
+    "titleHighlight": "Us Today",
+    "phone": "Phone",
+    "email": "Email",
+    "officeAddress": "Office Address",
+    "workingHours": "Working Hours",
+    "workingHoursValue": "Mon – Sat: 9:00 AM – 7:00 PM",
+    "chatWhatsApp": "Chat on WhatsApp",
+    "formFullName": "Full Name *",
+    "formPhone": "Phone Number *",
+    "formEmail": "Email Address *",
+    "formService": "Service Required *",
+    "formMessage": "Message *",
+    "formNamePlaceholder": "Your full name",
+    "formPhonePlaceholder": "10-digit mobile number",
+    "formEmailPlaceholder": "your@email.com",
+    "formServicePlaceholder": "Select a service...",
+    "formMessagePlaceholder": "Describe your project requirements...",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "successMessage": "Your inquiry has been submitted! We'll contact you within 24 hours.",
+    "errorMessage": "Something went wrong",
+    "failedMessage": "Failed to submit. Please try again or call us directly."
+  },
+  "contactPage": {
+    "badge": "Get In Touch",
+    "title": "Let's Build Something Great Together",
+    "subtitle": "Reach out for a free consultation. We respond within 24 hours.",
+    "trust1Title": "24 Hour Response",
+    "trust1Desc": "We respond to all inquiries within 24 hours.",
+    "trust2Title": "Free Consultation",
+    "trust2Desc": "Get a free site visit and project quotation.",
+    "trust3Title": "Certified & Registered",
+    "trust3Desc": "GST registered, Udyog Aadhaar certified firm.",
+    "findOffice": "Find Our Office"
+  },
+  "footer": {
+    "description": "Professional RCC Work Contractors delivering strong, safe, and durable construction solutions with quality and commitment since 2014.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "companyInfo": "Company Info",
+    "gstNo": "GST No",
+    "udyogAadhaar": "Udyog Aadhaar",
+    "gumastaNo": "Gumasta No",
+    "enterpriseType": "Enterprise Type",
+    "getQuote": "Get Free Quote",
+    "whatsappUs": "WhatsApp Us",
+    "areasWeServe": "Areas We Serve",
+    "rccContractorIn": "RCC Contractor in",
+    "viewAllLocations": "View All",
+    "locations": "Locations",
+    "hideLocations": "Hide Locations",
+    "browseAllLocations": "Browse All Locations on Map →",
+    "allRightsReserved": "All rights reserved.",
+    "proprietor": "Proprietor",
+    "virarTagline": "Virar East, Maharashtra, India — RCC Work Contractor"
+  },
+  "clients": {
+    "title": "Trusted By Leading Companies"
+  },
+  "stats": {
+    "projectsCompleted": "Projects Completed",
+    "happyClients": "Happy Clients",
+    "skilledWorkforce": "Skilled Workforce",
+    "yearsOfExperience": "Years of Experience"
+  }
+}

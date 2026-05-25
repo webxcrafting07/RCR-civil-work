@@ -7,11 +7,14 @@ import { CheckCircle, ArrowRight } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import CountUp from 'react-countup'
 import { STATS, SERVICES_LIST } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const SERVICES_PREVIEW = SERVICES_LIST.slice(0, 8)
+const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skilledWorkforce', 'stats.yearsOfExperience']
 
 export default function AboutSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 })
+  const { t } = useTranslation()
 
   return (
     <section className="py-20 lg:py-28 bg-white overflow-hidden">
@@ -42,7 +45,7 @@ export default function AboutSection() {
               className="absolute -bottom-6 -right-6 glass-blue rounded-2xl p-5 border border-sky-200 bg-white shadow-blue"
             >
               <div className="text-3xl font-display font-bold text-sky-600">10+</div>
-              <div className="text-xs text-slate-500 mt-0.5">Years of Excellence</div>
+              <div className="text-xs text-slate-500 mt-0.5">{t('about.yearsOfExcellence')}</div>
             </motion.div>
             {/* Decorative element */}
             <div className="absolute -top-4 -left-4 w-20 h-20 rounded-xl border border-sky-200 opacity-50" />
@@ -55,16 +58,16 @@ export default function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="section-badge mb-4 inline-flex">About RCR Enterprises</span>
+            <span className="section-badge mb-4 inline-flex">{t('about.badge')}</span>
             <h2 className="section-title mb-6">
-              Building Strong Foundations{' '}
-              <span className="text-gradient">Since 2014</span>
+              {t('about.titleLine1')}{' '}
+              <span className="text-gradient">{t('about.titleHighlight')}</span>
             </h2>
             <p className="text-slate-500 leading-relaxed mb-6">
-              RCR ENTERPRISES is a premier construction firm specializing in high-performance RCC structures. Guided by the vision of <strong className="text-slate-800">Momin Noor Alam Shaikh</strong>, we deliver architectural excellence and unyielding quality across Maharashtra.
+              {t('about.description1')} <strong className="text-slate-800">{t('about.proprietorName')}</strong>{t('about.description1End')}
             </p>
             <p className="text-slate-500 leading-relaxed mb-8">
-              Operating as a <strong className="text-sky-600">Micro Enterprise</strong> registered under Udyog Aadhaar and GST, we merge structural engineering expertise with uncompromising safety standards for residential, commercial, and industrial projects.
+              {t('about.description2Start')} <strong className="text-sky-600">{t('about.microEnterprise')}</strong> {t('about.description2End')}
             </p>
 
             {/* Services list */}
@@ -72,17 +75,17 @@ export default function AboutSection() {
               {SERVICES_PREVIEW.map((s) => (
                 <div key={s.id} className="flex items-center gap-2 text-sm text-slate-700">
                   <CheckCircle size={14} className="text-sky-500 flex-shrink-0" />
-                  {s.title}
+                  {t(`servicesList.${s.id}.title`)}
                 </div>
               ))}
             </div>
 
             <div className="flex gap-4">
               <Link href="/about" className="btn-primary">
-                About Us <ArrowRight size={15} />
+                {t('about.aboutUs')} <ArrowRight size={15} />
               </Link>
               <Link href="/contact" className="btn-outline">
-                Contact Us
+                {t('about.contactUs')}
               </Link>
             </div>
           </motion.div>
@@ -103,7 +106,7 @@ export default function AboutSection() {
                 {inView ? <CountUp end={parseInt(stat.value)} duration={2.5 + i * 0.2} /> : '0'}
                 <span className="text-sky-400">{stat.suffix}</span>
               </div>
-              <div className="text-sm text-slate-500">{stat.label}</div>
+              <div className="text-sm text-slate-500">{t(STAT_KEYS[i])}</div>
             </motion.div>
           ))}
         </div>

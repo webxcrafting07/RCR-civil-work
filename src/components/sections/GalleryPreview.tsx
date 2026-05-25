@@ -8,6 +8,7 @@ import { ZoomIn, ArrowRight } from 'lucide-react'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import { CONSTRUCTION_IMAGES } from '@/utils'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface GalleryImage {
   _id: string
@@ -26,6 +27,7 @@ const MOCK_GALLERY = CONSTRUCTION_IMAGES.slice(0, 6).map((url, i) => ({
 export default function GalleryPreview() {
   const [images, setImages] = useState<GalleryImage[]>([])
   const [lightboxIndex, setLightboxIndex] = useState(-1)
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetch('/api/gallery?limit=9')
@@ -47,7 +49,7 @@ export default function GalleryPreview() {
               viewport={{ once: true }}
               className="section-badge mb-4"
             >
-              Our Gallery
+              {t('gallery.badge')}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -56,11 +58,11 @@ export default function GalleryPreview() {
               transition={{ delay: 0.1 }}
               className="section-title"
             >
-              Project <span className="text-gradient">Gallery</span>
+              {t('gallery.titleLine1')} <span className="text-gradient">{t('gallery.titleHighlight')}</span>
             </motion.h2>
           </div>
           <Link href="/gallery" className="btn-outline text-sm shrink-0">
-            View Full Gallery <ArrowRight size={15} />
+            {t('gallery.viewFull')} <ArrowRight size={15} />
           </Link>
         </div>
 

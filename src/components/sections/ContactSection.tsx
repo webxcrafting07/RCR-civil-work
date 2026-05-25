@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { Phone, Mail, MapPin, Send, Clock } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { COMPANY_INFO, SERVICES_LIST_FOR_CONTACT } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const schema = z.object({
   fullName: z.string().min(2, 'Name must be at least 2 characters'),
@@ -22,6 +23,7 @@ export default function ContactSection() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
+  const { t } = useTranslation()
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -32,13 +34,13 @@ export default function ContactSection() {
       })
       const result = await res.json()
       if (result.success) {
-        toast.success('Your inquiry has been submitted! We\'ll contact you within 24 hours.')
+        toast.success(t('contact.successMessage'))
         reset()
       } else {
-        toast.error(result.message || 'Something went wrong')
+        toast.error(result.message || t('contact.errorMessage'))
       }
     } catch {
-      toast.error('Failed to submit. Please try again or call us directly.')
+      toast.error(t('contact.failedMessage'))
     }
   }
 
@@ -52,7 +54,7 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="section-badge mb-4"
           >
-            Get In Touch
+            {t('contact.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +63,7 @@ export default function ContactSection() {
             transition={{ delay: 0.1 }}
             className="section-title mb-4"
           >
-            Contact <span className="text-gradient">Us Today</span>
+            {t('contact.titleLine1')} <span className="text-gradient">{t('contact.titleHighlight')}</span>
           </motion.h2>
         </div>
 
@@ -76,26 +78,26 @@ export default function ContactSection() {
             {[
               {
                 icon: Phone,
-                title: 'Phone',
+                title: t('contact.phone'),
                 content: COMPANY_INFO.phone,
                 href: `tel:${COMPANY_INFO.phone}`,
               },
               {
                 icon: Mail,
-                title: 'Email',
+                title: t('contact.email'),
                 content: COMPANY_INFO.email,
                 href: `mailto:${COMPANY_INFO.email}`,
               },
               {
                 icon: MapPin,
-                title: 'Office Address',
+                title: t('contact.officeAddress'),
                 content: COMPANY_INFO.address.full,
                 href: 'https://maps.google.com/?q=Virar+East+Maharashtra',
               },
               {
                 icon: Clock,
-                title: 'Working Hours',
-                content: 'Mon – Sat: 9:00 AM – 7:00 PM',
+                title: t('contact.workingHours'),
+                content: t('contact.workingHoursValue'),
                 href: null,
               },
             ].map(({ icon: Icon, title, content, href }) => (
@@ -125,7 +127,7 @@ export default function ContactSection() {
               className="flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
               style={{ background: '#25D366' }}
             >
-              Chat on WhatsApp
+              {t('contact.chatWhatsApp')}
             </a>
           </motion.div>
 
@@ -139,25 +141,25 @@ export default function ContactSection() {
             <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">Full Name *</label>
-                  <input {...register('fullName')} placeholder="Your full name" className="form-input" />
+                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formFullName')}</label>
+                  <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="form-input" />
                   {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">Phone Number *</label>
-                  <input {...register('phone')} placeholder="10-digit mobile number" className="form-input" />
+                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formPhone')}</label>
+                  <input {...register('phone')} placeholder={t('contact.formPhonePlaceholder')} className="form-input" />
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
                 </div>
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">Email Address *</label>
-                <input {...register('email')} type="email" placeholder="your@email.com" className="form-input" />
+                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formEmail')}</label>
+                <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="form-input" />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">Service Required *</label>
+                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formService')}</label>
                 <select {...register('serviceRequired')} className="form-input">
-                  <option value="">Select a service...</option>
+                  <option value="">{t('contact.formServicePlaceholder')}</option>
                   {SERVICES_LIST_FOR_CONTACT.map(s => (
                     <option key={s} value={s} className="bg-white">{s}</option>
                   ))}
@@ -165,8 +167,8 @@ export default function ContactSection() {
                 {errors.serviceRequired && <p className="text-red-500 text-xs mt-1">{errors.serviceRequired.message}</p>}
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">Message *</label>
-                <textarea {...register('message')} rows={4} placeholder="Describe your project requirements..." className="form-input resize-none" />
+                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formMessage')}</label>
+                <textarea {...register('message')} rows={4} placeholder={t('contact.formMessagePlaceholder')} className="form-input resize-none" />
                 {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
               </div>
               <button
@@ -177,12 +179,12 @@ export default function ContactSection() {
                 {isSubmitting ? (
                   <>
                     <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Sending...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
                     <Send size={16} />
-                    Send Message
+                    {t('contact.sendMessage')}
                   </>
                 )}
               </button>

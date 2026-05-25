@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import { LanguageProvider } from '@/context/LanguageContext'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
@@ -56,22 +57,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="font-body antialiased">
-        {children}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#ffffff',
-              color: '#0f172a',
-              border: '1px solid rgba(14,165,233,0.2)',
-              borderRadius: '8px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-            },
-            success: { iconTheme: { primary: '#0ea5e9', secondary: '#ffffff' } },
-            error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
-          }}
-        />
+        <LanguageProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid rgba(14,165,233,0.2)',
+                borderRadius: '8px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+              },
+              success: { iconTheme: { primary: '#0ea5e9', secondary: '#ffffff' } },
+              error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+            }}
+          />
+        </LanguageProvider>
       </body>
     </html>
   )

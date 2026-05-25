@@ -4,12 +4,17 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { MessageSquare, ClipboardList, Package, HardHat, Star, CheckCircle } from 'lucide-react'
 import { WORK_PROCESS } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const ICON_MAP: Record<string, React.ElementType> = {
   MessageSquare, ClipboardList, Package, HardHat, Star, CheckCircle,
 }
 
+const STEP_KEYS = ['consultation', 'planning', 'material', 'construction', 'finishing', 'delivery']
+
 export default function ProcessSection() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-20 lg:py-28 bg-slate-50 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
@@ -22,7 +27,7 @@ export default function ProcessSection() {
             viewport={{ once: true }}
             className="section-badge mb-4"
           >
-            How We Work
+            {t('process.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -31,7 +36,7 @@ export default function ProcessSection() {
             transition={{ delay: 0.1 }}
             className="section-title mb-4"
           >
-            Our <span className="text-gradient">Work Process</span>
+            {t('process.titleLine1')} <span className="text-gradient">{t('process.titleHighlight')}</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -40,7 +45,7 @@ export default function ProcessSection() {
             transition={{ delay: 0.2 }}
             className="text-slate-500"
           >
-            A structured approach to ensure every project is delivered with precision and on time.
+            {t('process.subtitle')}
           </motion.p>
         </div>
 
@@ -64,15 +69,15 @@ export default function ProcessSection() {
                 <div className="relative mb-5 z-10 w-20 h-20">
                   <div className="w-full h-full rounded-2xl overflow-hidden border-4 border-white shadow-blue relative">
                     {step.image && (
-                      <Image src={step.image} alt={step.title} fill sizes="80px" className="object-cover" />
+                      <Image src={step.image} alt={t(`process.steps.${STEP_KEYS[i]}.title`)} fill sizes="80px" className="object-cover" />
                     )}
                   </div>
                   <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-sky-500 border-2 border-white flex items-center justify-center shadow-sm">
                     <span className="text-[10px] font-mono font-bold text-white">{step.step}</span>
                   </div>
                 </div>
-                <h3 className="font-display font-semibold text-slate-900 text-sm mb-2">{step.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{step.description}</p>
+                <h3 className="font-display font-semibold text-slate-900 text-sm mb-2">{t(`process.steps.${STEP_KEYS[i]}.title`)}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{t(`process.steps.${STEP_KEYS[i]}.description`)}</p>
               </motion.div>
             )
           })}
@@ -93,15 +98,15 @@ export default function ProcessSection() {
               >
                 <div className="relative flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 border-white shadow-blue bg-slate-100">
                   {step.image && (
-                    <Image src={step.image} alt={step.title} fill sizes="64px" className="object-cover" />
+                    <Image src={step.image} alt={t(`process.steps.${STEP_KEYS[i]}.title`)} fill sizes="64px" className="object-cover" />
                   )}
                 </div>
                 <div className="flex-1 pt-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono text-sky-500/60">STEP {step.step}</span>
+                    <span className="text-[10px] font-mono text-sky-500/60">{t('process.step')} {step.step}</span>
                   </div>
-                  <h3 className="font-display font-semibold text-slate-900 text-sm mb-1">{step.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">{step.description}</p>
+                  <h3 className="font-display font-semibold text-slate-900 text-sm mb-1">{t(`process.steps.${STEP_KEYS[i]}.title`)}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{t(`process.steps.${STEP_KEYS[i]}.description`)}</p>
                 </div>
               </motion.div>
             )

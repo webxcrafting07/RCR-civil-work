@@ -1,11 +1,24 @@
 import Image from 'next/image'
 import connectDB from '@/lib/mongodb'
 import Client from '@/models/Client'
+import ClientsSectionHeader from '@/components/sections/ClientsSectionHeader'
+
+const MOCK_CLIENTS = [
+  { _id: 'mock1', name: 'Client 1', logo: '/logo-3d.png', website: '#' },
+  { _id: 'mock2', name: 'Client 2', logo: '/logo-3d.png', website: '#' },
+  { _id: 'mock3', name: 'Client 3', logo: '/logo-3d.png', website: '#' },
+]
 
 async function getClients() {
   try {
     await connectDB()
     const clients = await Client.find({ isActive: true }).sort({ order: 1, createdAt: -1 })
+    
+    // If no clients in DB, fallback to mock
+    if (!clients || clients.length === 0) {
+      return [...MOCK_CLIENTS, ...MOCK_CLIENTS]
+    }
+    
     // If there are less than 6 clients, duplicate them to fill the marquee
     let displayClients = JSON.parse(JSON.stringify(clients))
     if (displayClients.length > 0 && displayClients.length < 6) {
@@ -13,8 +26,9 @@ async function getClients() {
     }
     return displayClients
   } catch (error) {
-    console.error('Failed to fetch clients:', error)
-    return []
+    // Return mock clients if DB connection fails (e.g., IP not whitelisted)
+    console.warn('Database connection failed, falling back to mock clients.')
+    return [...MOCK_CLIENTS, ...MOCK_CLIENTS]
   }
 }
 
@@ -28,7 +42,7 @@ export default async function ClientsSection() {
   return (
     <section className="py-20 bg-white border-y border-slate-100 overflow-hidden">
       <div className="container-custom mb-10 text-center">
-        <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">Trusted By Leading Companies</h2>
+        <ClientsSectionHeader />
       </div>
 
       <div className="relative w-full flex overflow-hidden">
@@ -39,7 +53,7 @@ export default async function ClientsSection() {
         {/* The scrolling track */}
         <div className="flex animate-marquee min-w-max gap-12 sm:gap-24 px-12 sm:px-24">
           {/* We render the list twice to create the infinite loop effect seamlessly */}
-          {[...clients, ...clients].map((client, i) => (
+          {[...clients, ...clients].map((client: any, i: number) => (
             <div 
               key={`${client._id}-${i}`} 
               className="flex-shrink-0 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 w-32 h-20 md:w-40 md:h-24 relative"

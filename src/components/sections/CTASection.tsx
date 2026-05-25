@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, Phone } from 'lucide-react'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export default function CTASection() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background */}
@@ -22,7 +25,7 @@ export default function CTASection() {
           viewport={{ once: true }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-mono font-semibold tracking-widest uppercase bg-white/10 border border-white/20 text-white mb-6"
         >
-          Ready to Build?
+          {t('cta.badge')}
         </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -31,9 +34,9 @@ export default function CTASection() {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-5xl font-display font-bold text-white mb-5 leading-tight"
         >
-          Need Professional{' '}
-          <span className="text-sky-300">RCC Construction</span>{' '}
-          Services?
+          {t('cta.titleLine1')}{' '}
+          <span className="text-sky-300">{t('cta.titleHighlight')}</span>{' '}
+          {t('cta.titleLine2')}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -42,7 +45,7 @@ export default function CTASection() {
           transition={{ delay: 0.2 }}
           className="text-sky-100 text-lg mb-10 leading-relaxed"
         >
-          We Deliver Quality Construction With Commitment. Get a free consultation today.
+          {t('cta.subtitle')}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -52,10 +55,10 @@ export default function CTASection() {
           className="flex flex-wrap justify-center gap-4"
         >
           <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm bg-white text-sky-700 hover:bg-sky-50 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-            Contact Us <ArrowRight size={16} />
+            {t('cta.contactUs')} <ArrowRight size={16} />
           </Link>
           <a href="tel:9619439243" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-sm border-2 border-white/40 text-white hover:bg-white/10 transition-all">
-            <Phone size={16} /> Get Free Quote
+            <Phone size={16} /> {t('cta.getQuote')}
           </a>
         </motion.div>
       </div>

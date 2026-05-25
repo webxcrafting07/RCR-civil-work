@@ -8,10 +8,14 @@ import { ArrowRight, Phone, ChevronDown, Shield, Award, Clock } from 'lucide-rea
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import { STATS } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
+
+const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skilledWorkforce', 'stats.yearsOfExperience']
 
 export default function HeroSection() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [particles, setParticles] = useState<any[]>([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     setParticles(
@@ -64,7 +68,7 @@ export default function HeroSection() {
           >
             <span className="section-badge inline-flex">
               <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
-              RCC Work Contractor — Virar East, Maharashtra
+              {t('hero.badge')}
             </span>
           </motion.div>
 
@@ -75,11 +79,11 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-slate-900 leading-[1.08] mb-6 tracking-tight"
           >
-            Pioneering{' '}
-            <span className="text-gradient">Structural Excellence</span>
-            {' '}&{' '}
+            {t('hero.titleLine1')}{' '}
+            <span className="text-gradient">{t('hero.titleHighlight')}</span>
+            {' '}{t('hero.titleAnd')}{' '}
             <br className="hidden md:block" />
-            <span className="text-slate-600">Turnkey Construction</span>
+            <span className="text-slate-600">{t('hero.titleLine2')}</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -89,7 +93,7 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8"
           >
-            RCR Enterprises is a premier civil contractor specializing in high-grade RCC structures, slab casting, and industrial-scale projects. Building the future of Mumbai and Palghar with unyielding strength and precision.
+            {t('hero.subtitle')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -100,12 +104,12 @@ export default function HeroSection() {
             className="flex flex-wrap justify-center gap-4 mb-12"
           >
             <Link href="/contact" className="btn-primary px-8 py-4 text-sm">
-              Get Free Quote
+              {t('nav.getQuote')}
               <ArrowRight size={16} />
             </Link>
             <a href="tel:9619439243" className="btn-outline px-8 py-4 text-sm bg-white/50 backdrop-blur-sm">
               <Phone size={16} />
-              Call: 9619439243
+              {t('hero.callBtn')}
             </a>
           </motion.div>
 
@@ -117,9 +121,9 @@ export default function HeroSection() {
             className="flex flex-wrap justify-center gap-4 mb-16"
           >
             {[
-              { icon: Shield, text: 'GST Registered' },
-              { icon: Award, text: 'Udyog Aadhaar Certified' },
-              { icon: Clock, text: 'On-Time Delivery' },
+              { icon: Shield, text: t('hero.trustBadge1') },
+              { icon: Award, text: t('hero.trustBadge2') },
+              { icon: Clock, text: t('hero.trustBadge3') },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-slate-700">
                 <Icon size={12} className="text-sky-500" />
@@ -145,7 +149,7 @@ export default function HeroSection() {
                 ) : '0'}
                 <span className="text-sky-400">{stat.suffix}</span>
               </div>
-              <div className="text-xs text-slate-500 font-medium leading-snug">{stat.label}</div>
+              <div className="text-xs text-slate-500 font-medium leading-snug">{t(STAT_KEYS[i])}</div>
             </div>
           ))}
         </motion.div>

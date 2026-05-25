@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, Calendar, ArrowRight } from 'lucide-react'
 import { cn, formatDateShort, getStatusColor, CONSTRUCTION_IMAGES } from '@/utils'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Project {
   _id: string
@@ -26,6 +27,7 @@ export default function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([])
   const [filter, setFilter] = useState('all')
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -47,6 +49,12 @@ export default function ProjectsSection() {
     fetchProjects()
   }, [filter])
 
+  const FILTER_LABELS: Record<string, string> = {
+    'all': t('projects.allProjects'),
+    'ongoing': t('projects.ongoing'),
+    'completed': t('projects.completed'),
+  }
+
   return (
     <section className="py-20 lg:py-28 bg-white">
       <div className="container-custom">
@@ -58,7 +66,7 @@ export default function ProjectsSection() {
               viewport={{ once: true }}
               className="section-badge mb-4"
             >
-              Our Portfolio
+              {t('projects.badge')}
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -67,7 +75,7 @@ export default function ProjectsSection() {
               transition={{ delay: 0.1 }}
               className="section-title"
             >
-              Recent <span className="text-gradient">Projects</span>
+              {t('projects.titleLine1')} <span className="text-gradient">{t('projects.titleHighlight')}</span>
             </motion.h2>
           </div>
           {/* Filters */}
@@ -83,7 +91,7 @@ export default function ProjectsSection() {
                     : 'border border-slate-200 text-slate-500 hover:border-sky-300 hover:text-sky-600'
                 )}
               >
-                {f === 'all' ? 'All Projects' : f === 'ongoing' ? 'Ongoing' : 'Completed'}
+                {FILTER_LABELS[f] || f}
               </button>
             ))}
           </div>
@@ -108,7 +116,7 @@ export default function ProjectsSection() {
 
         <div className="text-center mt-12">
           <Link href="/projects" className="btn-outline inline-flex">
-            View All Projects <ArrowRight size={15} />
+            {t('projects.viewAll')} <ArrowRight size={15} />
           </Link>
         </div>
       </div>

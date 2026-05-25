@@ -2,13 +2,25 @@
 
 import { motion } from 'framer-motion'
 import { Award, Shield, Clock, ClipboardCheck, IndianRupee, Handshake, HeartHandshake } from 'lucide-react'
-import { WHY_CHOOSE_US } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const ICON_MAP: Record<string, React.ElementType> = {
   Award, Shield, Clock, ClipboardCheck, IndianRupee, Handshake, HeartHandshake,
 }
 
+const WHY_ITEMS = [
+  { icon: 'Award', key: 'skilled' },
+  { icon: 'Shield', key: 'quality' },
+  { icon: 'Clock', key: 'timely' },
+  { icon: 'ClipboardCheck', key: 'management' },
+  { icon: 'IndianRupee', key: 'pricing' },
+  { icon: 'Handshake', key: 'labour' },
+  { icon: 'HeartHandshake', key: 'satisfaction' },
+]
+
 export default function WhyChooseUs() {
+  const { t } = useTranslation()
+
   return (
     <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
       {/* Background decoration */}
@@ -23,7 +35,7 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             className="section-badge mb-4"
           >
-            Why Choose Us
+            {t('whyChooseUs.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +44,7 @@ export default function WhyChooseUs() {
             transition={{ delay: 0.1 }}
             className="section-title mb-4"
           >
-            The <span className="text-gradient">RCR Enterprises</span> Advantage
+            {t('whyChooseUs.titleLine1')} <span className="text-gradient">{t('whyChooseUs.titleHighlight')}</span> {t('whyChooseUs.titleLine2')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -41,16 +53,16 @@ export default function WhyChooseUs() {
             transition={{ delay: 0.2 }}
             className="text-slate-500 leading-relaxed"
           >
-            We deliver uncompromising safety, speed, and structural integrity, setting the benchmark for civil contracting in Maharashtra.
+            {t('whyChooseUs.subtitle')}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {WHY_CHOOSE_US.map((item, i) => {
+          {WHY_ITEMS.map((item, i) => {
             const Icon = ICON_MAP[item.icon] || Award
             return (
               <motion.div
-                key={item.title}
+                key={item.key}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -60,8 +72,8 @@ export default function WhyChooseUs() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center mb-4 group-hover:from-sky-200 transition-all">
                   <Icon size={22} className="text-sky-500" />
                 </div>
-                <h3 className="font-display font-semibold text-slate-900 text-sm mb-2 leading-snug">{item.title}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{item.description}</p>
+                <h3 className="font-display font-semibold text-slate-900 text-sm mb-2 leading-snug">{t(`whyChooseUs.items.${item.key}.title`)}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{t(`whyChooseUs.items.${item.key}.description`)}</p>
               </motion.div>
             )
           })}

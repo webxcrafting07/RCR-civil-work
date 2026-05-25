@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Quote, Star } from 'lucide-react'
 import Image from 'next/image'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface Review {
   _id: string
@@ -30,6 +31,7 @@ const MOCK_REVIEWS: Review[] = [
 
 export default function TestimonialsSection() {
   const [reviews, setReviews] = useState<Review[]>([])
+  const { t } = useTranslation()
 
   useEffect(() => {
     fetch('/api/reviews?featured=true&limit=10')
@@ -48,7 +50,7 @@ export default function TestimonialsSection() {
             viewport={{ once: true }}
             className="section-badge mb-4"
           >
-            Client Testimonials
+            {t('testimonials.badge')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +59,7 @@ export default function TestimonialsSection() {
             transition={{ delay: 0.1 }}
             className="section-title mb-4"
           >
-            What Our <span className="text-gradient">Clients Say</span>
+            {t('testimonials.titleLine1')} <span className="text-gradient">{t('testimonials.titleHighlight')}</span>
           </motion.h2>
         </div>
 

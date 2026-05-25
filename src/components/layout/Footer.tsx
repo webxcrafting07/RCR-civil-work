@@ -1,11 +1,26 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Phone, Mail, MapPin, HardHat, ArrowRight, ExternalLink } from 'lucide-react'
 import { COMPANY_INFO, NAV_ITEMS, SERVICES_LIST, TARGET_LOCATIONS } from '@/constants'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const currentYear = new Date().getFullYear()
 
+const NAV_KEYS: Record<string, string> = {
+  '/': 'nav.home',
+  '/about': 'nav.about',
+  '/services': 'nav.services',
+  '/projects': 'nav.projects',
+  '/gallery': 'nav.gallery',
+  '/blogs': 'nav.blogs',
+  '/contact': 'nav.contact',
+}
+
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className="bg-slate-900 border-t border-slate-800">
       {/* Main Footer */}
@@ -24,7 +39,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
-              Professional RCC Work Contractors delivering strong, safe, and durable construction solutions with quality and commitment since 2014.
+              {t('footer.description')}
             </p>
             <div className="flex flex-col gap-3">
               <a href="tel:9619439243" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors">
@@ -52,19 +67,19 @@ export default function Footer() {
           <div>
             <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
               <span className="w-4 h-0.5 bg-sky-400" />
-              Quick Links
+              {t('footer.quickLinks')}
             </h4>
             <ul className="flex flex-col gap-2">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors group">
                     <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity -ml-2 group-hover:ml-0" />
-                    {item.label}
+                    {t(NAV_KEYS[item.href] || item.label)}
                   </Link>
                 </li>
               ))}
-              <li><Link href="/privacy-policy" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy-policy" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">{t('nav.privacyPolicy')}</Link></li>
+              <li><Link href="/terms" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">{t('nav.termsOfService')}</Link></li>
             </ul>
           </div>
 
@@ -72,13 +87,13 @@ export default function Footer() {
           <div>
             <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
               <span className="w-4 h-0.5 bg-sky-400" />
-              Our Services
+              {t('footer.ourServices')}
             </h4>
             <ul className="flex flex-col gap-2">
               {SERVICES_LIST.slice(0, 8).map((s) => (
                 <li key={s.id}>
                   <Link href={`/services/${s.slug}`} className="text-sm text-slate-400 hover:text-sky-400 transition-colors">
-                    {s.title}
+                    {t(`servicesList.${s.id}.title`)}
                   </Link>
                 </li>
               ))}
@@ -89,14 +104,14 @@ export default function Footer() {
           <div>
             <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
               <span className="w-4 h-0.5 bg-sky-400" />
-              Company Info
+              {t('footer.companyInfo')}
             </h4>
             <div className="space-y-3 mb-6">
               {[
-                { label: 'GST No', value: COMPANY_INFO.registration.gstNo },
-                { label: 'Udyog Aadhaar', value: COMPANY_INFO.registration.udyogAadhaar },
-                { label: 'Gumasta No', value: COMPANY_INFO.registration.gumastaNo },
-                { label: 'Enterprise Type', value: COMPANY_INFO.registration.enterpriseType },
+                { label: t('footer.gstNo'), value: COMPANY_INFO.registration.gstNo },
+                { label: t('footer.udyogAadhaar'), value: COMPANY_INFO.registration.udyogAadhaar },
+                { label: t('footer.gumastaNo'), value: COMPANY_INFO.registration.gumastaNo },
+                { label: t('footer.enterpriseType'), value: COMPANY_INFO.registration.enterpriseType },
               ].map((item) => (
                 <div key={item.label}>
                   <div className="text-[10px] text-slate-500 font-mono tracking-widest uppercase">{item.label}</div>
@@ -105,7 +120,7 @@ export default function Footer() {
               ))}
             </div>
             <Link href="/contact" className="btn-primary text-xs w-full justify-center">
-              Get Free Quote
+              {t('footer.getQuote')}
               <ArrowRight size={13} />
             </Link>
             <a
@@ -118,7 +133,7 @@ export default function Footer() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
               </svg>
-              WhatsApp Us
+              {t('footer.whatsappUs')}
             </a>
           </div>
         </div>
@@ -127,22 +142,22 @@ export default function Footer() {
         <div className="border-t border-slate-800 pt-8 pb-4">
           <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-4 flex items-center justify-center gap-2">
             <span className="w-4 h-0.5 bg-sky-400" />
-            Areas We Serve
+            {t('footer.areasWeServe')}
             <span className="w-4 h-0.5 bg-sky-400" />
           </h4>
           
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-4">
             {TARGET_LOCATIONS.slice(0, 6).map(loc => (
               <Link key={loc.slug} href={`/locations/${loc.slug}`} className="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">
-                RCC Contractor in {loc.name}
+                {t('footer.rccContractorIn')} {loc.name}
               </Link>
             ))}
           </div>
 
           <details className="group cursor-pointer text-center">
             <summary className="inline-flex items-center gap-1 text-xs font-semibold text-sky-500 hover:text-sky-400 transition-colors list-none">
-              <span className="group-open:hidden">View All {TARGET_LOCATIONS.length}+ Locations</span>
-              <span className="hidden group-open:inline">Hide Locations</span>
+              <span className="group-open:hidden">{t('footer.viewAllLocations')} {TARGET_LOCATIONS.length}+ {t('footer.locations')}</span>
+              <span className="hidden group-open:inline">{t('footer.hideLocations')}</span>
             </summary>
             
             <div className="mt-4 pt-4 border-t border-slate-800/50 flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-4xl mx-auto">
@@ -153,7 +168,7 @@ export default function Footer() {
               ))}
               <div className="w-full mt-4">
                 <Link href="/locations" className="text-xs font-bold text-sky-400 hover:text-white transition-colors underline decoration-sky-400/30 underline-offset-4">
-                  Browse All Locations on Map &rarr;
+                  {t('footer.browseAllLocations')}
                 </Link>
               </div>
             </div>
@@ -165,10 +180,10 @@ export default function Footer() {
       <div className="border-t border-slate-800">
         <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-500">
-            © {currentYear} <span className="text-slate-400">RCR ENTERPRISES</span>. All rights reserved. Proprietor: {COMPANY_INFO.proprietor}
+            © {currentYear} <span className="text-slate-400">RCR ENTERPRISES</span>. {t('footer.allRightsReserved')} {t('footer.proprietor')}: {COMPANY_INFO.proprietor}
           </p>
           <p className="text-xs text-slate-600">
-            Virar East, Maharashtra, India — RCC Work Contractor
+            {t('footer.virarTagline')}
           </p>
         </div>
       </div>
