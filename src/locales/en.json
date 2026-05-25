@@ -15,7 +15,8 @@
     "contact": "Contact",
     "getQuote": "Get Free Quote",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "learnMore": "Learn More"
   },
   "hero": {
     "badge": "RCC Work Contractor — Virar East, Maharashtra",
@@ -282,5 +283,10 @@
     "happyClients": "Happy Clients",
     "skilledWorkforce": "Skilled Workforce",
     "yearsOfExperience": "Years of Experience"
+  },
+  "blogsPage": {
+    "titleLine1": "Construction",
+    "titleHighlight": "Insights & News",
+    "subtitle": "Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works."
   }
 }

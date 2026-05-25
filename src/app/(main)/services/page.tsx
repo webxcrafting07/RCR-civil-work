@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import PageHero from '@/components/shared/PageHero'
 import CTASection from '@/components/sections/CTASection'
 import ServicesGrid from '@/components/shared/ServicesGrid'
+import Translate from '@/components/shared/Translate'
 
 export const metadata: Metadata = {
   title: 'Our Services - RCC Construction Services | RCR ENTERPRISES',
@@ -28,7 +29,12 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <PageHero badge="What We Offer" title="Professional Construction Services" subtitle="Complete RCC and civil construction solutions delivered with precision, quality, and commitment." backgroundImage="/images/commercial_building.png" />
+      <PageHero 
+        badge={<Translate tKey="services.badge" fallback="What We Offer" />} 
+        title={<Translate tKey="services.titleHighlight" fallback="Professional Construction Services" />} 
+        subtitle={<Translate tKey="services.subtitle" fallback="Complete RCC and civil construction solutions delivered with precision, quality, and commitment." />} 
+        backgroundImage="/images/commercial_building.png" 
+      />
       <section className="py-20 bg-slate-50">
         <div className="container-custom">
           <ServicesGrid />

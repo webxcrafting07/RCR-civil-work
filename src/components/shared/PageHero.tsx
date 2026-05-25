@@ -12,10 +12,12 @@ const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skill
 // ============================================================
 // PAGE HERO
 // ============================================================
+import { ReactNode } from 'react'
+
 interface PageHeroProps {
-  badge?: string
-  title: string
-  subtitle?: string
+  badge?: ReactNode
+  title: ReactNode
+  subtitle?: ReactNode
   backgroundImage?: string
 }
 

@@ -15,7 +15,8 @@
     "contact": "संपर्क करें",
     "getQuote": "मुफ्त कोटेशन लें",
     "privacyPolicy": "गोपनीयता नीति",
-    "termsOfService": "सेवा की शर्तें"
+    "termsOfService": "सेवा की शर्तें",
+    "learnMore": "और जानें"
   },
   "hero": {
     "badge": "RCC कार्य ठेकेदार — विरार ईस्ट, महाराष्ट्र",
@@ -282,5 +283,10 @@
     "happyClients": "खुश ग्राहक",
     "skilledWorkforce": "कुशल कार्यबल",
     "yearsOfExperience": "वर्षों का अनुभव"
+  },
+  "blogsPage": {
+    "titleLine1": "निर्माण",
+    "titleHighlight": "अंतर्दृष्टि और समाचार",
+    "subtitle": "सिविल निर्माण और RCC कार्यों में नवीनतम रुझानों, विशेषज्ञ सुझावों और परियोजना शोकेस से अपडेट रहें।"
   }
 }
