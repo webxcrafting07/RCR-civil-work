@@ -219,7 +219,7 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
 
       <main className="min-h-screen bg-slate-950">
         {/* Top Spacer to prevent fixed Navbar overlap */}
-        <div className="h-[96px] lg:h-[104px] bg-slate-950" />
+        <div className="h-[120px] lg:h-[136px] bg-slate-950" />
 
         {/* Double Breadcrumbs Trail */}
       <div className="bg-slate-900/60 border-b border-slate-800 backdrop-blur-md sticky top-[72px] z-30">
