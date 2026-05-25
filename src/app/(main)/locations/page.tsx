@@ -27,7 +27,7 @@ export default function LocationsPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-32 pb-24">
+    <main className="min-h-screen bg-slate-50 pt-40 lg:pt-48 pb-24">
       {/* Header */}
       <div className="container-custom max-w-5xl mx-auto text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 text-sky-700 font-semibold text-sm mb-6">
