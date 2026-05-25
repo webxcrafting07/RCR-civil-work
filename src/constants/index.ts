@@ -8,13 +8,13 @@ export const COMPANY_INFO = {
   phone: '9619439243',
   email: 'rcrenterprises786@gmail.com',
   address: {
-    line1: 'FV95+H9M, Raipada',
-    line2: 'Khairpada',
-    city: 'Vasai-Virar',
+    line1: 'Office No. 04, Raipada, Near Anand Gaushalla',
+    line2: 'Chandansar Road, Virar East',
+    city: 'Virar East',
     state: 'Maharashtra',
-    pincode: '401303',
+    pincode: '401305',
     district: 'Palghar',
-    full: 'FV95+H9M, Raipada, Khairpada, Vasai-Virar, Maharashtra 401303',
+    full: 'Office No. 04, Raipada, Near Anand Gaushalla, Chandansar Road, Virar East, Maharashtra 401305',
   },
   registration: {
     udyogAadhaar: 'MH33A0170011',
