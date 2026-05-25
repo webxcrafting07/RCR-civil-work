@@ -30,6 +30,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
+  const locationServicePages: MetadataRoute.Sitemap = []
+  TARGET_LOCATIONS.forEach(loc => {
+    SERVICES_LIST.forEach(s => {
+      locationServicePages.push({
+        url: `${baseUrl}/locations/${loc.slug}/${s.slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.6,
+      })
+    })
+  })
+
   // Fetch blogs for sitemap directly from DB to avoid build-time fetch errors
   let blogPages: MetadataRoute.Sitemap = []
   try {
@@ -49,5 +61,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Failed to fetch blogs for sitemap:', error)
   }
 
-  return [...staticPages, ...servicePages, ...locationPages, ...blogPages]
+  return [...staticPages, ...servicePages, ...locationPages, ...locationServicePages, ...blogPages]
 }

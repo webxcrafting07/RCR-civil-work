@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CheckCircle, ArrowRight, Phone, ChevronDown } from 'lucide-react'
-import { SERVICES_LIST } from '@/constants'
+import { SERVICES_LIST, TARGET_LOCATIONS } from '@/constants'
 import PageHero from '@/components/shared/PageHero'
 import CTASection from '@/components/sections/CTASection'
 
@@ -68,6 +68,9 @@ export default async function ServiceDetailPage({ params }: Props) {
   const process = (service as { process?: typeof DEFAULT_PROCESS }).process?.length
     ? (service as { process: typeof DEFAULT_PROCESS }).process
     : DEFAULT_PROCESS
+
+  const POPULAR_SLUGS = ['mumbai', 'thane', 'kalyan', 'vasai', 'virar', 'navi-mumbai', 'bandra', 'andheri', 'goregaon', 'borivali', 'panvel', 'kharghar']
+  const popularLocations = TARGET_LOCATIONS.filter(loc => POPULAR_SLUGS.includes(loc.slug)).slice(0, 12)
 
   return (
     <>
@@ -179,6 +182,34 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Top Served Locations for [Service] (Bi-Directional SEO Linking Mesh) */}
+      <section className="py-16 bg-white border-t border-slate-200">
+        <div className="container-custom">
+          <h2 className="text-2xl font-display font-bold text-slate-900 mb-4 text-center">
+            Top Served Areas for {service.title}
+          </h2>
+          <p className="text-slate-500 text-sm text-center max-w-2xl mx-auto mb-10">
+            We deliver expert {service.title.toLowerCase()} across major Maharashtra regions. Click below to view custom specifications and get quotes.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+            {popularLocations.map(loc => (
+              <Link
+                key={loc.slug}
+                href={`/locations/${loc.slug}/${service.slug}`}
+                className="py-3 px-4 text-center rounded-xl border border-slate-200 hover:border-sky-500 hover:bg-sky-50/30 text-xs font-semibold text-slate-600 hover:text-sky-600 transition-all hover:-translate-y-0.5"
+              >
+                {service.title} in {loc.name}
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/locations" className="text-xs font-bold text-sky-500 hover:text-sky-600 hover:underline inline-flex items-center gap-1.5">
+              Browse All Areas We Serve <ArrowRight size={13} />
+            </Link>
           </div>
         </div>
       </section>
