@@ -225,7 +225,10 @@ export default async function LocationPage({ params }: LocationPageProps) {
         />
       ))}
 
-      <main className="min-h-screen bg-slate-950 pt-28">
+      <main className="min-h-screen bg-slate-950">
+        {/* Top Spacer to prevent fixed Navbar overlap */}
+        <div className="h-[96px] lg:h-[104px] bg-slate-950" />
+
         {/* Modern Sticky Breadcrumbs Bar */}
       <div className="bg-slate-900/60 border-b border-slate-800 backdrop-blur-md sticky top-[72px] z-30">
         <div className="container-custom max-w-6xl mx-auto px-4 py-3 flex items-center gap-2 text-[10px] font-mono tracking-wider text-slate-400">
