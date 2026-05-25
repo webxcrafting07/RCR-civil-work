@@ -1,7 +1,8 @@
 import { Metadata, ResolvingMetadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, User, ArrowLeft, Facebook, Twitter, Linkedin, Link as LinkIcon, ChevronRight } from 'lucide-react'
+import { Calendar, User, ArrowLeft, Facebook, Twitter, Linkedin, Link as LinkIcon, ChevronRight, Clock } from 'lucide-react'
+import ScrollProgress from '@/components/shared/ScrollProgress'
 import { notFound } from 'next/navigation'
 import { use } from 'react'
 
@@ -88,6 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main className="min-h-screen bg-slate-50 pb-24">
+        <ScrollProgress />
         
         {/* HERO SECTION */}
         <div className="relative pt-40 pb-16 md:pt-48 md:pb-24 bg-slate-900 text-white overflow-hidden">
@@ -149,6 +151,10 @@ export default async function BlogPostPage({ params }: Props) {
                         <p className="text-sm text-slate-500 flex items-center gap-1 mt-0.5">
                           <Calendar size={14} /> 
                           {new Date(blog.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                        </p>
+                        <p className="text-sm text-sky-600 font-medium flex items-center gap-1 mt-1">
+                          <Clock size={14} />
+                          {Math.max(1, Math.ceil((blog.content || blog.excerpt || '').trim().split(/\s+/).length / 200))} min read
                         </p>
                       </div>
                     </div>
