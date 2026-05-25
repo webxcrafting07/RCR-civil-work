@@ -1,20 +1,16 @@
 const mongoose = require('mongoose');
-require('dotenv').config({ path: '.env' });
 
-const uri = process.env.MONGODB_URI;
-console.log('Testing connection to:', uri.split('@')[1] || uri); // Don't log password
+const uri = "mongodb://webxcrafting_db_user:QWC3YgfSI6ymU9jS@ac-1kng6nb-shard-00-00.2q58fzs.mongodb.net:27017,ac-1kng6nb-shard-00-01.2q58fzs.mongodb.net:27017,ac-1kng6nb-shard-00-02.2q58fzs.mongodb.net:27017/rcr-enterprises?ssl=true&replicaSet=atlas-11wbp6-shard-0&authSource=admin&retryWrites=true&w=majority";
 
-async function testConnection() {
+async function run() {
   try {
-    console.log('Connecting...');
     await mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });
-    console.log('✅ BACKEND IS CONNECTED SUCCESSFULLY!');
+    console.log("Connected successfully!");
     process.exit(0);
   } catch (err) {
-    console.error('❌ BACKEND IS NOT CONNECTED.');
-    console.error('Error details:', err.message);
+    console.error("Connection failed:", err.message);
     process.exit(1);
   }
 }
 
-testConnection();
+run();

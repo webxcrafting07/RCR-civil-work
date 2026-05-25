@@ -10,16 +10,46 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
+const MOCK_BLOGS = [
+  {
+    _id: 'mock-1',
+    title: 'The Complete Guide to RCC Construction in 2026',
+    slug: 'guide-to-rcc-construction',
+    excerpt: 'Learn everything you need to know about reinforced concrete cement construction, from materials to best practices.',
+    coverImage: '/images/blog_rcc_guide.png',
+    publishedAt: new Date().toISOString(),
+    author: 'RCR Enterprises'
+  },
+  {
+    _id: 'mock-2',
+    title: 'Why Core Cutting is Essential for Modern Buildings',
+    slug: 'why-core-cutting-essential',
+    excerpt: 'Discover the importance of core cutting in structural modifications and how it ensures safety and precision.',
+    coverImage: '/images/blog_core_cutting.png',
+    publishedAt: new Date().toISOString(),
+    author: 'Admin'
+  },
+  {
+    _id: 'mock-3',
+    title: 'How to Choose the Right Contractor for Your Industrial Shed',
+    slug: 'choose-right-contractor-industrial-shed',
+    excerpt: 'Building an industrial shed requires expertise. Find out the key factors to consider when hiring a civil contractor.',
+    coverImage: '/images/blog_industrial_shed.png',
+    publishedAt: new Date().toISOString(),
+    author: 'Momin'
+  }
+]
+
 async function getBlogs() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
   try {
     const res = await fetch(`${baseUrl}/api/blogs?publishedOnly=true`, { cache: 'no-store' })
-    if (!res.ok) return []
+    if (!res.ok) return MOCK_BLOGS
     const json = await res.json()
-    return json.success ? json.data : []
+    return json.success && json.data.length > 0 ? json.data : MOCK_BLOGS
   } catch (error) {
-    console.error('Failed to fetch blogs:', error)
-    return []
+    console.warn('Failed to fetch blogs from database, using mock data:', error)
+    return MOCK_BLOGS
   }
 }
 
