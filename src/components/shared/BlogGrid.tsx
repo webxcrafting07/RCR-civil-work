@@ -150,11 +150,11 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
                     </div>
                   </Link>
                   
-                  <div className="p-8 flex flex-col flex-1">
+                  <div className="p-6 md:p-8 flex flex-col flex-1">
                     <div className="flex items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
                       <span className="flex items-center gap-1.5"><Calendar size={14} /> {new Date(blog.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
-                    <h2 className="text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-sky-600 transition-colors line-clamp-2 leading-snug">
+                    <h2 className="text-xl md:text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-sky-600 transition-colors line-clamp-2 leading-snug">
                       <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
                     </h2>
                     <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3 flex-1">
