@@ -241,7 +241,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       <section className="relative min-h-[85vh] flex flex-col justify-center items-center overflow-hidden bg-slate-950 text-white">
         {/* Background construction photo with deep sleek gradient */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 mix-blend-luminosity scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105"
           style={{ backgroundImage: 'url(/images/hero_construction_bg.png)' }}
         />
         {/* Harmonious premium styling overlays */}
@@ -396,7 +396,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                     alt={`${service.title} in ${location.name}`} 
                     fill 
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-85" 
+                    className="object-cover group-hover:scale-105 transition-transform duration-700" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
                   <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/90 text-sky-400 font-bold text-[9px] tracking-widest uppercase border border-slate-800">
@@ -464,7 +464,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
                     alt={proj.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100 mix-blend-luminosity hover:mix-blend-normal"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <span className="absolute top-4 left-4 inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-950/90 text-sky-400 font-mono text-[9px] tracking-wider uppercase border border-slate-800">
                     Completed

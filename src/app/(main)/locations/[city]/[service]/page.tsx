@@ -234,7 +234,7 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
       {/* Premium Spotlight Hero */}
       <section className="relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden bg-slate-950 text-white">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105"
           style={{ backgroundImage: `url(${service.image})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950" />
