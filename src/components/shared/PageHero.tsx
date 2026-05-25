@@ -19,16 +19,17 @@ interface PageHeroProps {
   title: ReactNode
   subtitle?: ReactNode
   backgroundImage?: string
+  imageAlt?: string
 }
 
-export default function PageHero({ badge, title, subtitle, backgroundImage }: PageHeroProps) {
+export default function PageHero({ badge, title, subtitle, backgroundImage, imageAlt }: PageHeroProps) {
   return (
     <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '45vh' }}>
       {backgroundImage && (
         <>
           <Image
             src={backgroundImage}
-            alt={title}
+            alt={imageAlt || "Hero background image"}
             fill
             className="object-cover object-center"
             priority
