@@ -15,6 +15,7 @@ const NAV_KEYS: Record<string, string> = {
   '/': 'nav.home',
   '/about': 'nav.about',
   '/services': 'nav.services',
+  '/locations': 'nav.locations',
   '/projects': 'nav.projects',
   '/gallery': 'nav.gallery',
   '/blogs': 'nav.blogs',
