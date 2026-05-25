@@ -50,13 +50,21 @@ const MOCK_BLOGS = [
   }
 ]
 
+import connectDB from '@/lib/mongodb'
+import Blog from '@/models/Blog'
+
 async function getBlogs() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
-    const res = await fetch(`${baseUrl}/api/blogs?publishedOnly=true`, { cache: 'no-store' })
-    if (!res.ok) throw new Error('Fetch failed')
-    const json = await res.json()
-    return json.success && json.data.length > 0 ? json.data : MOCK_BLOGS
+    await connectDB()
+    const blogs = await Blog.find({ isPublished: true })
+      .sort({ publishedAt: -1 })
+      .lean()
+
+    if (blogs && blogs.length > 0) {
+      return JSON.parse(JSON.stringify(blogs))
+    }
+    
+    return MOCK_BLOGS
   } catch (error) {
     console.warn('Failed to fetch blogs from database, using mock data:', error)
     return MOCK_BLOGS

@@ -8,12 +8,23 @@ import CTASection from '@/components/sections/CTASection'
 
 interface Props { params: Promise<{ slug: string }> }
 
+import connectDB from '@/lib/mongodb'
+import Project from '@/models/Project'
+
 async function getProject(slug: string) {
   try {
-    const base = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const res = await fetch(`${base}/api/projects/${slug}`, { next: { revalidate: 300 } })
-    if (res.ok) { const d = await res.json(); if (d.success) return d.data }
-  } catch {}
+    await connectDB()
+    let project = await Project.findOne({ slug }).lean()
+    if (!project && slug.match(/^[0-9a-fA-F]{24}$/)) {
+      project = await Project.findById(slug).lean()
+    }
+    
+    if (project) {
+      return JSON.parse(JSON.stringify(project))
+    }
+  } catch (error) {
+    console.warn('Failed to fetch project from DB:', error)
+  }
   return null
 }
 
