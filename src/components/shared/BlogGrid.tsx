@@ -125,7 +125,7 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
             </motion.div>
           ) : (
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogs.map((blog) => {
+              {filteredBlogs.map((blog, index) => {
                 const translatedTitle = t(`blogsList.${blog.slug}.title`);
                 const title = (translatedTitle !== `blogsList.${blog.slug}.title` ? translatedTitle : blog.title) || blog.title;
                 const translatedExcerpt = t(`blogsList.${blog.slug}.excerpt`);
@@ -147,6 +147,7 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
                           src={blog.coverImage}
                           alt={title}
                           fill
+                          priority={index < 3}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
                         />
