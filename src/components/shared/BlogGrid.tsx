@@ -43,9 +43,11 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
   // Filter blogs based on search query and active tag
   const filteredBlogs = useMemo(() => {
     return initialBlogs.filter(blog => {
-      const matchesSearch = 
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+      const titleSearch = (blog.title || '').toLowerCase()
+      const excerptSearch = (blog.excerpt || '').toLowerCase()
+      const query = searchQuery.toLowerCase()
+
+      const matchesSearch = titleSearch.includes(query) || excerptSearch.includes(query)
       
       const matchesTag = activeTag === 'All' || (blog.tags && blog.tags.includes(activeTag))
       

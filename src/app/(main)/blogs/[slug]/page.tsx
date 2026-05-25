@@ -46,7 +46,7 @@ const MOCK_BLOGS = [
 ]
 
 async function getBlog(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
     const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' })
     if (!res.ok) throw new Error('Fetch failed')
@@ -59,17 +59,17 @@ async function getBlog(slug: string) {
 }
 
 async function getRelatedBlogs(currentSlug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
     const res = await fetch(`${baseUrl}/api/blogs?limit=4&publishedOnly=true`, { cache: 'no-store' })
-    if (!res.ok) return []
+    if (!res.ok) throw new Error('Fetch failed')
     const json = await res.json()
-    if (!json.success || !json.data) return []
+    if (!json.success || !json.data) throw new Error('No data')
     // Filter out current and return max 3
     return json.data.filter((b: any) => b.slug !== currentSlug).slice(0, 3)
   } catch (error) {
-    console.error('Failed to fetch related blogs:', error)
-    return []
+    console.warn('Failed to fetch related blogs, using mock data:', error)
+    return MOCK_BLOGS.filter(b => b.slug !== currentSlug).slice(0, 3)
   }
 }
 

@@ -42,10 +42,10 @@ const MOCK_BLOGS = [
 ]
 
 async function getBlogs() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
     const res = await fetch(`${baseUrl}/api/blogs?publishedOnly=true`, { cache: 'no-store' })
-    if (!res.ok) return MOCK_BLOGS
+    if (!res.ok) throw new Error('Fetch failed')
     const json = await res.json()
     return json.success && json.data.length > 0 ? json.data : MOCK_BLOGS
   } catch (error) {
