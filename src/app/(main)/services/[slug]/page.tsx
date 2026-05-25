@@ -11,23 +11,16 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-import connectDB from '@/lib/mongodb'
-import Service from '@/models/Service'
-
 async function getService(slug: string) {
+  // Try DB first, fallback to constants
   try {
-    await connectDB()
-    let service = await Service.findOne({ slug }).lean()
-    if (!service && slug.match(/^[0-9a-fA-F]{24}$/)) {
-      service = await Service.findById(slug).lean()
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+    const res = await fetch(`${baseUrl}/api/services/${slug}`, { next: { revalidate: 300 } })
+    if (res.ok) {
+      const data = await res.json()
+      if (data.success) return data.data
     }
-    
-    if (service) {
-      return JSON.parse(JSON.stringify(service))
-    }
-  } catch (error) {
-    console.warn('Failed to fetch service from DB:', error)
-  }
+  } catch {}
   return SERVICES_LIST.find(s => s.slug === slug) || null
 }
 

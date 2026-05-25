@@ -45,23 +45,13 @@ const MOCK_BLOGS = [
   }
 ]
 
-import connectDB from '@/lib/mongodb'
-import Blog from '@/models/Blog'
-
 async function getBlog(slug: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
-    await connectDB()
-    let blog = await Blog.findOne({ slug }).lean()
-    if (!blog && slug.match(/^[0-9a-fA-F]{24}$/)) {
-      blog = await Blog.findById(slug).lean()
-    }
-    
-    // Parse MongoDB object to plain JSON to avoid Next.js serialization issues
-    if (blog) {
-      return JSON.parse(JSON.stringify(blog))
-    }
-    
-    return MOCK_BLOGS.find(b => b.slug === slug) || null
+    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' })
+    if (!res.ok) throw new Error('Fetch failed')
+    const json = await res.json()
+    return (json.success && json.data) ? json.data : MOCK_BLOGS.find(b => b.slug === slug) || null
   } catch (error) {
     console.warn('Failed to fetch blog, using mock data fallback:', error)
     return MOCK_BLOGS.find(b => b.slug === slug) || null
@@ -69,21 +59,14 @@ async function getBlog(slug: string) {
 }
 
 async function getRelatedBlogs(currentSlug: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
-    await connectDB()
-    const blogs = await Blog.find({ 
-      slug: { $ne: currentSlug },
-      isPublished: true 
-    })
-      .sort({ publishedAt: -1 })
-      .limit(3)
-      .lean()
-
-    if (blogs && blogs.length > 0) {
-      return JSON.parse(JSON.stringify(blogs))
-    }
-
-    return MOCK_BLOGS.filter(b => b.slug !== currentSlug).slice(0, 3)
+    const res = await fetch(`${baseUrl}/api/blogs?limit=4&publishedOnly=true`, { cache: 'no-store' })
+    if (!res.ok) throw new Error('Fetch failed')
+    const json = await res.json()
+    if (!json.success || !json.data) throw new Error('No data')
+    // Filter out current and return max 3
+    return json.data.filter((b: any) => b.slug !== currentSlug).slice(0, 3)
   } catch (error) {
     console.warn('Failed to fetch related blogs, using mock data:', error)
     return MOCK_BLOGS.filter(b => b.slug !== currentSlug).slice(0, 3)

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, User, ArrowRight, Search, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTranslation } from '@/hooks/useTranslation'
 
 // Simple reading time estimator (approx 200 words per minute)
 const getReadingTime = (content: string = '') => {
@@ -27,11 +26,8 @@ type Blog = {
 }
 
 export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
-  const { t, language } = useTranslation()
   const [searchQuery, setSearchQuery] = useState('')
   const [activeTag, setActiveTag] = useState('All')
-
-  const tagAllText = t('blogs.all') !== 'blogs.all' ? t('blogs.all') : 'All'
 
   // Extract unique tags from all blogs
   const allTags = useMemo(() => {
@@ -72,7 +68,7 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
             <Search size={22} className="text-slate-400 ml-4 mr-3" />
             <input
               type="text"
-              placeholder={t('blogs.searchPlaceholder') !== 'blogs.searchPlaceholder' ? t('blogs.searchPlaceholder') : "Search articles, guides, and news..."}
+              placeholder="Search articles, guides, and news..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-transparent border-none text-slate-800 text-lg placeholder:text-slate-400 focus:outline-none py-3 pr-4"
@@ -84,7 +80,6 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           {allTags.map(tag => {
             const isActive = activeTag === tag;
-            const displayTag = tag === 'All' ? (t('blogs.all') !== 'blogs.all' ? t('blogs.all') : 'All') : tag;
             return (
               <button
                 key={tag}
@@ -100,7 +95,7 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
                 )}
-                <span className="relative z-10">{displayTag}</span>
+                <span className="relative z-10">{tag}</span>
               </button>
             )
           })}
@@ -120,69 +115,62 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
               <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search size={32} className="text-slate-400" />
               </div>
-              <h3 className="text-2xl font-display font-bold text-slate-900 mb-3">{t('blogs.noResultsTitle') || 'No results found'}</h3>
-              <p className="text-slate-500 text-lg max-w-md mx-auto">{t('blogs.noResultsDesc') || "We couldn't find any articles matching your current search or filter criteria. Try adjusting them."}</p>
+              <h3 className="text-2xl font-display font-bold text-slate-900 mb-3">No results found</h3>
+              <p className="text-slate-500 text-lg max-w-md mx-auto">We couldn't find any articles matching your current search or filter criteria. Try adjusting them.</p>
             </motion.div>
           ) : (
             <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogs.map((blog) => {
-                const translatedTitle = t(`blogsList.${blog.slug}.title`);
-                const title = (translatedTitle !== `blogsList.${blog.slug}.title` ? translatedTitle : blog.title) || blog.title;
-                const translatedExcerpt = t(`blogsList.${blog.slug}.excerpt`);
-                const excerpt = (translatedExcerpt !== `blogsList.${blog.slug}.excerpt` ? translatedExcerpt : blog.excerpt) || blog.excerpt;
-                
-                return (
-                  <motion.article
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    key={blog._id} 
-                    className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-500 group flex flex-col"
-                  >
-                    <Link href={`/blogs/${blog.slug}`} className="block relative h-64 overflow-hidden bg-slate-100">
-                      {blog.coverImage ? (
-                        <Image
-                          src={blog.coverImage}
-                          alt={title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-sky-50 flex items-center justify-center">
-                          <span className="text-sky-200 font-display font-bold text-4xl">RCR</span>
-                        </div>
-                      )}
-                      
-                      {/* Modern Floating Badge */}
-                      <div className="absolute top-5 right-5 bg-white/95 backdrop-blur-md text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-black/5 flex items-center gap-1.5 border border-white/20">
-                        <Clock size={12} className="text-sky-500" />
-                        {getReadingTime(blog.content || blog.excerpt)} {t('blogs.minRead') || 'MIN READ'}
+              {filteredBlogs.map((blog) => (
+                <motion.article
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  key={blog._id} 
+                  className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-500 group flex flex-col"
+                >
+                  <Link href={`/blogs/${blog.slug}`} className="block relative h-64 overflow-hidden bg-slate-100">
+                    {blog.coverImage ? (
+                      <Image
+                        src={blog.coverImage}
+                        alt={blog.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-sky-50 flex items-center justify-center">
+                        <span className="text-sky-200 font-display font-bold text-4xl">RCR</span>
+                      </div>
+                    )}
+                    
+                    {/* Modern Floating Badge */}
+                    <div className="absolute top-5 right-5 bg-white/95 backdrop-blur-md text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-black/5 flex items-center gap-1.5 border border-white/20">
+                      <Clock size={12} className="text-sky-500" />
+                      {getReadingTime(blog.content || blog.excerpt)} MIN READ
+                    </div>
+                  </Link>
+                  
+                  <div className="p-6 md:p-8 flex flex-col flex-1">
+                    <div className="flex items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
+                      <span className="flex items-center gap-1.5"><Calendar size={14} /> {new Date(blog.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-sky-600 transition-colors line-clamp-2 leading-snug">
+                      <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
+                    </h2>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3 flex-1">
+                      {blog.excerpt}
+                    </p>
+                    <Link href={`/blogs/${blog.slug}`} className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-sky-600 mt-auto border-t border-slate-100 pt-6 transition-colors">
+                      READ ARTICLE 
+                      <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-50 transition-colors">
+                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                       </div>
                     </Link>
-                    
-                    <div className="p-6 md:p-8 flex flex-col flex-1">
-                      <div className="flex items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                        <span className="flex items-center gap-1.5"><Calendar size={14} /> {new Date(blog.publishedAt).toLocaleDateString(language === 'en' ? 'en-US' : language === 'hi' ? 'hi-IN' : 'mr-IN', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                      </div>
-                      <h2 className="text-xl md:text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-sky-600 transition-colors line-clamp-2 leading-snug">
-                        <Link href={`/blogs/${blog.slug}`}>{title}</Link>
-                      </h2>
-                      <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3 flex-1">
-                        {excerpt}
-                      </p>
-                      <Link href={`/blogs/${blog.slug}`} className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-sky-600 mt-auto border-t border-slate-100 pt-6 transition-colors">
-                        {t('blogs.readArticle') || 'READ ARTICLE'} 
-                        <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-50 transition-colors">
-                          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                        </div>
-                      </Link>
-                    </div>
-                  </motion.article>
-                )
-              })}
+                  </div>
+                </motion.article>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
