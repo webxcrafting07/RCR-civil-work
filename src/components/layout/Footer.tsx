@@ -28,12 +28,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
 
           {/* Company Info */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 group mb-5">
+          <div className="lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
+            <Link href="/" className="flex items-center gap-3 group mb-5 w-fit mx-auto lg:mx-0">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm bg-white p-1">
                 <Image src="/logo-3d.png" alt="RCR Logo" fill sizes="40px" className="object-cover" />
               </div>
-              <div>
+              <div className="text-left">
                 <div className="font-mono font-bold text-white text-base tracking-widest leading-none">RCR</div>
                 <div className="font-mono font-semibold text-sky-400 text-[10px] tracking-[0.25em] leading-none mt-1">ENTERPRISES</div>
               </div>
@@ -41,20 +41,20 @@ export default function Footer() {
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               {t('footer.description')}
             </p>
-            <div className="flex flex-col gap-3">
-              <a href="tel:9619439243" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors">
+            <div className="flex flex-col gap-3 items-start w-fit mx-auto lg:mx-0">
+              <a href="tel:9619439243" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left">
                 <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0">
                   <Phone size={13} className="text-sky-400" />
                 </div>
                 {COMPANY_INFO.phone}
               </a>
-              <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors">
+              <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left">
                 <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0">
                   <Mail size={13} className="text-sky-400" />
                 </div>
                 <span className="truncate">{COMPANY_INFO.email}</span>
               </a>
-              <a href="https://maps.app.goo.gl/qFVpxJ2gH3gi583q7" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors">
+              <a href="https://maps.app.goo.gl/qFVpxJ2gH3gi583q7" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left max-w-[280px] lg:max-w-none">
                 <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <MapPin size={13} className="text-sky-400" />
                 </div>
