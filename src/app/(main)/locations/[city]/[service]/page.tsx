@@ -217,7 +217,8 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
         />
       ))}
 
-      {/* Double Breadcrumbs Trail */}
+      <main className="min-h-screen bg-slate-950 pt-28">
+        {/* Double Breadcrumbs Trail */}
       <div className="bg-slate-900/60 border-b border-slate-800 backdrop-blur-md sticky top-[72px] z-30">
         <div className="container-custom max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-2 text-[10px] font-mono tracking-wider text-slate-400">
           <Link href="/" className="hover:text-sky-400 transition-colors uppercase">Home</Link>
@@ -510,6 +511,7 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
           </div>
         </div>
       </section>
+      </main>
     </>
   )
 }
