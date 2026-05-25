@@ -90,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
       <main className="min-h-screen bg-slate-50 pb-24">
         
         {/* HERO SECTION */}
-        <div className="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-slate-900 text-white overflow-hidden">
+        <div className="relative pt-40 pb-16 md:pt-48 md:pb-24 bg-slate-900 text-white overflow-hidden">
           {blog.coverImage && (
             <div className="absolute inset-0 opacity-40">
               <Image 

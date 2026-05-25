@@ -57,7 +57,7 @@ export default async function BlogsPage() {
   const blogs = await getBlogs()
 
   return (
-    <main className="min-h-screen pt-32 pb-20 bg-slate-50">
+    <main className="min-h-screen pt-40 md:pt-48 pb-20 bg-slate-50">
       <div className="container-custom">
         <div className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
