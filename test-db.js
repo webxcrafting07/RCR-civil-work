@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const uri = "mongodb://webxcrafting_db_user:QWC3YgfSI6ymU9jS@ac-1kng6nb-shard-00-00.2q58fzs.mongodb.net:27017,ac-1kng6nb-shard-00-01.2q58fzs.mongodb.net:27017,ac-1kng6nb-shard-00-02.2q58fzs.mongodb.net:27017/rcr-enterprises?ssl=true&replicaSet=atlas-11wbp6-shard-0&authSource=admin&retryWrites=true&w=majority";
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  console.error("Error: MONGODB_URI is not defined in your .env file!");
+  process.exit(1);
+}
 
 async function run() {
   try {
     await mongoose.connect(uri, { serverSelectionTimeoutMS: 5000 });
-    console.log("Connected successfully!");
+    console.log("Connected successfully to MongoDB!");
     process.exit(0);
   } catch (err) {
     console.error("Connection failed:", err.message);
