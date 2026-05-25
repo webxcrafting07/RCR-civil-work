@@ -3,9 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import BlogGrid from '@/components/shared/BlogGrid'
-import connectDB from '@/lib/mongodb'
-import Blog from '@/models/Blog'
-import Translate from '@/components/shared/Translate'
 
 export const metadata: Metadata = {
   title: 'Blog | RCR Enterprises',
@@ -53,6 +50,8 @@ const MOCK_BLOGS = [
   }
 ]
 
+import connectDB from '@/lib/mongodb'
+import Blog from '@/models/Blog'
 
 async function getBlogs() {
   try {
@@ -80,10 +79,10 @@ export default async function BlogsPage() {
       <div className="container-custom">
         <div className="max-w-3xl mb-16">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
-            <Translate tKey="blogsPage.titleLine1" fallback="Construction" /> <span className="text-gradient"><Translate tKey="blogsPage.titleHighlight" fallback="Insights & News" /></span>
+            Construction <span className="text-gradient">Insights & News</span>
           </h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            <Translate tKey="blogsPage.subtitle" fallback="Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works." />
+            Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works.
           </p>
         </div>
 

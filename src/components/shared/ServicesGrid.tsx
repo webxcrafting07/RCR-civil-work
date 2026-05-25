@@ -28,13 +28,13 @@ export default function ServicesGrid() {
             </div>
             <div className="p-6">
               <h3 className="font-display font-bold text-slate-900 text-lg mb-3 group-hover:text-sky-500 transition-colors">
-                {t(`servicesList.${service.id}.title`) !== `servicesList.${service.id}.title` ? t(`servicesList.${service.id}.title`) : service.title}
+                {t(`servicesList.${service.id}.title`) || service.title}
               </h3>
               <p className="text-sm text-slate-500 leading-relaxed mb-5">
-                {t(`servicesList.${service.id}.shortDescription`) !== `servicesList.${service.id}.shortDescription` ? t(`servicesList.${service.id}.shortDescription`) : service.shortDescription}
+                {t(`servicesList.${service.id}.description`) || service.shortDescription}
               </p>
               <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-xs font-semibold text-sky-500 hover:gap-3 transition-all">
-                {t('nav.learnMore') !== 'nav.learnMore' ? t('nav.learnMore') : 'Learn More'} <ArrowRight size={13} />
+                {t('nav.learnMore') || 'Learn More'} <ArrowRight size={13} />
               </Link>
             </div>
           </div>

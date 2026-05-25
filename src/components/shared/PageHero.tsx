@@ -12,24 +12,21 @@ const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skill
 // ============================================================
 // PAGE HERO
 // ============================================================
-import { ReactNode } from 'react'
-
 interface PageHeroProps {
-  badge?: ReactNode
-  title: ReactNode
-  subtitle?: ReactNode
+  badge?: string
+  title: string
+  subtitle?: string
   backgroundImage?: string
-  imageAlt?: string
 }
 
-export default function PageHero({ badge, title, subtitle, backgroundImage, imageAlt }: PageHeroProps) {
+export default function PageHero({ badge, title, subtitle, backgroundImage }: PageHeroProps) {
   return (
     <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '45vh' }}>
       {backgroundImage && (
         <>
           <Image
             src={backgroundImage}
-            alt={imageAlt || "Hero background image"}
+            alt={title}
             fill
             className="object-cover object-center"
             priority
