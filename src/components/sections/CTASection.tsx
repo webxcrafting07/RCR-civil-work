@@ -9,7 +9,7 @@ export default function CTASection() {
   const { t } = useTranslation()
 
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-950">
+    <section className="py-16 relative overflow-hidden bg-slate-950">
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
@@ -26,7 +26,7 @@ export default function CTASection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase bg-brandRed/10 border border-brandRed/30 text-white mb-8 shadow-[0_0_15px_rgba(192,30,46,0.3)]"
+          className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase bg-brandRed/10 border border-brandRed/30 text-white mb-6 shadow-[0_0_15px_rgba(192,30,46,0.3)]"
         >
           {t('cta.badge')}
         </motion.span>
@@ -36,7 +36,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white mb-6 leading-[1.1] tracking-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white mb-4 leading-[1.1] tracking-tight"
         >
           {t('cta.titleLine1')}{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-red-400">{t('cta.titleHighlight')}</span><br/>
@@ -48,7 +48,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-slate-300 text-lg md:text-xl font-medium mb-12 leading-relaxed max-w-2xl mx-auto"
+          className="text-slate-300 text-lg md:text-xl font-medium mb-8 leading-relaxed max-w-2xl mx-auto"
         >
           {t('cta.subtitle')}
         </motion.p>
