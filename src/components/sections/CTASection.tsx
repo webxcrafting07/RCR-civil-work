@@ -9,7 +9,7 @@ export default function CTASection() {
   const { t } = useTranslation()
 
   return (
-    <section className="py-16 relative overflow-hidden bg-slate-950">
+    <section className="py-10 relative overflow-hidden bg-slate-950">
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
@@ -26,7 +26,7 @@ export default function CTASection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase bg-brandRed/10 border border-brandRed/30 text-white mb-6 shadow-[0_0_15px_rgba(192,30,46,0.3)]"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-brandRed/10 border border-brandRed/30 text-white mb-4 shadow-[0_0_15px_rgba(192,30,46,0.3)]"
         >
           {t('cta.badge')}
         </motion.span>
@@ -36,7 +36,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white mb-4 leading-[1.1] tracking-tight"
+          className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-white mb-3 leading-[1.1] tracking-tight"
         >
           {t('cta.titleLine1')}{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-red-400">{t('cta.titleHighlight')}</span><br/>
@@ -48,7 +48,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-slate-300 text-lg md:text-xl font-medium mb-8 leading-relaxed max-w-2xl mx-auto"
+          className="text-slate-300 text-base md:text-lg font-medium mb-6 leading-relaxed max-w-2xl mx-auto"
         >
           {t('cta.subtitle')}
         </motion.p>
@@ -58,13 +58,13 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="flex flex-wrap justify-center gap-5"
+          className="flex flex-wrap justify-center gap-4"
         >
-          <Link href="/contact" className="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-sm md:text-base bg-brandRed text-white hover:bg-red-700 transition-all shadow-[0_10px_30px_rgba(192,30,46,0.4)] hover:shadow-[0_15px_40px_rgba(192,30,46,0.6)] hover:-translate-y-1">
-            {t('cta.contactUs')} <ArrowRight size={18} />
+          <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm bg-brandRed text-white hover:bg-red-700 transition-all shadow-[0_10px_30px_rgba(192,30,46,0.4)] hover:shadow-[0_15px_40px_rgba(192,30,46,0.6)] hover:-translate-y-1">
+            {t('cta.contactUs')} <ArrowRight size={16} />
           </Link>
-          <a href="tel:9619439243" className="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-sm md:text-base border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all hover:-translate-y-1">
-            <Phone size={18} /> {t('cta.getQuote')}
+          <a href="tel:9619439243" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all hover:-translate-y-1">
+            <Phone size={16} /> {t('cta.getQuote')}
           </a>
         </motion.div>
       </div>
