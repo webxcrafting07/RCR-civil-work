@@ -1,10 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Phone, Mail, MapPin, Send, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin, Send, Clock, ChevronDown } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { COMPANY_INFO, SERVICES_LIST_FOR_CONTACT } from '@/constants'
 import { useTranslation } from '@/hooks/useTranslation'
@@ -20,10 +21,24 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>
 
 export default function ContactSection() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormData>({
+  const { register, handleSubmit, reset, setValue, watch, formState: { errors, isSubmitting } } = useForm<FormData>({
     resolver: zodResolver(schema),
   })
   const { t } = useTranslation()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const selectedService = watch('serviceRequired')
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -162,14 +177,51 @@ export default function ContactSection() {
                 <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
                 {errors.email && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.email.message}</p>}
               </div>
-              <div>
+              <div className="relative" ref={dropdownRef}>
                 <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formService')}</label>
-                <select {...register('serviceRequired')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none">
-                  <option value="">{t('contact.formServicePlaceholder')}</option>
-                  {SERVICES_LIST_FOR_CONTACT.map(s => (
-                    <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
-                  ))}
-                </select>
+                
+                {/* Hidden Input for React Hook Form */}
+                <input type="hidden" {...register('serviceRequired')} />
+                
+                {/* Custom Select Trigger */}
+                <div 
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className={`w-full bg-slate-50 border rounded-xl px-4 py-2.5 text-sm font-medium flex items-center justify-between cursor-pointer transition-all ${isDropdownOpen ? 'border-brandRed ring-2 ring-brandRed/20' : 'border-slate-200 hover:border-brandRed/40'}`}
+                >
+                  <span className={selectedService ? "text-slate-900" : "text-slate-400"}>
+                    {selectedService || t('contact.formServicePlaceholder')}
+                  </span>
+                  <ChevronDown size={16} className={`text-slate-400 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180 text-brandRed' : ''}`} />
+                </div>
+
+                {/* Custom Select Dropdown */}
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-100 rounded-xl shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] overflow-hidden z-50 max-h-56 overflow-y-auto"
+                    >
+                      <div className="p-1.5 space-y-0.5">
+                        {SERVICES_LIST_FOR_CONTACT.map(s => (
+                          <div
+                            key={s}
+                            onClick={() => {
+                              setValue('serviceRequired', s, { shouldValidate: true })
+                              setIsDropdownOpen(false)
+                            }}
+                            className={`px-3 py-2.5 text-sm rounded-lg cursor-pointer transition-all flex items-center ${selectedService === s ? 'bg-brandRed/5 text-brandRed font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium'}`}
+                          >
+                            {s}
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 {errors.serviceRequired && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.serviceRequired.message}</p>}
               </div>
               <div>
