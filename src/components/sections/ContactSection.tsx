@@ -45,9 +45,9 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-12 lg:py-16 bg-slate-50" id="contact">
+    <section className="py-8 lg:py-10 bg-slate-50" id="contact">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-6">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,19 +67,19 @@ export default function ContactSection() {
           </motion.h2>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-4 lg:gap-5 max-w-6xl mx-auto">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 rounded-3xl bg-slate-950 p-6 md:p-8 relative overflow-hidden shadow-xl flex flex-col"
+            className="lg:col-span-2 rounded-3xl bg-slate-950 p-5 relative overflow-hidden shadow-xl flex flex-col"
           >
             {/* Background glowing orbs */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-brandRed/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brandRed/10 rounded-full blur-3xl pointer-events-none" />
             
-            <div className="relative z-10 flex flex-col gap-6 flex-1 mb-8">
+            <div className="relative z-10 flex flex-col gap-4 flex-1 mb-4">
               {[
                 {
                   icon: Phone,
@@ -144,27 +144,27 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8 rounded-3xl border border-slate-200 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] space-y-4 md:space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-5 rounded-3xl border border-slate-200 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] space-y-3">
+              <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formFullName')}</label>
-                  <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                  <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
                   {errors.fullName && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.fullName.message}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formPhone')}</label>
-                  <input {...register('phone')} placeholder={t('contact.formPhonePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                  <input {...register('phone')} placeholder={t('contact.formPhonePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
                   {errors.phone && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.phone.message}</p>}
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formEmail')}</label>
-                <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
                 {errors.email && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.email.message}</p>}
               </div>
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formService')}</label>
-                <select {...register('serviceRequired')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none">
+                <select {...register('serviceRequired')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none">
                   <option value="">{t('contact.formServicePlaceholder')}</option>
                   {SERVICES_LIST_FOR_CONTACT.map(s => (
                     <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
@@ -174,7 +174,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formMessage')}</label>
-                <textarea {...register('message')} rows={4} placeholder={t('contact.formMessagePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none resize-none" />
+                <textarea {...register('message')} rows={3} placeholder={t('contact.formMessagePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none resize-none" />
                 {errors.message && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.message.message}</p>}
               </div>
               <button
