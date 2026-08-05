@@ -45,9 +45,9 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50" id="contact">
+    <section className="py-12 lg:py-16 bg-slate-50" id="contact">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,19 +67,19 @@ export default function ContactSection() {
           </motion.h2>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 rounded-3xl bg-slate-950 p-8 md:p-10 relative overflow-hidden shadow-xl flex flex-col"
+            className="lg:col-span-2 rounded-3xl bg-slate-950 p-6 md:p-8 relative overflow-hidden shadow-xl flex flex-col"
           >
             {/* Background glowing orbs */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-brandRed/20 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brandRed/10 rounded-full blur-3xl pointer-events-none" />
             
-            <div className="relative z-10 flex flex-col gap-8 flex-1 mb-10">
+            <div className="relative z-10 flex flex-col gap-6 flex-1 mb-8">
               {[
                 {
                   icon: Phone,
@@ -144,8 +144,8 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="p-8 md:p-10 rounded-3xl border border-slate-200 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8 rounded-3xl border border-slate-200 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] space-y-4 md:space-y-5">
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formFullName')}</label>
                   <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
