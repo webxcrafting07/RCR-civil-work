@@ -31,7 +31,7 @@ export default function Footer() {
           <div className="lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link href="/" className="flex items-center gap-3 group mb-5 w-fit mx-auto lg:mx-0">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm bg-white p-1">
-                <Image src="/logo_new.jpeg" alt="RCR Logo" fill sizes="40px" className="object-cover" />
+                <Image src="/logo_new.png" alt="RCR Logo" fill sizes="40px" className="object-cover" />
               </div>
               <div className="text-left">
                 <div className="font-mono font-bold text-white text-base tracking-widest leading-none">RCR</div>

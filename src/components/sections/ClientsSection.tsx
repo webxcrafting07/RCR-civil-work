@@ -4,9 +4,9 @@ import Client from '@/models/Client'
 import ClientsSectionHeader from '@/components/sections/ClientsSectionHeader'
 
 const MOCK_CLIENTS = [
-  { _id: 'mock1', name: 'Client 1', logo: '/logo_new.jpeg', website: '#' },
-  { _id: 'mock2', name: 'Client 2', logo: '/logo_new.jpeg', website: '#' },
-  { _id: 'mock3', name: 'Client 3', logo: '/logo_new.jpeg', website: '#' },
+  { _id: 'mock1', name: 'Client 1', logo: '/logo_new.png', website: '#' },
+  { _id: 'mock2', name: 'Client 2', logo: '/logo_new.png', website: '#' },
+  { _id: 'mock3', name: 'Client 3', logo: '/logo_new.png', website: '#' },
 ]
 
 async function getClients() {

@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex relative w-16 h-16 rounded-2xl overflow-hidden shadow-sm bg-white p-1 mb-4">
-              <Image src="/logo_new.jpeg" alt="RCR Logo" fill sizes="64px" className="object-cover" />
+              <Image src="/logo_new.png" alt="RCR Logo" fill sizes="64px" className="object-cover" />
             </div>
             <h1 className="text-xl font-display font-bold text-slate-900">RCR ENTERPRISES</h1>
             <p className="text-sm text-slate-400 mt-1">Admin Panel</p>

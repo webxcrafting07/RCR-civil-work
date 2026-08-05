@@ -68,7 +68,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
-                <Image src="/logo_new.jpeg" alt="RCR Logo" fill sizes="40px" className="object-cover p-1" />
+                <Image src="/logo_new.png" alt="RCR Logo" fill sizes="40px" className="object-cover p-1" />
               </div>
               <div>
                 <div className="font-mono font-bold text-navy text-sm tracking-widest leading-none">RCR</div>
