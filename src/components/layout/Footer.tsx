@@ -143,7 +143,7 @@ export default function Footer() {
         </div>
 
         {/* Areas We Serve */}
-        <div className="border-t border-slate-800/50 pt-8 pb-4">
+        <div className="hidden border-t border-slate-800/50 pt-8 pb-4">
           <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-4 flex items-center justify-center gap-2">
             <span className="w-4 h-0.5 bg-brandRed" />
             {t('footer.areasWeServe')}
