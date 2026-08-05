@@ -12,15 +12,7 @@ interface Props {
 }
 
 async function getService(slug: string) {
-  // Try DB first, fallback to constants
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const res = await fetch(`${baseUrl}/api/services/${slug}`, { next: { revalidate: 300 } })
-    if (res.ok) {
-      const data = await res.json()
-      if (data.success) return data.data
-    }
-  } catch {}
+  // Fallback to constants directly to prevent hanging if DB is not connected
   return SERVICES_LIST.find(s => s.slug === slug) || null
 }
 
@@ -98,7 +90,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   />
                 </div>
                 <h2 className="text-2xl font-display font-bold text-slate-900 mb-4">About This Service</h2>
-                <p className="text-slate-500 leading-relaxed">
+                <p className="text-slate-700 font-medium leading-relaxed">
                   {(service as { description?: string }).description ||
                     `RCR ENTERPRISES provides professional ${service.title} services with the highest standards of quality and workmanship. Our experienced team ensures every project is completed on time, within budget, and to the complete satisfaction of our clients. We use premium materials and follow strict quality control procedures at every stage.`}
                 </p>
@@ -109,9 +101,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h2 className="text-2xl font-display font-bold text-slate-900 mb-6">Key Benefits</h2>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {benefits.map((benefit: string, i: number) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-slate-200 bg-white">
-                      <CheckCircle size={16} className="text-sky-500 flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-600">{benefit}</span>
+                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
+                      <CheckCircle size={16} className="text-brandRed flex-shrink-0 mt-0.5" />
+                      <span className="text-sm font-medium text-slate-800">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -122,13 +114,13 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h2 className="text-2xl font-display font-bold text-slate-900 mb-6">Our Process</h2>
                 <div className="space-y-4">
                   {process.map((step: { step: number; title: string; description: string }) => (
-                    <div key={step.step} className="flex gap-4 p-5 rounded-xl border border-slate-200 bg-white">
-                      <div className="w-8 h-8 rounded-full bg-sky-500/10 border border-sky-500/30 flex items-center justify-center flex-shrink-0">
-                        <span className="text-xs font-mono font-bold text-sky-500">{step.step}</span>
+                    <div key={step.step} className="flex gap-4 p-5 rounded-xl border border-slate-200 bg-white shadow-sm">
+                      <div className="w-8 h-8 rounded-full bg-brandRed/10 border border-brandRed/20 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xs font-mono font-bold text-brandRed">{step.step}</span>
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold text-slate-900 mb-1">{step.title}</h4>
-                        <p className="text-xs text-slate-400 leading-relaxed">{step.description}</p>
+                        <h4 className="text-sm font-bold text-slate-900 mb-1">{step.title}</h4>
+                        <p className="text-xs font-medium text-slate-600 leading-relaxed">{step.description}</p>
                       </div>
                     </div>
                   ))}
@@ -141,12 +133,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <h2 className="text-2xl font-display font-bold text-slate-900 mb-6">FAQs</h2>
                   <div className="space-y-3">
                     {(service as { faqs: { question: string; answer: string }[] }).faqs.map((faq, i) => (
-                      <details key={i} className="group rounded-xl border border-slate-200 bg-white overflow-hidden">
-                        <summary className="flex items-center justify-between p-4 cursor-pointer text-sm font-medium text-slate-900 hover:text-sky-500 transition-colors">
+                      <details key={i} className="group rounded-xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                        <summary className="flex items-center justify-between p-4 cursor-pointer text-sm font-bold text-slate-900 hover:text-brandRed transition-colors">
                           {faq.question}
-                          <ChevronDown size={16} className="text-slate-400 group-open:rotate-180 transition-transform" />
+                          <ChevronDown size={16} className="text-slate-500 group-open:rotate-180 transition-transform" />
                         </summary>
-                        <div className="px-4 pb-4 text-sm text-slate-500 leading-relaxed">{faq.answer}</div>
+                        <div className="px-4 pb-4 text-sm font-medium text-slate-700 leading-relaxed">{faq.answer}</div>
                       </details>
                     ))}
                   </div>
@@ -155,11 +147,11 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-6 lg:sticky lg:top-28 h-fit">
               {/* Quick contact */}
-              <div className="p-6 rounded-2xl border border-sky-500/15 bg-sky-500/[0.03]">
+              <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <h3 className="font-display font-bold text-slate-900 text-lg mb-4">Get Free Quote</h3>
-                <p className="text-sm text-slate-500 mb-5">Contact us today for a free consultation and competitive quote.</p>
+                <p className="text-sm font-medium text-slate-700 mb-5">Contact us today for a free consultation and competitive quote.</p>
                 <Link href="/contact" className="btn-primary w-full justify-center mb-3">
                   Request Quote <ArrowRight size={15} />
                 </Link>
@@ -169,12 +161,12 @@ export default async function ServiceDetailPage({ params }: Props) {
               </div>
 
               {/* Other services */}
-              <div className="p-6 rounded-2xl border border-slate-200 bg-white">
+              <div className="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
                 <h3 className="font-display font-bold text-slate-900 text-base mb-4">Other Services</h3>
                 <div className="space-y-2">
                   {relatedServices.map(s => (
                     <Link key={s.id} href={`/services/${s.slug}`}
-                      className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-sky-500/5 text-slate-500 hover:text-sky-500 transition-all text-sm group">
+                      className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-brandRed/5 text-slate-700 font-medium hover:text-brandRed transition-all text-sm group">
                       {s.title}
                       <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
@@ -192,7 +184,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <h2 className="text-2xl font-display font-bold text-slate-900 mb-4 text-center">
             Top Served Areas for {service.title}
           </h2>
-          <p className="text-slate-500 text-sm text-center max-w-2xl mx-auto mb-10">
+          <p className="text-slate-700 font-medium text-sm text-center max-w-2xl mx-auto mb-10">
             We deliver expert {service.title.toLowerCase()} across major Maharashtra regions. Click below to view custom specifications and get quotes.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -200,14 +192,14 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Link
                 key={loc.slug}
                 href={`/locations/${loc.slug}/${service.slug}`}
-                className="py-3 px-4 text-center rounded-xl border border-slate-200 hover:border-sky-500 hover:bg-sky-50/30 text-xs font-semibold text-slate-600 hover:text-sky-600 transition-all hover:-translate-y-0.5"
+                className="py-3 px-4 text-center rounded-xl border border-slate-200 hover:border-brandRed hover:bg-brandRed/5 text-xs font-bold text-slate-700 hover:text-brandRed transition-all hover:-translate-y-0.5"
               >
                 {service.title} in {loc.name}
               </Link>
             ))}
           </div>
           <div className="text-center mt-8">
-            <Link href="/locations" className="text-xs font-bold text-sky-500 hover:text-sky-600 hover:underline inline-flex items-center gap-1.5">
+            <Link href="/locations" className="text-xs font-bold text-brandRed hover:text-navy hover:underline inline-flex items-center gap-1.5">
               Browse All Areas We Serve <ArrowRight size={13} />
             </Link>
           </div>

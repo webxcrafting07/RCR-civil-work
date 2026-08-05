@@ -22,7 +22,7 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800">
+    <footer className="bg-navy border-t border-navy">
       {/* Main Footer */}
       <div className="container-custom pt-12 pb-8 lg:pt-20 lg:pb-10">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
@@ -31,32 +31,32 @@ export default function Footer() {
           <div className="lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link href="/" className="flex items-center gap-3 group mb-5 w-fit mx-auto lg:mx-0">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm bg-white p-1">
-                <Image src="/logo-3d.png" alt="RCR Logo" fill sizes="40px" className="object-cover" />
+                <Image src="/logo_new.jpeg" alt="RCR Logo" fill sizes="40px" className="object-cover" />
               </div>
               <div className="text-left">
                 <div className="font-mono font-bold text-white text-base tracking-widest leading-none">RCR</div>
-                <div className="font-mono font-semibold text-sky-400 text-[10px] tracking-[0.25em] leading-none mt-1">ENTERPRISES</div>
+                <div className="font-mono font-semibold text-brandRed text-[10px] tracking-[0.25em] leading-none mt-1">ENTERPRISES</div>
               </div>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
+            <p className="text-sm text-slate-300 leading-relaxed mb-6">
               {t('footer.description')}
             </p>
             <div className="flex flex-col gap-3 items-start w-fit mx-auto lg:mx-0">
-              <a href="tel:9619439243" className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left">
-                <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0">
-                  <Phone size={13} className="text-sky-400" />
+              <a href="tel:9619439243" className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-brandRed transition-colors text-left">
+                <div className="w-7 h-7 rounded-lg bg-brandRed/10 flex items-center justify-center flex-shrink-0">
+                  <Phone size={13} className="text-brandRed" />
                 </div>
                 {COMPANY_INFO.phone}
               </a>
-              <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left">
-                <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0">
-                  <Mail size={13} className="text-sky-400" />
+              <a href={`mailto:${COMPANY_INFO.email}`} className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-brandRed transition-colors text-left">
+                <div className="w-7 h-7 rounded-lg bg-brandRed/10 flex items-center justify-center flex-shrink-0">
+                  <Mail size={13} className="text-brandRed" />
                 </div>
                 <span className="truncate">{COMPANY_INFO.email}</span>
               </a>
-              <a href="https://maps.app.goo.gl/qFVpxJ2gH3gi583q7" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-sm text-slate-400 hover:text-sky-400 transition-colors text-left max-w-[280px] lg:max-w-none">
-                <div className="w-7 h-7 rounded-lg bg-sky-400/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin size={13} className="text-sky-400" />
+              <a href="https://maps.app.goo.gl/qFVpxJ2gH3gi583q7" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2.5 text-sm text-slate-300 hover:text-brandRed transition-colors text-left max-w-[280px] lg:max-w-none">
+                <div className="w-7 h-7 rounded-lg bg-brandRed/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin size={13} className="text-brandRed" />
                 </div>
                 <span className="leading-relaxed">{COMPANY_INFO.address.line1}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.state}</span>
               </a>
@@ -68,33 +68,33 @@ export default function Footer() {
             {/* Quick Links */}
             <div>
               <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
-                <span className="w-3 h-0.5 bg-sky-400" />
+                <span className="w-3 h-0.5 bg-brandRed" />
                 {t('footer.quickLinks')}
               </h4>
               <ul className="flex flex-col gap-3">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>
-                    <Link href={item.href} className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors group">
+                    <Link href={item.href} className="flex items-center gap-2 text-sm text-slate-300 hover:text-brandRed transition-colors group">
                       <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity -ml-2 group-hover:ml-0 hidden sm:block" />
                       {t(NAV_KEYS[item.href] || item.label)}
                     </Link>
                   </li>
                 ))}
-                <li><Link href="/privacy-policy" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">{t('nav.privacyPolicy')}</Link></li>
-                <li><Link href="/terms" className="flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors">{t('nav.termsOfService')}</Link></li>
+                <li><Link href="/privacy-policy" className="flex items-center gap-2 text-sm text-slate-300 hover:text-brandRed transition-colors">{t('nav.privacyPolicy')}</Link></li>
+                <li><Link href="/terms" className="flex items-center gap-2 text-sm text-slate-300 hover:text-brandRed transition-colors">{t('nav.termsOfService')}</Link></li>
               </ul>
             </div>
 
             {/* Services */}
             <div>
               <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
-                <span className="w-3 h-0.5 bg-sky-400" />
+                <span className="w-3 h-0.5 bg-brandRed" />
                 {t('footer.ourServices')}
               </h4>
               <ul className="flex flex-col gap-3">
                 {SERVICES_LIST.slice(0, 8).map((s) => (
                   <li key={s.id}>
-                    <Link href={`/services/${s.slug}`} className="text-sm text-slate-400 hover:text-sky-400 transition-colors line-clamp-1">
+                    <Link href={`/services/${s.slug}`} className="text-sm text-slate-300 hover:text-brandRed transition-colors line-clamp-1">
                       {t(`servicesList.${s.id}.title`)}
                     </Link>
                   </li>
@@ -106,7 +106,7 @@ export default function Footer() {
           {/* Registration & CTA */}
           <div className="lg:col-span-1">
             <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
-              <span className="w-4 h-0.5 bg-sky-400" />
+              <span className="w-4 h-0.5 bg-brandRed" />
               {t('footer.companyInfo')}
             </h4>
             <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 mb-6">
@@ -117,7 +117,7 @@ export default function Footer() {
                 { label: t('footer.enterpriseType'), value: COMPANY_INFO.registration.enterpriseType },
               ].map((item) => (
                 <div key={item.label}>
-                  <div className="text-[10px] text-slate-500 font-mono tracking-widest uppercase">{item.label}</div>
+                  <div className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">{item.label}</div>
                   <div className="text-xs text-slate-300 font-medium">{item.value}</div>
                 </div>
               ))}
@@ -143,35 +143,35 @@ export default function Footer() {
         </div>
 
         {/* Areas We Serve */}
-        <div className="border-t border-slate-800 pt-8 pb-4">
+        <div className="border-t border-slate-800/50 pt-8 pb-4">
           <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-4 flex items-center justify-center gap-2">
-            <span className="w-4 h-0.5 bg-sky-400" />
+            <span className="w-4 h-0.5 bg-brandRed" />
             {t('footer.areasWeServe')}
-            <span className="w-4 h-0.5 bg-sky-400" />
+            <span className="w-4 h-0.5 bg-brandRed" />
           </h4>
           
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-4">
             {TARGET_LOCATIONS.slice(0, 6).map(loc => (
-              <Link key={loc.slug} href={`/locations/${loc.slug}`} className="text-sm font-medium text-slate-400 hover:text-sky-400 transition-colors">
+              <Link key={loc.slug} href={`/locations/${loc.slug}`} className="text-sm font-medium text-slate-300 hover:text-brandRed transition-colors">
                 {t('footer.rccContractorIn')} {loc.name}
               </Link>
             ))}
           </div>
 
           <details className="group cursor-pointer text-center">
-            <summary className="inline-flex items-center gap-1 text-xs font-semibold text-sky-500 hover:text-sky-400 transition-colors list-none">
+            <summary className="inline-flex items-center gap-1 text-xs font-semibold text-brandRed hover:text-brandRed/80 transition-colors list-none">
               <span className="group-open:hidden">{t('footer.viewAllLocations')} {TARGET_LOCATIONS.length}+ {t('footer.locations')}</span>
               <span className="hidden group-open:inline">{t('footer.hideLocations')}</span>
             </summary>
             
             <div className="mt-4 pt-4 border-t border-slate-800/50 flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-4xl mx-auto">
               {TARGET_LOCATIONS.slice(6).map(loc => (
-                <Link key={loc.slug} href={`/locations/${loc.slug}`} className="text-xs font-medium text-slate-500 hover:text-sky-400 transition-colors">
+                <Link key={loc.slug} href={`/locations/${loc.slug}`} className="text-xs font-medium text-slate-400 hover:text-brandRed transition-colors">
                   {loc.name}
                 </Link>
               ))}
               <div className="w-full mt-4">
-                <Link href="/locations" className="text-xs font-bold text-sky-400 hover:text-white transition-colors underline decoration-sky-400/30 underline-offset-4">
+                <Link href="/locations" className="text-xs font-bold text-brandRed hover:text-white transition-colors underline decoration-brandRed/30 underline-offset-4">
                   {t('footer.browseAllLocations')}
                 </Link>
               </div>
@@ -183,8 +183,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-slate-800">
         <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-500">
-            © {currentYear} <span className="text-slate-400">RCR ENTERPRISES</span>. {t('footer.allRightsReserved')} {t('footer.proprietor')}: {COMPANY_INFO.proprietor}
+          <p className="text-xs text-slate-400">
+            © {currentYear} <span className="text-slate-300">RCR ENTERPRISES</span>. {t('footer.allRightsReserved')} {t('footer.proprietor')}: {COMPANY_INFO.proprietor}
           </p>
           <p className="text-xs text-slate-600">
             {t('footer.virarTagline')}

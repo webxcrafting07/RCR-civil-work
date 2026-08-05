@@ -50,17 +50,20 @@ export default function GalleryPage() {
         badge="Photo Gallery"
         title="Our Work in Pictures"
         subtitle="A visual showcase of RCC construction projects, quality workmanship, and site excellence."
-        backgroundImage="/images/rcc_steel_work.png"
+        backgroundImage="/images/hero_construction_bg.png"
       />
 
-      <section className="py-20 bg-slate-50">
-        <div className="container-custom">
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        {/* Background Decorative */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(#c01e2e_2px,transparent_2px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+
+        <div className="container-custom relative z-10">
           {/* Category filters */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
             {GALLERY_CATEGORIES.map(cat => (
               <button key={cat} onClick={() => handleFilter(cat)}
-                className={cn('px-5 py-2 rounded-full text-xs font-mono font-semibold tracking-wider uppercase transition-all duration-300',
-                  activeCategory === cat ? 'bg-sky-500 text-white shadow-blue' : 'border border-slate-200 text-slate-500 hover:border-sky-500/30 hover:text-sky-500')}>
+                className={cn('px-6 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all duration-300',
+                  activeCategory === cat ? 'bg-brandRed text-white shadow-[0_8px_20px_-5px_rgba(192,30,46,0.3)]' : 'bg-white border border-slate-200 text-slate-500 hover:border-brandRed/30 hover:text-brandRed shadow-sm')}>
                 {cat}
               </button>
             ))}
@@ -81,7 +84,7 @@ export default function GalleryPage() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
               >
                 {filtered.map((img, i) => (
                   <motion.div
@@ -90,22 +93,28 @@ export default function GalleryPage() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.03 }}
-                    className="relative group rounded-xl overflow-hidden cursor-pointer"
+                    className="relative group rounded-2xl overflow-hidden cursor-pointer bg-slate-100 shadow-sm hover:shadow-[0_15px_30px_-10px_rgba(192,30,46,0.2)] transition-all duration-500 hover:-translate-y-1"
                     onClick={() => setLightboxIndex(i)}
                   >
+                    <div className="absolute top-0 left-0 w-full h-1 bg-brandRed scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
+                    
                     <div className="aspect-[4/3] w-full">
                       <Image
                         src={img.imageUrl}
                         alt={img.title || 'Gallery Image'}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                         sizes="(max-width: 768px) 50vw, 25vw"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-slate-50/0 group-hover:bg-slate-50/55 transition-all duration-300 flex flex-col items-center justify-center gap-2">
-                      <ZoomIn size={24} className="text-slate-900 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100" />
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-brandRed/90 backdrop-blur-sm flex items-center justify-center translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-lg">
+                        <ZoomIn size={20} className="text-white" />
+                      </div>
+                      
                       {img.category && (
-                        <span className="text-[10px] font-mono text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-2 py-0.5 rounded bg-slate-50/80">
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-white px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 border border-white/10">
                           {img.category}
                         </span>
                       )}

@@ -42,18 +42,18 @@ export default function ServicesPage() {
             {SERVICES_LIST.map((service, i) => {
               const Icon = ICON_MAP[service.icon] || Building2
               return (
-                <div key={service.id} className="group rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-500/20 transition-all duration-300 bg-white">
+                <div key={service.id} className="group rounded-2xl overflow-hidden border border-slate-200 hover:border-brandRed transition-all duration-300 bg-white shadow-sm hover:shadow-md">
                   <div className="relative h-48 overflow-hidden">
                     <Image src={service.image} alt={service.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 100vw, 33vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-50/80 via-slate-50/20 to-transparent" />
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-sky-500/90 flex items-center justify-center">
+                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-brandRed/90 flex items-center justify-center">
                       <Icon size={20} className="text-white" />
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="font-display font-bold text-slate-900 text-lg mb-3 group-hover:text-sky-500 transition-colors">{service.title}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-5">{service.shortDescription}</p>
-                    <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-xs font-semibold text-sky-500 hover:gap-3 transition-all">Learn More <ArrowRight size={13} /></Link>
+                    <h3 className="font-display font-bold text-slate-900 text-lg mb-3 group-hover:text-brandRed transition-colors">{service.title}</h3>
+                    <p className="text-sm text-slate-700 font-medium leading-relaxed mb-5">{service.shortDescription}</p>
+                    <Link href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-xs font-bold text-brandRed hover:text-navy hover:gap-3 transition-all">Learn More <ArrowRight size={13} /></Link>
                   </div>
                 </div>
               )

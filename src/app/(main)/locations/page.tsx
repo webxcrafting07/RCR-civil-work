@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { MapPin, ArrowRight, Building2 } from 'lucide-react'
+import { MapPin, Building2 } from 'lucide-react'
 import { TARGET_LOCATIONS } from '@/constants'
+import PageHero from '@/components/shared/PageHero'
+import CTASection from '@/components/sections/CTASection'
 
 export const metadata: Metadata = {
   title: 'Areas We Serve in Mumbai, Thane & Palghar | RCR Enterprises',
@@ -27,65 +29,53 @@ export default function LocationsPage() {
   ]
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-40 lg:pt-48 pb-24">
-      {/* Header */}
-      <div className="container-custom max-w-5xl mx-auto text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 text-sky-700 font-semibold text-sm mb-6">
-          <MapPin size={16} /> Service Areas
-        </div>
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
-          Building Strong Foundations Across Mumbai
-        </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          From South Mumbai to Palghar, and Navi Mumbai to Kalyan, our expert civil contractors are available everywhere for your RCC and construction needs.
-        </p>
-      </div>
+    <main className="min-h-screen bg-slate-50">
+      <PageHero
+        badge="Service Areas"
+        title="Building Strong Foundations Across Mumbai"
+        subtitle="From South Mumbai to Palghar, and Navi Mumbai to Kalyan, our expert civil contractors are available everywhere for your RCC and construction needs."
+        backgroundImage="/images/hero_construction_bg.png"
+      />
 
-      {/* Grid of Areas */}
-      <div className="container-custom max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {regions.map((region) => (
-            <div key={region.title} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-              <h2 className="text-2xl font-display font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-600">
-                  <Building2 size={20} />
-                </div>
-                {region.title}
-              </h2>
-              
-              <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-4">
-                {region.locations.map(loc => (
-                  <li key={loc.slug}>
-                    <Link href={`/locations/${loc.slug}`} className="group flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-sky-600 transition-colors">
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-sky-500 transition-colors" />
-                      {loc.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        
-        {/* CTA */}
-        <div className="mt-16 bg-slate-900 rounded-3xl p-10 md:p-16 text-center shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-3xl -mr-20 -mt-20" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -ml-20 -mb-20" />
-          
-          <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-              Ready to start your construction project?
-            </h3>
-            <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-lg">
-              No matter where you are located in Mumbai, our team will visit your site for a comprehensive assessment and consultation.
-            </p>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-white px-8 py-4 rounded-xl font-bold transition-colors shadow-lg shadow-sky-500/30 group">
-              Get a Free Quote Now
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+      <section className="py-24 relative overflow-hidden bg-white">
+        {/* Background Decorative */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(#c01e2e_2px,transparent_2px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
+        <div className="absolute -left-64 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brandRed/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="container-custom max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            {regions.map((region) => (
+              <div 
+                key={region.title} 
+                className="bg-white p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-[0_20px_50px_-15px_rgba(192,30,46,0.15)] border border-slate-100 hover:border-brandRed/30 transition-all duration-500 group relative overflow-hidden"
+              >
+                {/* Hover Accent Line */}
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-brandRed scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 mb-8 flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-red-50 flex items-center justify-center text-brandRed group-hover:bg-brandRed group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-sm border border-brandRed/10">
+                    <Building2 size={28} className="group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                  <span className="group-hover:text-brandRed transition-colors duration-500 tracking-tight">{region.title}</span>
+                </h2>
+                
+                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4">
+                  {region.locations.map(loc => (
+                    <li key={loc.slug}>
+                      <Link href={`/locations/${loc.slug}`} className="group/link flex items-center gap-3 text-sm md:text-base font-semibold text-slate-600 hover:text-brandRed transition-colors">
+                        <span className="w-2 h-2 rounded-full bg-slate-200 group-hover/link:bg-brandRed group-hover/link:scale-[1.7] transition-all duration-300" />
+                        {loc.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      <CTASection />
     </main>
   )
 }

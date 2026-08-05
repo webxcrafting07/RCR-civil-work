@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import BlogGrid from '@/components/shared/BlogGrid'
+import PageHero from '@/components/shared/PageHero'
 
 export const metadata: Metadata = {
   title: 'Blog | RCR Enterprises',
@@ -67,16 +68,15 @@ export default async function BlogsPage() {
   const blogs = await getBlogs()
 
   return (
-    <main className="min-h-screen pt-40 md:pt-48 pb-20 bg-slate-50">
-      <div className="container-custom">
-        <div className="max-w-3xl mb-16">
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
-            Construction <span className="text-gradient">Insights & News</span>
-          </h1>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works.
-          </p>
-        </div>
+    <main className="min-h-screen bg-slate-50">
+      <PageHero
+        badge="Insights"
+        title="Construction Insights & News"
+        subtitle="Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works."
+        backgroundImage="/images/hero_construction_bg.png"
+      />
+      
+      <div className="container-custom py-20">
 
         <BlogGrid initialBlogs={blogs} />
       </div>

@@ -73,58 +73,64 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 flex flex-col gap-5"
+            className="lg:col-span-2 rounded-3xl bg-slate-950 p-8 md:p-10 relative overflow-hidden shadow-xl flex flex-col"
           >
-            {[
-              {
-                icon: Phone,
-                title: t('contact.phone'),
-                content: COMPANY_INFO.phone,
-                href: `tel:${COMPANY_INFO.phone}`,
-              },
-              {
-                icon: Mail,
-                title: t('contact.email'),
-                content: COMPANY_INFO.email,
-                href: `mailto:${COMPANY_INFO.email}`,
-              },
-              {
-                icon: MapPin,
-                title: t('contact.officeAddress'),
-                content: COMPANY_INFO.address.full,
-                href: 'https://maps.google.com/?q=Virar+East+Maharashtra',
-              },
-              {
-                icon: Clock,
-                title: t('contact.workingHours'),
-                content: t('contact.workingHoursValue'),
-                href: null,
-              },
-            ].map(({ icon: Icon, title, content, href }) => (
-              <div key={title} className="flex gap-4 p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-sky-50 flex items-center justify-center flex-shrink-0">
-                  <Icon size={18} className="text-sky-500" />
+            {/* Background glowing orbs */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-brandRed/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-brandRed/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="relative z-10 flex flex-col gap-8 flex-1 mb-10">
+              {[
+                {
+                  icon: Phone,
+                  title: t('contact.phone'),
+                  content: COMPANY_INFO.phone,
+                  href: `tel:${COMPANY_INFO.phone}`,
+                },
+                {
+                  icon: Mail,
+                  title: t('contact.email'),
+                  content: COMPANY_INFO.email,
+                  href: `mailto:${COMPANY_INFO.email}`,
+                },
+                {
+                  icon: MapPin,
+                  title: t('contact.officeAddress'),
+                  content: COMPANY_INFO.address.full,
+                  href: 'https://maps.google.com/?q=Virar+East+Maharashtra',
+                },
+                {
+                  icon: Clock,
+                  title: t('contact.workingHours'),
+                  content: t('contact.workingHoursValue'),
+                  href: null,
+                },
+              ].map(({ icon: Icon, title, content, href }) => (
+                <div key={title} className="flex gap-5 items-start group">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brandRed group-hover:border-brandRed transition-all duration-300 shadow-sm">
+                    <Icon size={20} className="text-brandRed group-hover:text-white transition-colors" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[11px] text-slate-400 font-mono font-semibold tracking-wider uppercase mb-1.5">{title}</div>
+                    {href ? (
+                      <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer"
+                        className="text-base font-bold text-white hover:text-brandRed transition-colors leading-relaxed block break-words">
+                        {content}
+                      </a>
+                    ) : (
+                      <div className="text-base font-bold text-white leading-relaxed">{content}</div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-slate-400 font-mono tracking-wider uppercase mb-1">{title}</div>
-                  {href ? (
-                    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer"
-                      className="text-sm text-slate-700 hover:text-sky-600 transition-colors leading-relaxed break-all">
-                      {content}
-                    </a>
-                  ) : (
-                    <div className="text-sm text-slate-700 leading-relaxed">{content}</div>
-                  )}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
 
             {/* WhatsApp */}
             <a
               href="https://wa.me/919619439243"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90"
+              className="relative z-10 flex items-center justify-center gap-2 py-4 px-6 rounded-xl text-sm font-bold text-white transition-all hover:scale-[1.02] active:scale-95 shadow-[0_5px_20px_rgba(37,211,102,0.3)] hover:shadow-[0_8px_25px_rgba(37,211,102,0.4)]"
               style={{ background: '#25D366' }}
             >
               {t('contact.chatWhatsApp')}
@@ -138,52 +144,52 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="lg:col-span-3"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="p-6 md:p-8 rounded-2xl border border-slate-200 bg-white shadow-sm space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="p-8 md:p-10 rounded-3xl border border-slate-200 bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formFullName')}</label>
-                  <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="form-input" />
-                  {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName.message}</p>}
+                  <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formFullName')}</label>
+                  <input {...register('fullName')} placeholder={t('contact.formNamePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                  {errors.fullName && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.fullName.message}</p>}
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formPhone')}</label>
-                  <input {...register('phone')} placeholder={t('contact.formPhonePlaceholder')} className="form-input" />
-                  {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+                  <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formPhone')}</label>
+                  <input {...register('phone')} placeholder={t('contact.formPhonePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                  {errors.phone && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.phone.message}</p>}
                 </div>
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formEmail')}</label>
-                <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="form-input" />
-                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formEmail')}</label>
+                <input {...register('email')} type="email" placeholder={t('contact.formEmailPlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none" />
+                {errors.email && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.email.message}</p>}
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formService')}</label>
-                <select {...register('serviceRequired')} className="form-input">
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formService')}</label>
+                <select {...register('serviceRequired')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none">
                   <option value="">{t('contact.formServicePlaceholder')}</option>
                   {SERVICES_LIST_FOR_CONTACT.map(s => (
-                    <option key={s} value={s} className="bg-white">{s}</option>
+                    <option key={s} value={s} className="bg-white text-slate-900">{s}</option>
                   ))}
                 </select>
-                {errors.serviceRequired && <p className="text-red-500 text-xs mt-1">{errors.serviceRequired.message}</p>}
+                {errors.serviceRequired && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.serviceRequired.message}</p>}
               </div>
               <div>
-                <label className="block text-xs text-slate-500 mb-1.5 font-medium">{t('contact.formMessage')}</label>
-                <textarea {...register('message')} rows={4} placeholder={t('contact.formMessagePlaceholder')} className="form-input resize-none" />
-                {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
+                <label className="block text-sm font-bold text-slate-700 mb-2">{t('contact.formMessage')}</label>
+                <textarea {...register('message')} rows={4} placeholder={t('contact.formMessagePlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-medium focus:ring-2 focus:ring-brandRed/20 focus:border-brandRed transition-all outline-none resize-none" />
+                {errors.message && <p className="text-brandRed text-xs mt-1.5 font-medium">{errors.message.message}</p>}
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-brandRed text-white flex items-center justify-center gap-2 py-4 rounded-xl text-sm font-bold transition-all hover:bg-brandRed/90 hover:shadow-[0_8px_20px_rgba(192,30,46,0.25)] disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5 mt-2"
               >
                 {isSubmitting ? (
                   <>
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     {t('contact.sending')}
                   </>
                 ) : (
                   <>
-                    <Send size={16} />
+                    <Send size={18} />
                     {t('contact.sendMessage')}
                   </>
                 )}

@@ -22,10 +22,12 @@ export default function WhyChooseUs() {
   const { t } = useTranslation()
 
   return (
-    <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
+    <section className="pt-12 lg:pt-16 pb-6 lg:pb-8 bg-slate-50 relative overflow-hidden z-0">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10"
-        style={{ background: 'radial-gradient(circle, #0ea5e9, transparent)' }} />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-[0.03] blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #c01e2e, transparent)' }} />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.03] blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #0b1a30, transparent)' }} />
 
       <div className="container-custom relative">
         <div className="text-center max-w-3xl mx-auto mb-14">
@@ -51,7 +53,7 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-slate-500 leading-relaxed"
+            className="text-slate-700 font-medium leading-relaxed"
           >
             {t('whyChooseUs.subtitle')}
           </motion.p>
@@ -67,13 +69,26 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group p-6 rounded-2xl border border-slate-200 bg-white hover:border-sky-300 hover:bg-sky-50/50 transition-all duration-400 shadow-sm"
+                className="group p-8 rounded-2xl border border-slate-200 bg-white hover:border-brandRed/30 hover:shadow-[0_20px_40px_-10px_rgba(192,30,46,0.15)] hover:-translate-y-1.5 transition-all duration-500 relative overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-100 to-sky-50 flex items-center justify-center mb-4 group-hover:from-sky-200 transition-all">
-                  <Icon size={22} className="text-sky-500" />
+                {/* Top Sweeping Border */}
+                <div className="absolute top-0 left-0 w-0 h-1.5 bg-brandRed group-hover:w-full transition-all duration-700 ease-out z-20" />
+                
+                {/* Large Background Number */}
+                <div className="absolute -right-4 -bottom-6 text-[140px] font-display font-black text-slate-100/60 group-hover:text-brandRed/[0.04] group-hover:scale-110 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 pointer-events-none select-none z-0 leading-none">
+                  {(i + 1).toString().padStart(2, '0')}
                 </div>
-                <h3 className="font-display font-semibold text-slate-900 text-sm mb-2 leading-snug">{t(`whyChooseUs.items.${item.key}.title`)}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed">{t(`whyChooseUs.items.${item.key}.description`)}</p>
+
+                {/* Subtle Hover Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brandRed/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+                
+                {/* Icon Box */}
+                <div className="w-16 h-16 rounded-2xl bg-brandRed/5 border border-brandRed/10 flex items-center justify-center mb-6 group-hover:bg-brandRed group-hover:border-brandRed group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_8px_25px_rgba(192,30,46,0.35)] relative z-10">
+                  <Icon size={28} className="text-brandRed group-hover:text-white transition-colors duration-500" />
+                </div>
+                
+                <h3 className="font-display font-bold text-slate-900 text-xl mb-3 group-hover:text-brandRed transition-colors leading-snug relative z-10">{t(`whyChooseUs.items.${item.key}.title`)}</h3>
+                <p className="text-sm font-medium text-slate-600 leading-relaxed relative z-10 group-hover:text-slate-800 transition-colors">{t(`whyChooseUs.items.${item.key}.description`)}</p>
               </motion.div>
             )
           })}

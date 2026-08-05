@@ -56,7 +56,7 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="pt-6 lg:pt-10 pb-12 lg:pb-16 bg-white">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
@@ -87,8 +87,8 @@ export default function ProjectsSection() {
                 className={cn(
                   'px-4 py-2 rounded-full text-xs font-semibold font-mono tracking-wider uppercase transition-all duration-300',
                   filter === f
-                    ? 'bg-sky-500 text-white shadow-blue'
-                    : 'border border-slate-200 text-slate-500 hover:border-sky-300 hover:text-sky-600'
+                    ? 'bg-brandRed text-white shadow-[0_4px_15px_rgba(192,30,46,0.3)]'
+                    : 'border border-slate-200 text-slate-600 hover:border-brandRed/40 hover:text-brandRed'
                 )}
               >
                 {FILTER_LABELS[f] || f}
@@ -126,7 +126,7 @@ export default function ProjectsSection() {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={`/projects/${project.slug}`} className="group block rounded-2xl overflow-hidden border border-slate-200 hover:border-sky-300 transition-all duration-400 bg-white shadow-sm hover:shadow-lg">
+    <Link href={`/projects/${project.slug}`} className="group block rounded-2xl overflow-hidden border border-slate-200 hover:border-brandRed/50 transition-all duration-400 bg-white shadow-sm hover:shadow-md hover:-translate-y-1">
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={project.coverImage || CONSTRUCTION_IMAGES[0]}
@@ -139,20 +139,20 @@ function ProjectCard({ project }: { project: Project }) {
         <span className={cn('absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-semibold border', getStatusColor(project.status))}>
           {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
         </span>
-        <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono text-white bg-sky-500/80 border border-sky-400/30">
+        <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono text-white bg-brandRed/90 border border-brandRed/30">
           {project.category}
         </span>
       </div>
       <div className="p-5">
-        <h3 className="font-display font-semibold text-slate-900 text-base mb-2 group-hover:text-sky-600 transition-colors line-clamp-1">{project.title}</h3>
-        <p className="text-xs text-slate-500 leading-relaxed mb-4 line-clamp-2">{project.shortDescription}</p>
-        <div className="flex items-center justify-between text-[11px] text-slate-400">
+        <h3 className="font-display font-bold text-slate-900 text-base mb-2 group-hover:text-brandRed transition-colors line-clamp-1">{project.title}</h3>
+        <p className="text-sm font-medium text-slate-700 leading-relaxed mb-4 line-clamp-2">{project.shortDescription}</p>
+        <div className="flex items-center justify-between text-xs font-medium text-slate-600">
           <div className="flex items-center gap-1.5">
-            <MapPin size={11} className="text-sky-500/60" />
+            <MapPin size={13} className="text-brandRed/80" />
             <span>{project.location}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Calendar size={11} className="text-sky-500/60" />
+            <Calendar size={13} className="text-brandRed/80" />
             <span>{formatDateShort(project.startDate)}</span>
           </div>
         </div>

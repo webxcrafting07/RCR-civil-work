@@ -129,7 +129,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       '@type': 'GeneralContractor',
       name: `${COMPANY_INFO.name} - ${location.name}`,
       description: `Expert RCC and Civil Construction services in ${location.name}. High-quality concrete casting, steel work, shuttering, and building construction.`,
-      image: `${baseUrl}/logo-3d.png`,
+      image: `${baseUrl}/logo_new.jpeg`,
       telephone: COMPANY_INFO.phone,
       email: COMPANY_INFO.email,
       url: `${baseUrl}/locations/${location.slug}`,

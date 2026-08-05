@@ -9,9 +9,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#0ea5e9', foreground: '#ffffff' },
-        secondary: { DEFAULT: '#f8fafc', foreground: '#0f172a' },
-        accent: '#0ea5e9',
+        primary: { DEFAULT: '#0b1a30', foreground: '#ffffff' },
+        secondary: { DEFAULT: '#f8fafc', foreground: '#0b1a30' },
+        accent: '#c01e2e',
+        navy: '#0b1a30',
+        brandRed: '#c01e2e',
+        sky: {
+          50: '#fdf2f3',
+          100: '#fbe5e7',
+          200: '#f5c6c9',
+          300: '#efa8ab',
+          400: '#e16b71',
+          500: '#c01e2e', // Brand red main highlight
+          600: '#ad1b29',
+          700: '#901622',
+          800: '#73121b',
+          900: '#5e0e16',
+          950: '#33080c',
+        },
         slate: {
           50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1',
           400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155',
@@ -45,10 +60,10 @@ module.exports = {
         fadeIn: { from: { opacity: '0' }, to: { opacity: '1' } },
       },
       boxShadow: {
-        'premium': '0 20px 60px -12px rgba(0,0,0,0.1)',
-        'blue': '0 10px 40px -5px rgba(14,165,233,0.25)',
-        'blue-lg': '0 20px 60px -5px rgba(14,165,233,0.35)',
-        'glass': '0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.6)',
+        'premium': '0 20px 40px -10px rgba(11, 26, 48, 0.15)',
+        'blue': '0 10px 30px -5px rgba(11, 26, 48, 0.2)',
+        'blue-lg': '0 20px 50px -5px rgba(11, 26, 48, 0.3)',
+        'glass': '0 8px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8)',
       },
       borderRadius: {
         lg: 'var(--radius)',

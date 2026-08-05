@@ -61,8 +61,8 @@ export default function GalleryPreview() {
               {t('gallery.titleLine1')} <span className="text-gradient">{t('gallery.titleHighlight')}</span>
             </motion.h2>
           </div>
-          <Link href="/gallery" className="btn-outline text-sm shrink-0">
-            {t('gallery.viewFull')} <ArrowRight size={15} />
+          <Link href="/gallery" className="flex items-center gap-2 bg-brandRed text-white px-6 py-3 rounded-xl text-sm font-bold tracking-widest uppercase hover:bg-brandRed/90 hover:shadow-[0_8px_20px_-5px_rgba(192,30,46,0.3)] transition-all duration-300 hover:-translate-y-0.5 shrink-0">
+            {t('gallery.viewFull')} <ArrowRight size={16} />
           </Link>
         </div>
 
@@ -77,11 +77,16 @@ export default function GalleryPreview() {
           {images.map((image, i) => (
             <motion.button
               key={image._id}
-              className={`relative group rounded-xl overflow-hidden cursor-pointer ${i === 0 ? 'row-span-2' : i === 4 ? 'col-span-2' : ''}`}
+              className={`relative group rounded-xl overflow-hidden cursor-pointer ${
+                i === 0 ? 'md:row-span-2' : 
+                i === 2 ? 'md:row-span-2' : 
+                i === 4 ? 'md:col-span-2' : ''
+              }`}
               whileHover={{ scale: 1.01 }}
               transition={{ duration: 0.3 }}
               onClick={() => setLightboxIndex(i)}
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-brandRed scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
               <Image
                 src={image.imageUrl}
                 alt={image.title || 'Construction Work'}
@@ -89,14 +94,16 @@ export default function GalleryPreview() {
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/40 transition-all duration-300 flex items-center justify-center">
-                <ZoomIn size={28} className="text-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-brandRed/90 backdrop-blur-sm flex items-center justify-center translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-lg">
+                  <ZoomIn size={20} className="text-white" />
+                </div>
+                {image.category && (
+                  <span className="text-[10px] font-bold tracking-widest uppercase text-white px-3 py-1.5 rounded-lg bg-white/20 backdrop-blur-md translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 border border-white/10">
+                    {image.category}
+                  </span>
+                )}
               </div>
-              {image.category && (
-                <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded text-[10px] font-mono text-white bg-sky-500/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {image.category}
-                </span>
-              )}
             </motion.button>
           ))}
         </motion.div>

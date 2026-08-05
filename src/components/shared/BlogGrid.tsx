@@ -63,9 +63,9 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
         
         {/* Search Bar - Large, minimal, focused */}
         <div className="relative max-w-2xl mx-auto w-full group">
-          <div className="absolute inset-0 bg-sky-500/5 rounded-2xl blur-xl transition-all duration-500 group-hover:bg-sky-500/10" />
-          <div className="relative bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-2xl p-2 flex items-center shadow-sm transition-all duration-300 focus-within:shadow-md focus-within:border-sky-300 focus-within:bg-white">
-            <Search size={22} className="text-slate-400 ml-4 mr-3" />
+          <div className="absolute inset-0 bg-brandRed/5 rounded-2xl blur-xl transition-all duration-500 group-hover:bg-brandRed/10" />
+          <div className="relative bg-white/90 backdrop-blur-md border border-slate-200/60 rounded-2xl p-2 flex items-center shadow-sm transition-all duration-300 focus-within:shadow-[0_8px_30px_rgba(192,30,46,0.1)] focus-within:border-brandRed/30 focus-within:bg-white">
+            <Search size={22} className="text-slate-400 ml-4 mr-3 group-focus-within:text-brandRed transition-colors" />
             <input
               type="text"
               placeholder="Search articles, guides, and news..."
@@ -77,21 +77,21 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
         </div>
 
         {/* Tags - Elegant animated pills */}
-        <div className="flex items-center justify-center gap-2 flex-wrap">
+        <div className="flex items-center justify-center gap-3 flex-wrap">
           {allTags.map(tag => {
             const isActive = activeTag === tag;
             return (
               <button
                 key={tag}
                 onClick={() => setActiveTag(tag)}
-                className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-300 ${
-                  isActive ? 'text-white' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                className={`relative px-6 py-2.5 rounded-xl text-xs font-bold tracking-widest uppercase transition-colors duration-300 ${
+                  isActive ? 'text-white shadow-[0_8px_20px_-5px_rgba(192,30,46,0.3)]' : 'bg-white text-slate-500 hover:text-brandRed border border-slate-200 hover:border-brandRed/30 shadow-sm'
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="active-tag"
-                    className="absolute inset-0 bg-slate-900 rounded-full"
+                    layoutId="active-tag-blog"
+                    className="absolute inset-0 bg-brandRed rounded-xl"
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
                 )}
@@ -128,8 +128,10 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
                   key={blog._id} 
-                  className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-500 group flex flex-col"
+                  className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(192,30,46,0.15)] transition-all duration-500 hover:-translate-y-2 group flex flex-col relative"
                 >
+                  <div className="absolute top-0 left-0 w-full h-1.5 bg-brandRed scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
+
                   <Link href={`/blogs/${blog.slug}`} className="block relative h-64 overflow-hidden bg-slate-100">
                     {blog.coverImage ? (
                       <Image
@@ -137,35 +139,37 @@ export default function BlogGrid({ initialBlogs }: { initialBlogs: Blog[] }) {
                         alt={blog.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     ) : (
-                      <div className="absolute inset-0 bg-sky-50 flex items-center justify-center">
-                        <span className="text-sky-200 font-display font-bold text-4xl">RCR</span>
+                      <div className="absolute inset-0 bg-red-50 flex items-center justify-center">
+                        <span className="text-brandRed/20 font-display font-bold text-5xl">RCR</span>
                       </div>
                     )}
                     
+                    <div className="absolute inset-0 bg-brandRed/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                     {/* Modern Floating Badge */}
-                    <div className="absolute top-5 right-5 bg-white/95 backdrop-blur-md text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-black/5 flex items-center gap-1.5 border border-white/20">
-                      <Clock size={12} className="text-sky-500" />
-                      {getReadingTime(blog.content || blog.excerpt)} MIN READ
+                    <div className="absolute top-5 right-5 bg-white/95 backdrop-blur shadow-sm text-slate-900 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-lg border border-slate-200 group-hover:border-brandRed/30 transition-colors flex items-center gap-1.5">
+                      <Clock size={12} className="text-brandRed" />
+                      {getReadingTime(blog.content || blog.excerpt)} MIN
                     </div>
                   </Link>
                   
                   <div className="p-6 md:p-8 flex flex-col flex-1">
-                    <div className="flex items-center gap-4 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                      <span className="flex items-center gap-1.5"><Calendar size={14} /> {new Date(blog.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                      <span className="flex items-center gap-2 group-hover:text-slate-900 transition-colors"><Calendar size={14} className="text-brandRed" /> {new Date(blog.publishedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                     </div>
-                    <h2 className="text-xl md:text-2xl font-display font-bold text-slate-900 mb-4 group-hover:text-sky-600 transition-colors line-clamp-2 leading-snug">
+                    <h2 className="text-xl md:text-2xl font-display font-black text-slate-900 mb-4 group-hover:text-brandRed transition-colors line-clamp-2 leading-tight">
                       <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
                     </h2>
-                    <p className="text-slate-600 text-sm leading-relaxed mb-8 line-clamp-3 flex-1">
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed mb-8 line-clamp-3 flex-1 group-hover:text-slate-600 transition-colors">
                       {blog.excerpt}
                     </p>
-                    <Link href={`/blogs/${blog.slug}`} className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-sky-600 mt-auto border-t border-slate-100 pt-6 transition-colors">
+                    <Link href={`/blogs/${blog.slug}`} className="flex items-center justify-between text-xs font-bold tracking-widest text-slate-900 group-hover:text-brandRed mt-auto border-t border-slate-100 pt-6 transition-colors uppercase">
                       READ ARTICLE 
-                      <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-sky-50 transition-colors">
-                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                      <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-red-50 group-hover:shadow-[0_4px_15px_-3px_rgba(192,30,46,0.2)] transition-all duration-300">
+                        <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                       </div>
                     </Link>
                   </div>
