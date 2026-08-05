@@ -84,8 +84,6 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
-                <li><Link href="/privacy-policy" className="flex items-center gap-2 text-sm text-slate-300 hover:text-brandRed transition-colors">{t('nav.privacyPolicy')}</Link></li>
-                <li><Link href="/terms" className="flex items-center gap-2 text-sm text-slate-300 hover:text-brandRed transition-colors">{t('nav.termsOfService')}</Link></li>
               </ul>
             </div>
 
@@ -185,14 +183,32 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-slate-800">
-        <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-400">
-            © {currentYear} <span className="text-slate-300">RCR ENTERPRISES</span>. {t('footer.allRightsReserved')} {t('footer.proprietor')}: {COMPANY_INFO.proprietor}
-          </p>
-          <p className="text-xs text-slate-600">
-            {t('footer.virarTagline')}
-          </p>
+      <div className="border-t border-slate-800 bg-slate-950">
+        <div className="container-custom py-5 flex flex-col lg:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-slate-400 text-center lg:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+            <span>© {currentYear} <span className="text-slate-300">RCR ENTERPRISES</span>. {t('footer.allRightsReserved')}</span>
+            <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-slate-700" />
+            <span>{t('footer.proprietor')}: {COMPANY_INFO.proprietor}</span>
+          </div>
+          
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500">
+            <Link href="/privacy-policy" className="hover:text-brandRed transition-colors">{t('nav.privacyPolicy')}</Link>
+            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <Link href="/terms" className="hover:text-brandRed transition-colors">{t('nav.termsOfService')}</Link>
+            <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />
+            <span className="hidden lg:block text-slate-600">{t('footer.virarTagline')}</span>
+            <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />
+            <span>Developed by: <a href="https://webxcrafting.in" target="_blank" rel="noreferrer" className="text-brandRed font-medium hover:text-white transition-colors">webxcrafting.in</a></span>
+          </div>
+          
+          <div className="flex flex-col items-center gap-2 lg:hidden w-full mt-1">
+            <div className="text-[10px] text-slate-600 text-center">
+              {t('footer.virarTagline')}
+            </div>
+            <div className="text-[10px] text-slate-500">
+              Developed by: <a href="https://webxcrafting.in" target="_blank" rel="noreferrer" className="text-brandRed font-medium hover:text-white transition-colors">webxcrafting.in</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
