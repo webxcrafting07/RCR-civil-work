@@ -22,13 +22,17 @@ export default function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="bg-navy border-t border-navy">
+    <footer className="bg-slate-950 border-t border-slate-900 relative overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-brandRed/50 to-transparent" />
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brandRed/5 blur-[100px] pointer-events-none" />
+
       {/* Main Footer */}
-      <div className="container-custom pt-12 pb-8 lg:pt-20 lg:pb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+      <div className="container-custom relative z-10 pt-16 pb-8 lg:pt-24 lg:pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12">
 
           {/* Company Info */}
-          <div className="lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left">
+          <div className="lg:col-span-4 flex flex-col items-center text-center lg:items-start lg:text-left">
             <Link href="/" className="flex items-center gap-3 group mb-5 w-fit mx-auto lg:mx-0">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm bg-white p-1">
                 <Image src="/logo_new.png" alt="RCR Logo" fill sizes="40px" className="object-cover" />
@@ -64,7 +68,7 @@ export default function Footer() {
           </div>
 
           {/* Links & Services (Side by Side on mobile) */}
-          <div className="grid grid-cols-2 gap-8 lg:col-span-2">
+          <div className="grid grid-cols-2 gap-8 lg:col-span-5 lg:pl-8">
             {/* Quick Links */}
             <div>
               <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
@@ -104,12 +108,12 @@ export default function Footer() {
           </div>
 
           {/* Registration & CTA */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-3">
             <h4 className="font-mono font-semibold text-white tracking-widest text-xs uppercase mb-5 flex items-center gap-2">
               <span className="w-4 h-0.5 bg-brandRed" />
               {t('footer.companyInfo')}
             </h4>
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-3 mb-6 bg-white/5 border border-white/10 rounded-xl p-4">
               {[
                 { label: t('footer.gstNo'), value: COMPANY_INFO.registration.gstNo },
                 { label: t('footer.udyogAadhaar'), value: COMPANY_INFO.registration.udyogAadhaar },
@@ -117,8 +121,8 @@ export default function Footer() {
                 { label: t('footer.enterpriseType'), value: COMPANY_INFO.registration.enterpriseType },
               ].map((item) => (
                 <div key={item.label}>
-                  <div className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">{item.label}</div>
-                  <div className="text-xs text-slate-300 font-medium">{item.value}</div>
+                  <div className="text-[9px] text-slate-400 font-mono tracking-wider uppercase mb-0.5">{item.label}</div>
+                  <div className="text-[11px] text-slate-200 font-medium truncate" title={item.value}>{item.value}</div>
                 </div>
               ))}
             </div>
