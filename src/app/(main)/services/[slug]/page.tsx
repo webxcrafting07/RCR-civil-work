@@ -3,17 +3,20 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CheckCircle, ArrowRight, Phone, ChevronDown } from 'lucide-react'
-import { SERVICES_LIST, TARGET_LOCATIONS } from '@/constants'
+import { TARGET_LOCATIONS } from '@/constants'
 import PageHero from '@/components/shared/PageHero'
 import CTASection from '@/components/sections/CTASection'
+import connectDB from '@/lib/mongodb'
+import Service from '@/models/Service'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 async function getService(slug: string) {
-  // Fallback to constants directly to prevent hanging if DB is not connected
-  return SERVICES_LIST.find(s => s.slug === slug) || null
+  await connectDB()
+  const service = await Service.findOne({ slug, isActive: true }).lean()
+  return (service as any) || null
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,7 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  return SERVICES_LIST.map(s => ({ slug: s.slug }))
+  await connectDB()
+  const services = await Service.find({ isActive: true }).select('slug').lean()
+  return services.map((s: any) => ({ slug: s.slug }))
 }
 
 const DEFAULT_BENEFITS = [
@@ -53,7 +58,9 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = await getService(slug)
   if (!service) notFound()
 
-  const relatedServices = SERVICES_LIST.filter(s => s.slug !== slug).slice(0, 3)
+  await connectDB()
+  const relatedServices = (await Service.find({ slug: { $ne: slug }, isActive: true }).limit(3).lean()) as any[]
+
   const benefits = (service as { benefits?: string[] }).benefits?.length
     ? (service as { benefits: string[] }).benefits
     : DEFAULT_BENEFITS

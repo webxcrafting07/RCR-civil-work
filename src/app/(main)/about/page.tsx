@@ -38,7 +38,7 @@ export default function AboutPage() {
       />
       <PageHero
         badge="About Us"
-        title="Building Trust Through Quality Construction"
+        title="Building Trust Through **Quality Construction**"
         subtitle="Your trusted RCC Work Contracting partner in Virar East, Maharashtra since 2014."
         backgroundImage="/images/commercial_building.png"
       />
@@ -117,6 +117,60 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="py-12 lg:py-16 bg-slate-950 relative overflow-hidden">
+        {/* Background Decorative */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brandRed/20 via-slate-950 to-slate-950 pointer-events-none" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brandRed/20 blur-[120px] rounded-full pointer-events-none" />
+        
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            
+            <div className="order-2 lg:order-1 pt-6 lg:pt-0">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase bg-white/10 border border-white/20 text-white backdrop-blur-md shadow-sm mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse shadow-[0_0_8px_rgba(192,30,46,0.8)]" />
+                Meet The Founder
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-white mb-6 leading-tight tracking-tight">
+                Momin Noor Alam Shaikh<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-red-400 font-black">Owner & Founder</span>
+              </h2>
+              
+              <div className="prose prose-slate max-w-none mb-6">
+                <p className="text-base text-slate-300 leading-relaxed font-medium mb-4 italic border-l-4 border-brandRed pl-6 py-1.5">
+                  "Our goal is not just to construct buildings, but to build long-lasting relationships based on trust, quality, and commitment. Every project we take on is a reflection of our dedication to excellence."
+                </p>
+                <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+                  With over a decade of hands-on experience in the civil construction industry, Momin Noor Alam Shaikh has led RCR ENTERPRISES from a small contracting firm to a highly respected name in the Virar, Vasai, and Palghar regions. His vision is deeply rooted in structural integrity, timely delivery, and uncompromised safety standards. 
+                </p>
+                <p className="text-sm md:text-base text-slate-400 leading-relaxed mt-3">
+                  Under his leadership, the company has successfully completed numerous residential, commercial, and industrial projects, consistently exceeding client expectations.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-md rounded-3xl overflow-hidden aspect-[4/5] shadow-[0_20px_50px_-15px_rgba(192,30,46,0.3)] group border border-white/10">
+                <Image
+                  src="/images/owner_portrait.png"
+                  alt="Momin Noor Alam Shaikh"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-[1.5s]"
+                  sizes="(max-width: 768px) 100vw, 400px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-80" />
+                
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-xl font-display font-black text-white mb-1">Momin Noor Alam Shaikh</h3>
+                  <p className="text-brandRed font-bold tracking-widest text-xs uppercase">Founder, RCR ENTERPRISES</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

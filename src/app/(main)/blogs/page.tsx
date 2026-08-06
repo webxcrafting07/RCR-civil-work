@@ -71,7 +71,7 @@ export default async function BlogsPage() {
     <main className="min-h-screen bg-slate-50">
       <PageHero
         badge="Insights"
-        title="Construction Insights & News"
+        title="Construction **Insights** & News"
         subtitle="Stay updated with the latest trends, expert tips, and project showcases in civil construction and RCC works."
         backgroundImage="/images/hero_construction_bg.png"
       />

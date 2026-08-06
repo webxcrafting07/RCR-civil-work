@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
         className="relative w-full max-w-md"
       >
         {/* Card */}
-        <div className="glass-dark rounded-2xl p-8 border border-slate-200 shadow-premium">
+        <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-premium">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex relative w-16 h-16 rounded-2xl overflow-hidden shadow-sm bg-white p-1 mb-4">

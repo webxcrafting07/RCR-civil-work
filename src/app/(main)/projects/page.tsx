@@ -56,7 +56,7 @@ export default function ProjectsPage() {
     <>
       <PageHero
         badge="Our Portfolio"
-        title="Projects We've Built"
+        title="Projects We've **Built**"
         subtitle="Explore our portfolio of residential, commercial, and infrastructure projects across Maharashtra."
         backgroundImage="/images/hero_construction_bg.png"
       />

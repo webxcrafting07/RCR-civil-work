@@ -32,7 +32,7 @@ export default function LocationsPage() {
     <main className="min-h-screen bg-slate-50">
       <PageHero
         badge="Service Areas"
-        title="Building Strong Foundations Across Mumbai"
+        title="Building Strong Foundations Across **Mumbai**"
         subtitle="From South Mumbai to Palghar, and Navi Mumbai to Kalyan, our expert civil contractors are available everywhere for your RCC and construction needs."
         backgroundImage="/images/hero_construction_bg.png"
       />

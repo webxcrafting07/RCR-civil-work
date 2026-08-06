@@ -31,16 +31,14 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-slate-50">
+    <section className="relative min-h-[70vh] flex flex-col overflow-hidden bg-slate-950">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url(/images/hero_construction_bg.png)' }}
       />
-      {/* Sharp Overlay - Only one clean gradient */}
-      <div className="absolute inset-0 bg-white/30 md:bg-white/10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent" />
+      {/* Sharp Overlay - Dark Premium Look */}
+      <div className="absolute inset-0 bg-slate-950/75" />
 
       {/* Particles */}
       {particles.map((p) => (
@@ -57,7 +55,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
       {/* Content */}
-      <div className="relative z-10 container-custom pt-36 lg:pt-44 pb-16 flex-grow flex flex-col justify-center items-center text-center">
+      <div className="relative z-10 container-custom pt-28 lg:pt-36 pb-12 flex-grow flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl flex flex-col items-center">
           {/* Badge */}
           <motion.div
@@ -66,8 +64,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <span className="section-badge inline-flex">
-              <span className="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase bg-white/10 border border-white/20 text-white backdrop-blur-md shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse shadow-[0_0_8px_rgba(192,30,46,0.8)]" />
               {t('hero.badge')}
             </span>
           </motion.div>
@@ -77,13 +75,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-slate-900 leading-[1.08] mb-6 tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.08] mb-6 tracking-tight drop-shadow-md"
           >
             {t('hero.titleLine1')}{' '}
-            <span className="text-gradient">{t('hero.titleHighlight')}</span>
+            <span className="text-brandRed drop-shadow-md">{t('hero.titleHighlight')}</span>
             {' '}{t('hero.titleAnd')}{' '}
             <br className="hidden md:block" />
-            <span className="text-slate-600">{t('hero.titleLine2')}</span>
+            <span className="text-slate-200">{t('hero.titleLine2')}</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -91,7 +89,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8"
+            className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8 drop-shadow"
           >
             {t('hero.subtitle')}
           </motion.p>
@@ -107,7 +105,7 @@ export default function HeroSection() {
               {t('nav.getQuote')}
               <ArrowRight size={16} />
             </Link>
-            <a href="tel:9619439243" className="btn-outline px-8 py-4 text-sm bg-white/90">
+            <a href="tel:9619439243" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold rounded-lg border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-md shadow-sm">
               <Phone size={16} />
               {t('hero.callBtn')}
             </a>
@@ -125,7 +123,7 @@ export default function HeroSection() {
               { icon: Award, text: t('hero.trustBadge2') },
               { icon: Clock, text: t('hero.trustBadge3') },
             ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-slate-700">
+              <div key={text} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-xs text-white">
                 <Icon size={12} className="text-brandRed" />
                 {text}
               </div>

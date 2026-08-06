@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect, use, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Save } from 'lucide-react'
@@ -11,6 +11,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
   const { id } = use(params)
   const [loading, setLoading] = useState(false)
   const [fetching, setFetching] = useState(true)
+  const [uploadingImage, setUploadingImage] = useState(false)
+  const imageFileRef = useRef<HTMLInputElement>(null)
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -55,6 +57,29 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
     }
     fetchBlog()
   }, [id, router])
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploadingImage(true)
+    try {
+      const fd = new FormData()
+      fd.append('image', file)
+      fd.append('folder', 'rcr-enterprises/blogs')
+      const res = await fetch('/api/upload', { method: 'POST', body: fd })
+      const data = await res.json()
+      if (data.success) {
+        setFormData(prev => ({ ...prev, coverImage: data.url }))
+        toast.success('Image uploaded')
+      } else {
+        toast.error(data.message || 'Upload failed')
+      }
+    } catch {
+      toast.error('Upload failed')
+    }
+    setUploadingImage(false)
+    if (imageFileRef.current) imageFileRef.current.value = ''
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target as any
@@ -138,7 +163,13 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
             <div className="col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-1">Cover Image URL</label>
               <div className="flex gap-2">
-                <input type="url" name="coverImage" value={formData.coverImage} onChange={handleChange} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+                <input type="text" name="coverImage" value={formData.coverImage} onChange={handleChange} className="flex-1 px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500" />
+                <button type="button" onClick={() => imageFileRef.current?.click()} disabled={uploadingImage}
+                  className="px-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 hover:text-sky-600 hover:border-sky-500 hover:bg-sky-50 transition-colors flex items-center justify-center shrink-0 disabled:opacity-50">
+                  {uploadingImage ? <span className="w-4 h-4 border-2 border-slate-300 border-t-sky-500 rounded-full animate-spin" /> : 'Upload File'}
+                </button>
+                <input type="file" accept="image/*" className="hidden" ref={imageFileRef} onChange={handleImageUpload} />
+                
                 {formData.coverImage && (
                   <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 border border-slate-200">
                     <img src={formData.coverImage} alt="Cover preview" className="w-full h-full object-cover" />

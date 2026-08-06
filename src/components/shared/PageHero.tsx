@@ -20,20 +20,27 @@ interface PageHeroProps {
 }
 
 export default function PageHero({ badge, title, subtitle, backgroundImage }: PageHeroProps) {
+  const renderTitle = (text: string) => {
+    const parts = text.split(/\*\*(.*?)\*\*/g);
+    return parts.map((part, i) => 
+      i % 2 === 1 ? <span key={i} className="text-brandRed">{part}</span> : part
+    );
+  };
+
   return (
     <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: '45vh' }}>
       {backgroundImage && (
         <>
           <Image
             src={backgroundImage}
-            alt={title}
+            alt={title.replace(/\*\*/g, '')}
             fill
             className="object-cover object-center"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-white/50" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-50/20 to-transparent" />
+          <div className="absolute inset-0 bg-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
         </>
       )}
       {!backgroundImage && (
@@ -49,23 +56,30 @@ export default function PageHero({ badge, title, subtitle, backgroundImage }: Pa
             transition={{ duration: 0.5 }}
             className="flex justify-center mb-4"
           >
-            <span className="section-badge">{badge}</span>
+            {backgroundImage ? (
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-[0.2em] uppercase bg-white/10 border border-white/20 text-white backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse shadow-[0_0_8px_rgba(192,30,46,0.8)]" />
+                {badge}
+              </span>
+            ) : (
+              <span className="section-badge">{badge}</span>
+            )}
           </motion.div>
         )}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-slate-900 mb-5 leading-tight max-w-4xl mx-auto"
+          className={`text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-5 leading-tight max-w-4xl mx-auto ${backgroundImage ? 'text-white drop-shadow-sm' : 'text-slate-900'}`}
         >
-          {title}
+          {renderTitle(title)}
         </motion.h1>
         {subtitle && (
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+            className={`text-base md:text-lg max-w-2xl mx-auto leading-relaxed ${backgroundImage ? 'text-slate-200' : 'text-slate-500'}`}
           >
             {subtitle}
           </motion.p>

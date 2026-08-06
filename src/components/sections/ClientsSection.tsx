@@ -59,26 +59,22 @@ export default async function ClientsSection() {
           {[...clients, ...clients].map((client: any, i: number) => (
             <div 
               key={`${client._id}-${i}`} 
-              className="flex-shrink-0 flex items-center justify-center w-40 h-24 md:w-56 md:h-32 relative bg-white rounded-2xl shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-slate-100 p-4 md:p-6 group hover:shadow-[0_15px_30px_-10px_rgba(192,30,46,0.15)] hover:border-brandRed/30 transition-all duration-500 hover:-translate-y-1"
+              className="flex-shrink-0 flex items-center justify-center w-auto h-auto min-w-[120px] md:min-w-[160px] relative bg-white rounded-2xl shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] border border-slate-100 px-6 py-4 md:px-8 md:py-6 group hover:shadow-[0_15px_30px_-10px_rgba(192,30,46,0.15)] hover:border-brandRed/30 transition-all duration-500 hover:-translate-y-1"
             >
               {client.website ? (
-                <a href={client.website} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" title={client.name}>
-                  <Image 
+                <a href={client.website} target="_blank" rel="noopener noreferrer" className="block relative group-hover:scale-105 transition-transform duration-500" title={client.name}>
+                  <img 
                     src={client.logo} 
                     alt={client.name} 
-                    fill 
-                    sizes="200px"
-                    className="object-contain" 
+                    className="h-10 md:h-14 w-auto object-contain drop-shadow-sm" 
                   />
                 </a>
               ) : (
-                <div className="w-full h-full relative grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" title={client.name}>
-                  <Image 
+                <div className="relative group-hover:scale-105 transition-transform duration-500" title={client.name}>
+                  <img 
                     src={client.logo} 
                     alt={client.name} 
-                    fill 
-                    sizes="200px"
-                    className="object-contain" 
+                    className="h-10 md:h-14 w-auto object-contain drop-shadow-sm" 
                   />
                 </div>
               )}

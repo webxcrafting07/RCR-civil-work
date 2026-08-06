@@ -39,7 +39,7 @@ export default function GalleryPreview() {
   const slides = images.map(img => ({ src: img.imageUrl }))
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
+    <section className="pt-20 lg:pt-28 pb-10 lg:pb-16 bg-white">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>

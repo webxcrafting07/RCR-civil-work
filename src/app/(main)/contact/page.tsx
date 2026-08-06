@@ -14,7 +14,7 @@ export default function ContactPage() {
     <>
       <PageHero
         badge="Get In Touch"
-        title="Let's Build Something Great Together"
+        title="Let's Build Something **Great** Together"
         subtitle="Reach out for a free consultation. We respond within 24 hours."
         backgroundImage="/images/hero_construction_bg.png"
       />

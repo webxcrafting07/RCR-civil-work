@@ -48,7 +48,7 @@ export default function GalleryPage() {
     <>
       <PageHero
         badge="Photo Gallery"
-        title="Our Work in Pictures"
+        title="Our Work in **Pictures**"
         subtitle="A visual showcase of RCC construction projects, quality workmanship, and site excellence."
         backgroundImage="/images/hero_construction_bg.png"
       />

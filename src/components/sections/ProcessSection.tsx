@@ -16,7 +16,7 @@ export default function ProcessSection() {
   const { t } = useTranslation()
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50 relative overflow-hidden">
+    <section className="pt-10 lg:pt-16 pb-20 lg:pb-28 bg-slate-50 relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-20" />
 
       <div className="container-custom relative">
@@ -50,7 +50,7 @@ export default function ProcessSection() {
         </div>
 
         {/* Desktop timeline */}
-        <div className="hidden lg:flex items-start gap-0 relative group/timeline mt-8">
+        <div className="hidden lg:flex items-start gap-0 relative group/timeline mt-8 mb-16 lg:mb-20">
           {/* Connector line */}
           <div className="absolute top-12 left-[calc(8.33%-20px)] right-[calc(8.33%-20px)] h-1 bg-gradient-to-r from-brandRed/0 via-brandRed/30 to-brandRed/0 shadow-[0_0_10px_rgba(192,30,46,0.2)]" />
 
@@ -85,7 +85,7 @@ export default function ProcessSection() {
         </div>
 
         {/* Mobile timeline */}
-        <div className="lg:hidden flex flex-col gap-8 mt-6">
+        <div className="lg:hidden flex flex-col gap-8 mt-6 mb-16">
           {WORK_PROCESS.map((step, i) => {
             const Icon = ICON_MAP[step.icon] || CheckCircle
             return (
