@@ -61,7 +61,7 @@ export default function GalleryPreview() {
               {t('gallery.titleLine1')} <span className="text-gradient">{t('gallery.titleHighlight')}</span>
             </motion.h2>
           </div>
-          <Link href="/gallery" className="flex items-center gap-2 bg-brandRed text-white px-6 py-3 rounded-xl text-sm font-bold tracking-widest uppercase hover:bg-brandRed/90 hover:shadow-[0_8px_20px_-5px_rgba(192,30,46,0.3)] transition-all duration-300 hover:-translate-y-0.5 shrink-0">
+          <Link href="/gallery" className="hidden md:flex items-center gap-2 bg-brandRed text-white px-6 py-3 rounded-xl text-sm font-bold tracking-widest uppercase hover:bg-brandRed/90 hover:shadow-[0_8px_20px_-5px_rgba(192,30,46,0.3)] transition-all duration-300 hover:-translate-y-0.5 shrink-0">
             {t('gallery.viewFull')} <ArrowRight size={16} />
           </Link>
         </div>
@@ -107,6 +107,13 @@ export default function GalleryPreview() {
             </motion.button>
           ))}
         </motion.div>
+
+        {/* Mobile View Full Gallery Button */}
+        <div className="mt-8 flex md:hidden justify-center">
+          <Link href="/gallery" className="flex w-full sm:w-auto items-center justify-center gap-2 bg-brandRed text-white px-8 py-4 rounded-xl text-sm font-bold tracking-widest uppercase shadow-sm active:scale-95 transition-all duration-300">
+            {t('gallery.viewFull')} <ArrowRight size={16} />
+          </Link>
+        </div>
       </div>
 
       <Lightbox

@@ -31,6 +31,7 @@ const MOCK_REVIEWS: Review[] = [
 
 export default function TestimonialsSection() {
   const [reviews, setReviews] = useState<Review[]>([])
+  const [isDesktop, setIsDesktop] = useState(true) // Default to desktop for SSR
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -39,6 +40,15 @@ export default function TestimonialsSection() {
       .then(d => setReviews(d.success && d.data.length > 0 ? d.data : MOCK_REVIEWS))
       .catch(() => setReviews(MOCK_REVIEWS))
   }, [])
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
+    handleResize() // Check initially
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const shouldLoop = isDesktop ? reviews.length > 3 : reviews.length > 1
 
   return (
     <section className="py-20 lg:py-28 bg-slate-50 overflow-hidden">
@@ -79,7 +89,7 @@ export default function TestimonialsSection() {
             }}
             autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
             pagination={{ clickable: true, dynamicBullets: true }}
-            loop={reviews.length >= 4}
+            loop={shouldLoop}
             className="pb-14"
           >
             {reviews.map((review) => (

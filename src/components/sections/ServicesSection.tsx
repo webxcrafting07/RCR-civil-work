@@ -33,11 +33,18 @@ export default function ServicesSection() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {SERVICES_LIST.map((service, i) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SERVICES_LIST.slice(0, 6).map((service, i) => {
             const Icon = ICON_MAP[service.icon] || Building2
             return (
-              <motion.div key={service.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.05 }}>
+              <motion.div 
+                key={service.id} 
+                initial={{ opacity: 0, y: 30 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.5, delay: (i % 3) * 0.05 }}
+                className={i >= 3 ? 'hidden sm:block' : 'block'}
+              >
                 <Link href={`/services/${service.slug}`} className="service-card group block h-full">
                   <div className="relative w-full h-36 rounded-xl overflow-hidden mb-4 border border-slate-200 bg-slate-50">
                     {service.image && (

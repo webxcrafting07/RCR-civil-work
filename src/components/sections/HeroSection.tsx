@@ -31,7 +31,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-[70vh] flex flex-col overflow-hidden bg-slate-950">
+    <section className="relative min-h-[100vh] lg:min-h-[85vh] flex flex-col overflow-hidden bg-slate-950">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -55,7 +55,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
       {/* Content */}
-      <div className="relative z-10 container-custom pt-28 lg:pt-36 pb-12 flex-grow flex flex-col justify-center items-center text-center">
+      <div className="relative z-10 container-custom pt-32 sm:pt-40 lg:pt-48 pb-20 flex-grow flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl flex flex-col items-center">
           {/* Badge */}
           <motion.div
@@ -99,13 +99,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row w-full max-w-sm sm:max-w-none justify-center gap-3 md:gap-4 mb-12"
           >
-            <Link href="/contact" className="btn-primary px-8 py-4 text-sm">
+            <Link href="/contact" className="btn-primary w-full sm:w-auto px-8 py-4 text-sm justify-center">
               {t('nav.getQuote')}
               <ArrowRight size={16} />
             </Link>
-            <a href="tel:9619439243" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold rounded-lg border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-md shadow-sm">
+            <a href="tel:9619439243" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-bold rounded-lg border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-md shadow-sm">
               <Phone size={16} />
               {t('hero.callBtn')}
             </a>
@@ -116,7 +116,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-4 mb-16"
+            className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10"
           >
             {[
               { icon: Shield, text: t('hero.trustBadge1') },

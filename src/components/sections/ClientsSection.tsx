@@ -48,7 +48,7 @@ export default async function ClientsSection() {
         <ClientsSectionHeader />
       </div>
 
-      <div className="relative w-full flex overflow-hidden z-10 pb-4 pt-2">
+      <div className="relative w-full flex overflow-hidden z-10 pb-8 pt-4">
         {/* Left/Right fading gradients for smooth entering/exiting */}
         <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-slate-50 to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-slate-50 to-transparent z-10" />

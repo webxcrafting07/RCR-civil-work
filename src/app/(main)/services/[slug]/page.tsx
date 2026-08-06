@@ -172,7 +172,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h3 className="font-display font-bold text-slate-900 text-base mb-4">Other Services</h3>
                 <div className="space-y-2">
                   {relatedServices.map(s => (
-                    <Link key={s.id} href={`/services/${s.slug}`}
+                    <Link key={s._id} href={`/services/${s.slug}`}
                       className="flex items-center justify-between py-2.5 px-3 rounded-lg hover:bg-brandRed/5 text-slate-700 font-medium hover:text-brandRed transition-all text-sm group">
                       {s.title}
                       <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />

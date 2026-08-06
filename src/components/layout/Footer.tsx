@@ -198,7 +198,7 @@ export default function Footer() {
             <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />
             <span className="hidden lg:block text-slate-600">{t('footer.virarTagline')}</span>
             <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />
-            <span>Developed by: <a href="https://webxcrafting.in" target="_blank" rel="noreferrer" className="text-brandRed font-medium hover:text-white transition-colors">webxcrafting.in</a></span>
+            <span className="hidden lg:block">Developed by: <a href="https://webxcrafting.in" target="_blank" rel="noreferrer" className="text-brandRed font-medium hover:text-white transition-colors">webxcrafting.in</a></span>
           </div>
           
           <div className="flex flex-col items-center gap-2 lg:hidden w-full mt-1">

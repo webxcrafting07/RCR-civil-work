@@ -42,18 +42,18 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b',
           scrolled || mobileOpen
-            ? 'bg-white border-slate-200 shadow-sm py-2' 
-            : 'bg-white border-b-transparent py-4 shadow-sm'
+            ? 'bg-white/95 backdrop-blur-md border-slate-200 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] py-2' 
+            : 'bg-white/95 backdrop-blur-md border-b-transparent py-3 shadow-sm'
         )}
       >
         {/* Top bar */}
-        <div className={cn('border-b border-slate-200/30 transition-all duration-300', scrolled ? 'h-0 overflow-hidden opacity-0' : 'opacity-100')}>
-          <div className="container-custom flex items-center justify-end gap-6 py-1.5">
-            <a href="tel:9619439243" className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-brandRed transition-colors">
-              <Phone size={11} />
+        <div className={cn('border-b border-slate-200/50 transition-all duration-300 bg-slate-50', scrolled ? 'h-0 overflow-hidden opacity-0' : 'opacity-100')}>
+          <div className="container-custom flex items-center justify-end gap-6 py-2">
+            <a href="tel:9619439243" className="flex items-center gap-1.5 text-[13px] font-semibold text-slate-700 hover:text-brandRed transition-colors">
+              <Phone size={13} />
               <span>9619439243</span>
             </a>
-            <a href="mailto:rcrenterprises786@gmail.com" className="text-xs text-slate-500 hover:text-brandRed transition-colors hidden sm:block">
+            <a href="mailto:rcrenterprises786@gmail.com" className="text-[13px] font-semibold text-slate-700 hover:text-brandRed transition-colors hidden sm:block">
               rcrenterprises786@gmail.com
             </a>
             <div className="hidden lg:block">
@@ -66,13 +66,13 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-16 lg:h-18">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white">
-                <Image src="/logo_new.png" alt="RCR Logo" fill sizes="40px" className="object-cover p-1" />
+            <Link href="/" className="flex items-center gap-3.5 group">
+              <div className="relative w-12 h-12 lg:w-14 lg:h-14 rounded-xl shadow-sm border border-slate-200 bg-white overflow-hidden flex-shrink-0">
+                <Image src="/logo_new.png" alt="RCR Logo" fill sizes="56px" className="object-cover p-1" priority />
               </div>
-              <div>
-                <div className="font-mono font-bold text-navy text-sm tracking-widest leading-none">RCR</div>
-                <div className="font-mono font-semibold text-brandRed text-[10px] tracking-[0.2em] leading-none mt-0.5">ENTERPRISES</div>
+              <div className="flex flex-col justify-center">
+                <div className="font-display font-bold text-slate-900 text-lg lg:text-xl tracking-wider leading-none">RCR</div>
+                <div className="font-mono font-bold text-brandRed text-[10px] lg:text-[11px] tracking-[0.25em] leading-none mt-1">ENTERPRISES</div>
               </div>
             </Link>
 
@@ -85,8 +85,8 @@ export default function Navbar() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg group',
-                      isActive ? 'text-brandRed' : 'text-slate-600 hover:text-navy'
+                      'relative px-4 py-2 text-[15px] font-semibold transition-all duration-200 rounded-lg group tracking-wide',
+                      isActive ? 'text-brandRed' : 'text-slate-800 hover:text-brandRed'
                     )}
                   >
                     {t(NAV_KEYS[item.href] || item.label)}

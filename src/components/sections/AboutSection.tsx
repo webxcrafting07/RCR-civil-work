@@ -9,7 +9,7 @@ import CountUp from 'react-countup'
 import { STATS, SERVICES_LIST } from '@/constants'
 import { useTranslation } from '@/hooks/useTranslation'
 
-const SERVICES_PREVIEW = SERVICES_LIST.slice(0, 8)
+const SERVICES_PREVIEW = SERVICES_LIST.slice(0, 4)
 const STAT_KEYS = ['stats.projectsCompleted', 'stats.happyClients', 'stats.skilledWorkforce', 'stats.yearsOfExperience']
 
 export default function AboutSection() {
@@ -115,11 +115,11 @@ export default function AboutSection() {
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Link href="/about" className="btn-primary py-4 px-8 shadow-[0_8px_20px_rgba(192,30,46,0.25)] hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/about" className="btn-primary w-full sm:w-auto justify-center py-4 px-8 shadow-[0_8px_20px_rgba(192,30,46,0.25)] hover:-translate-y-1">
                 {t('about.aboutUs')} <ArrowRight size={18} />
               </Link>
-              <Link href="/contact" className="btn-outline py-4 px-8 hover:-translate-y-1 hover:shadow-lg bg-white">
+              <Link href="/contact" className="btn-outline w-full sm:w-auto justify-center py-4 px-8 hover:-translate-y-1 hover:shadow-lg bg-white">
                 {t('about.contactUs')}
               </Link>
             </div>
