@@ -217,57 +217,54 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
         />
       ))}
 
-      <main className="min-h-screen bg-slate-950">
+      <main className="min-h-screen bg-white">
         {/* Top Spacer to prevent fixed Navbar overlap */}
-        <div className="h-[144px] lg:h-[180px] bg-slate-950" />
+        <div className="h-[100px] lg:h-[120px] bg-white" />
 
         {/* Double Breadcrumbs Trail */}
-      <div className="bg-slate-900/60 border-b border-slate-800 backdrop-blur-md sticky top-[80px] lg:top-[88px] z-30">
-        <div className="container-custom max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-2 text-[10px] font-mono tracking-wider text-slate-400">
-          <Link href="/" className="hover:text-sky-400 transition-colors uppercase">Home</Link>
-          <ChevronRight size={10} className="text-slate-600 flex-shrink-0" />
-          <Link href="/locations" className="hover:text-sky-400 transition-colors uppercase">Locations</Link>
-          <ChevronRight size={10} className="text-slate-600 flex-shrink-0" />
-          <Link href={`/locations/${location.slug}`} className="hover:text-sky-400 transition-colors uppercase">{location.name}</Link>
-          <ChevronRight size={10} className="text-slate-600 flex-shrink-0" />
-          <span className="text-sky-400 font-bold uppercase tracking-widest truncate">{service.title}</span>
+      <div className="bg-white/90 border-b border-slate-200 backdrop-blur-md sticky top-[80px] lg:top-[88px] z-30">
+        <div className="container-custom max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-2 text-[10px] font-mono tracking-wider text-slate-500">
+          <Link href="/" className="hover:text-brandRed transition-colors uppercase">Home</Link>
+          <ChevronRight size={10} className="text-slate-300 flex-shrink-0" />
+          <Link href="/locations" className="hover:text-brandRed transition-colors uppercase">Locations</Link>
+          <ChevronRight size={10} className="text-slate-300 flex-shrink-0" />
+          <Link href={`/locations/${location.slug}`} className="hover:text-brandRed transition-colors uppercase">{location.name}</Link>
+          <ChevronRight size={10} className="text-slate-300 flex-shrink-0" />
+          <span className="text-brandRed font-bold uppercase tracking-widest truncate">{service.title}</span>
         </div>
       </div>
 
-      {/* Premium Spotlight Hero */}
-      <section className="relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden bg-slate-950 text-white">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105"
-          style={{ backgroundImage: `url(${service.image})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950" />
-        <div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[130px] -translate-x-1/2 -translate-y-1/2 animate-pulse" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+      {/* Premium Spotlight Hero (Dark Theme with Red Accents like Services Page) */}
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 bg-slate-950">
+          <Image src={service.image || '/images/hero_construction_bg.png'} alt={service.title} fill className="object-cover opacity-40" priority />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/40" />
+        </div>
 
-        <div className="relative z-10 container-custom max-w-5xl mx-auto px-4 py-20 text-center">
+        <div className="relative z-10 container-custom max-w-5xl mx-auto px-4 text-center mt-6">
           {/* Badge indicator */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-500/10 border border-sky-400/20 text-sky-400 font-semibold text-xs tracking-wider uppercase mb-8">
-            <HardHat size={14} className="animate-bounce" />
-            Specialized {service.title} Services
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-slate-300 text-[10px] font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-brandRed animate-pulse" />
+            Specialized Services
           </div>
 
           {/* Hyper-Targeted H1 */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black leading-tight tracking-tight mb-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white mb-6 tracking-tight">
             Top-Rated {service.title} in <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-sky-300">
+            <span className="text-brandRed">
               {location.name}
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
-            RCR Enterprises offers enterprise-grade <span className="text-white font-bold">{service.title.toLowerCase()}</span> solutions across <span className="text-sky-400 font-semibold">{location.name}</span>. Built strictly to BIS structural specifications and IS codes, our slab casting, column-beam framework, shuttering, and turnkey civil construction guarantee pristine concrete finishes and maximum load endurance.
+          <p className="text-slate-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-12">
+            RCR Enterprises offers enterprise-grade <span className="text-white font-bold">{service.title.toLowerCase()}</span> solutions across <span className="text-brandRed font-semibold">{location.name}</span>. Built strictly to BIS structural specifications and IS codes, our slab casting, column-beam framework, shuttering, and turnkey civil construction guarantee pristine concrete finishes and maximum load endurance.
           </p>
 
           {/* conversion button metrics */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
             <Link 
               href="/contact" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 group"
+              className="btn-primary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl shadow-xl hover:-translate-y-0.5 group border border-transparent"
             >
               Request Free Estimate
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -276,9 +273,9 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
               href={whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 font-bold px-8 py-4 rounded-xl transition-all hover:-translate-y-0.5"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700 hover:border-slate-600 font-bold px-8 py-4 rounded-xl shadow-sm transition-all hover:-translate-y-0.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-emerald-400">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-emerald-500">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
               </svg>
               Chat About {service.title}
@@ -294,7 +291,7 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
               { icon: Building2, title: 'Udyam Certified', desc: `Reg: MH33A0170011` },
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 mb-3 border border-sky-500/20">
+                <div className="w-10 h-10 rounded-xl bg-brandRed/20 flex items-center justify-center text-brandRed mb-3 border border-brandRed/30 backdrop-blur-sm">
                   <item.icon size={18} />
                 </div>
                 <h3 className="text-xs font-bold text-white tracking-wide uppercase mb-1">{item.title}</h3>
@@ -306,31 +303,31 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
       </section>
 
       {/* Structured Technical Specifications Table */}
-      <section className="py-24 bg-slate-950 text-white relative border-t border-slate-900">
+      <section className="py-24 bg-white relative">
         <div className="container-custom max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Spec details columns */}
             <div className="lg:col-span-7">
-              <span className="text-xs font-mono tracking-widest text-sky-500 uppercase font-semibold mb-3 block">
+              <span className="text-xs font-mono tracking-widest text-brandRed uppercase font-semibold mb-3 block">
                 Engineering Specs
               </span>
-              <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight mb-6">
-                Engineered for Infinite Longevity in <span className="text-sky-400">{location.name}</span>
+              <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight mb-6 text-slate-900">
+                Engineered for Infinite Longevity in <span className="text-brandRed whitespace-nowrap">{location.name}</span>
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
-                RCR Enterprises strictly implements standardized structural practices. For our <span className="text-white font-medium">{service.title.toLowerCase()}</span> inside <span className="text-white font-medium">{location.name}</span>, we inspect all parameters, ranging from steel binding grids to moisture control, to ensure structural strength.
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                RCR Enterprises strictly implements standardized structural practices. For our <span className="text-slate-900 font-bold">{service.title.toLowerCase()}</span> inside <span className="text-slate-900 font-bold">{location.name}</span>, we inspect all parameters, ranging from steel binding grids to moisture control, to ensure structural strength.
               </p>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
                 By utilizing precise geometric shuttering formwork and state-certified high-tensile steel, we ensure zero bleedings or structural voids, leading to perfectly smooth concrete column-beam outlines and robust slab loads.
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <a href={`tel:${COMPANY_INFO.phone}`} className="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all">
+                <a href={`tel:${COMPANY_INFO.phone}`} className="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl transition-all shadow-md">
                   <Phone size={16} />
                   Call: +91 {COMPANY_INFO.phone}
                 </a>
-                <Link href={`/services/${service.slug}`} className="inline-flex items-center justify-center gap-2 border border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-300 font-bold px-6 py-3.5 rounded-xl transition-all hover:text-white">
+                <Link href={`/services/${service.slug}`} className="inline-flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-brandRed hover:text-brandRed text-slate-700 font-bold px-6 py-3.5 rounded-xl transition-all shadow-sm">
                   General Service Guide
                 </Link>
               </div>
@@ -338,11 +335,16 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
 
             {/* Premium specifications matrix */}
             <div className="lg:col-span-5 relative group">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-sky-500 to-blue-600 blur-lg opacity-25 group-hover:opacity-40 transition-opacity" />
-              <div className="relative bg-slate-900 border border-slate-800 p-8 rounded-3xl overflow-hidden shadow-2xl">
-                <h3 className="text-xl font-display font-black text-white mb-6 border-b border-slate-800 pb-4">
-                  {service.title} Parameters
-                </h3>
+              <div className="absolute -inset-2 bg-gradient-to-br from-brandRed/5 to-transparent rounded-[32px] blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative bg-white border border-slate-100 p-8 rounded-3xl overflow-hidden shadow-xl shadow-slate-200/50">
+                <div className="flex items-center gap-4 mb-6 border-b border-slate-100 pb-5">
+                  <div className="w-12 h-12 rounded-2xl bg-brandRed/10 flex items-center justify-center text-brandRed">
+                    <Check size={24} />
+                  </div>
+                  <h3 className="text-xl font-display font-black text-slate-900 leading-tight">
+                    {service.title} <br/> Parameters
+                  </h3>
+                </div>
                 <div className="space-y-4">
                   {[
                     { label: 'Curing Duration', value: '7 to 14 Days (Continuous Water)' },
@@ -351,9 +353,9 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
                     { label: 'Concrete Pour Grade', value: 'M20, M25, M30 Compliance' },
                     { label: 'Supervision Duty', value: 'Master-Mason Site Inspector' }
                   ].map((row, idx) => (
-                    <div key={idx} className="flex justify-between items-center text-xs border-b border-slate-800/40 pb-3 last:border-0 last:pb-0">
-                      <span className="text-slate-400 font-mono">{row.label}</span>
-                      <span className="text-sky-400 font-bold">{row.value}</span>
+                    <div key={idx} className="flex justify-between items-center text-xs sm:text-sm border-b border-slate-50 pb-3 last:border-0 last:pb-0">
+                      <span className="text-slate-500 font-medium">{row.label}</span>
+                      <span className="text-slate-900 font-bold text-right">{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -365,14 +367,14 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
       </section>
 
       {/* Structural Benefits Section */}
-      <section className="py-24 bg-slate-950 border-t border-slate-900 text-white relative">
+      <section className="py-24 bg-slate-50 border-t border-slate-200 relative">
         <div className="container-custom max-w-6xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-mono tracking-widest text-sky-500 uppercase font-semibold mb-3 block">Why Choose Us</span>
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-white">
-              Professional Workmanship Benefits in <span className="text-sky-400">{location.name}</span>
+            <span className="text-xs font-mono tracking-widest text-brandRed uppercase font-semibold mb-3 block">Why Choose Us</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900">
+              Professional Workmanship Benefits in <span className="text-brandRed">{location.name}</span>
             </h2>
-            <p className="text-slate-400 mt-4 text-sm">
+            <p className="text-slate-600 mt-4 text-sm">
               We focus on absolute quality control and structural safety metrics to build structural marvels.
             </p>
           </div>
@@ -394,13 +396,13 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
             ].map((benefit, index) => (
               <div 
                 key={index} 
-                className="bg-slate-900/40 border border-slate-800 p-8 rounded-3xl relative overflow-hidden group hover:border-slate-700/80 transition-all"
+                className="bg-white border border-slate-200 p-8 rounded-3xl relative overflow-hidden group hover:border-brandRed/30 hover:shadow-lg transition-all"
               >
-                <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 mb-6 border border-sky-500/20">
+                <div className="w-10 h-10 rounded-xl bg-brandRed/10 flex items-center justify-center text-brandRed mb-6 border border-brandRed/20">
                   <Check size={20} />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-3 font-display">{benefit.title}</h3>
-                <p className="text-slate-400 text-xs leading-relaxed">{benefit.desc}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3 font-display">{benefit.title}</h3>
+                <p className="text-slate-600 text-xs leading-relaxed">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -408,14 +410,14 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
       </section>
 
       {/* Dynamic FAQs Section */}
-      <section className="py-24 bg-slate-950 border-t border-slate-900 relative">
+      <section className="py-24 bg-white border-t border-slate-200 relative">
         <div className="container-custom max-w-4xl mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="text-xs font-mono tracking-widest text-sky-500 uppercase font-semibold mb-3 block">FAQ Guide</span>
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-white">
-              FAQs on {service.title} in <span className="text-sky-400">{location.name}</span>
+            <span className="text-xs font-mono tracking-widest text-brandRed uppercase font-semibold mb-3 block">FAQ Guide</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-slate-900">
+              FAQs on {service.title} in <span className="text-brandRed">{location.name}</span>
             </h2>
-            <p className="text-slate-400 mt-4 text-sm">
+            <p className="text-slate-600 mt-4 text-sm">
               Get detailed, local structural guidance regarding concrete slab pouring, formwork shuttering, and pricing.
             </p>
           </div>
@@ -424,18 +426,18 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
             {faqs.map((faq, index) => (
               <details 
                 key={index} 
-                className="group bg-slate-900/40 border border-slate-800/80 rounded-2xl p-5 hover:border-slate-700 transition-all cursor-pointer overflow-hidden list-none block"
+                className="group bg-slate-50 border border-slate-200 rounded-2xl p-5 hover:border-brandRed/30 hover:shadow-sm transition-all cursor-pointer overflow-hidden list-none block"
               >
-                <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-white tracking-wide select-none list-none [&::-webkit-details-marker]:hidden">
+                <summary className="flex justify-between items-center font-bold text-sm sm:text-base text-slate-900 tracking-wide select-none list-none [&::-webkit-details-marker]:hidden">
                   <div className="flex items-center gap-3.5 pr-4 text-left">
-                    <HelpCircle size={18} className="text-sky-400 flex-shrink-0" />
+                    <HelpCircle size={18} className="text-brandRed flex-shrink-0" />
                     {faq.q}
                   </div>
-                  <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 group-open:text-sky-400 group-open:bg-sky-500/10 group-open:rotate-180 transition-all flex-shrink-0 border border-slate-800">
+                  <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-slate-400 group-open:text-brandRed group-open:bg-red-50 group-open:rotate-180 transition-all flex-shrink-0 border border-slate-200">
                     <ChevronDown size={14} />
                   </div>
                 </summary>
-                <div className="mt-4 pt-4 border-t border-slate-800/60 text-xs sm:text-sm text-slate-400 leading-relaxed pl-8 text-left cursor-default">
+                <div className="mt-4 pt-4 border-t border-slate-200 text-xs sm:text-sm text-slate-600 leading-relaxed pl-8 text-left cursor-default">
                   {faq.a}
                 </div>
               </details>
@@ -446,12 +448,12 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
 
       {/* Spiderweb Crawler Linking Mesh Section */}
       {relatedLocations.length > 0 && (
-        <section className="py-20 bg-slate-950 border-t border-slate-900 relative">
+        <section className="py-20 bg-slate-50 border-t border-slate-200 relative">
           <div className="container-custom max-w-5xl mx-auto px-4 text-center">
             <h2 className="text-xs font-mono tracking-widest text-slate-500 uppercase font-semibold mb-8 flex items-center justify-center gap-3">
-              <span className="w-6 h-px bg-slate-800" />
+              <span className="w-6 h-px bg-slate-300" />
               {service.title} in Nearby Regions
-              <span className="w-6 h-px bg-slate-800" />
+              <span className="w-6 h-px bg-slate-300" />
             </h2>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -459,7 +461,7 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
                 <Link 
                   key={loc.slug} 
                   href={`/locations/${loc.slug}/${service.slug}`}
-                  className="bg-slate-900/30 border border-slate-800 hover:border-sky-500/30 text-xs font-medium text-slate-400 hover:text-sky-400 py-3.5 px-4 rounded-xl transition-all text-center hover:-translate-y-0.5 hover:shadow-md hover:shadow-sky-500/[0.01]"
+                  className="bg-white border border-slate-200 hover:border-brandRed/30 text-xs font-medium text-slate-600 hover:text-brandRed py-3.5 px-4 rounded-xl transition-all text-center hover:-translate-y-0.5 hover:shadow-sm hover:shadow-brandRed/5"
                 >
                   {service.title} in {loc.name}
                 </Link>
@@ -469,14 +471,14 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
             <div className="mt-10 flex flex-wrap justify-center gap-6 text-xs">
               <Link 
                 href={`/locations/${location.slug}`}
-                className="font-bold text-sky-400 hover:text-white transition-colors underline decoration-sky-400/20 underline-offset-8"
+                className="font-bold text-brandRed hover:text-slate-900 transition-colors underline decoration-brandRed/20 underline-offset-8"
               >
                 View all RCC Work in {location.name}
               </Link>
-              <span className="text-slate-700">|</span>
+              <span className="text-slate-300">|</span>
               <Link 
                 href="/locations" 
-                className="font-bold text-sky-400 hover:text-white transition-colors underline decoration-sky-400/20 underline-offset-8"
+                className="font-bold text-brandRed hover:text-slate-900 transition-colors underline decoration-brandRed/20 underline-offset-8"
               >
                 All Served Maharashtra Cities
               </Link>
@@ -486,31 +488,39 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
       )}
 
       {/* Structural Call-to-action */}
-      <section className="py-16 bg-slate-950 border-t border-slate-900 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] bg-sky-500/5 rounded-full blur-[90px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="container-custom max-w-4xl mx-auto px-4 relative z-10">
-          <div className="bg-gradient-to-b from-slate-900 to-slate-900/50 border border-slate-800/90 rounded-3xl p-8 md:p-12 text-center shadow-2xl">
-            <h3 className="text-2xl sm:text-3xl font-display font-black text-white mb-4">
-              Schedule Your Site Audit in {location.name}
-            </h3>
-            <p className="text-slate-400 max-w-2xl mx-auto mb-8 text-xs sm:text-sm leading-relaxed">
-              Plan your structural layout with precision-grade {service.title.toLowerCase()} from RCR Enterprises. Contact Noor Alam Shaikh for an expert local cost assessment today.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link 
-                href="/contact" 
-                className="w-full sm:w-auto inline-flex items-center justify-center bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl shadow-lg transition-all"
-              >
-                Request Consultation
-              </Link>
-              <a 
-                href={`tel:${COMPANY_INFO.phone}`} 
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white font-bold px-8 py-3.5 rounded-xl transition-all"
-              >
-                <Phone size={16} className="text-sky-400" />
-                Call +91 {COMPANY_INFO.phone}
-              </a>
-            </div>
+      <section className="py-20 relative overflow-hidden bg-slate-950">
+        {/* Background */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity"
+          style={{ backgroundImage: 'url(/images/masonry_brick_work.png)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/90 to-brandRed/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brandRed/20 via-transparent to-transparent" />
+
+        {/* Decorative large circle */}
+        <div className="absolute -top-[500px] -right-[500px] w-[1000px] h-[1000px] rounded-full bg-brandRed/10 blur-[100px] pointer-events-none" />
+
+        <div className="relative z-10 container-custom text-center max-w-4xl mx-auto">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-brandRed/10 border border-brandRed/30 text-white mb-6 shadow-[0_0_15px_rgba(192,30,46,0.3)]">
+            READY TO BUILD?
+          </span>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-white mb-4 leading-[1.1] tracking-tight">
+            Schedule Your Site Audit in <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-red-400">{location.name}</span>
+          </h2>
+          
+          <p className="text-slate-300 text-base md:text-lg font-medium mb-8 leading-relaxed max-w-2xl mx-auto">
+            Plan your structural layout with precision-grade {service.title.toLowerCase()} from RCR Enterprises. Contact Noor Alam Shaikh for an expert local cost assessment today.
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-brandRed text-white hover:bg-red-700 transition-all shadow-[0_10px_30px_rgba(192,30,46,0.4)] hover:shadow-[0_15px_40px_rgba(192,30,46,0.6)] hover:-translate-y-1">
+              Request Consultation <ArrowRight size={16} />
+            </Link>
+            <a href={`tel:${COMPANY_INFO.phone}`} className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all hover:-translate-y-1">
+              <Phone size={16} /> Call +91 {COMPANY_INFO.phone}
+            </a>
           </div>
         </div>
       </section>

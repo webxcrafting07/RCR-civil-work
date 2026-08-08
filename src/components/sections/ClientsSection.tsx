@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import connectDB from '@/lib/mongodb'
 import Client from '@/models/Client'
 import ClientsSectionHeader from '@/components/sections/ClientsSectionHeader'
@@ -81,6 +82,12 @@ export default async function ClientsSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="relative z-10 text-center pb-8 mt-2">
+        <Link href="/clients" className="inline-flex items-center gap-2 text-sm font-bold text-brandRed hover:text-navy hover:gap-3 transition-all uppercase tracking-widest border-b-2 border-brandRed/30 hover:border-navy pb-1">
+          View All Clients <span className="text-lg">→</span>
+        </Link>
       </div>
     </section>
   )

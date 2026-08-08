@@ -448,6 +448,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Services', href: '/services' },
   { label: 'Locations', href: '/locations' },
   { label: 'Projects', href: '/projects' },
+  { label: 'Clients', href: '/clients' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Blogs', href: '/blogs' },
   { label: 'Contact', href: '/contact' },

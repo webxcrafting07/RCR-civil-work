@@ -195,6 +195,8 @@ export default function Footer() {
             <Link href="/privacy-policy" className="hover:text-brandRed transition-colors">{t('nav.privacyPolicy')}</Link>
             <span className="w-1 h-1 rounded-full bg-slate-700" />
             <Link href="/terms" className="hover:text-brandRed transition-colors">{t('nav.termsOfService')}</Link>
+            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <Link href="/sitemap" className="hover:text-brandRed transition-colors">{t('nav.sitemap')}</Link>
             <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />
             <span className="hidden lg:block text-slate-600">{t('footer.virarTagline')}</span>
             <span className="w-1 h-1 rounded-full bg-slate-700 hidden lg:block" />

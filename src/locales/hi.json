@@ -11,12 +11,14 @@
     "services": "सेवाएं",
     "locations": "लोकेशन्स",
     "projects": "प्रोजेक्ट्स",
+    "clients": "क्लाइंट्स",
     "gallery": "गैलरी",
     "blogs": "ब्लॉग",
     "contact": "संपर्क करें",
     "getQuote": "मुफ्त कोटेशन लें",
     "privacyPolicy": "गोपनीयता नीति",
     "termsOfService": "सेवा की शर्तें",
+    "sitemap": "साइटमैप",
     "learnMore": "और जानें"
   },
   "hero": {

@@ -156,7 +156,7 @@ export default function AboutPage() {
             <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-md rounded-3xl overflow-hidden aspect-[4/5] shadow-[0_20px_50px_-15px_rgba(192,30,46,0.3)] group border border-white/10">
                 <Image
-                  src="/images/owner_portrait.png"
+                  src="/owner_image.png"
                   alt="Momin Noor Alam Shaikh"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-[1.5s]"

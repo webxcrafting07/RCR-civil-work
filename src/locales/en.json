@@ -11,12 +11,14 @@
     "services": "Services",
     "locations": "Locations",
     "projects": "Projects",
+    "clients": "Clients",
     "gallery": "Gallery",
     "blogs": "Blogs",
     "contact": "Contact",
     "getQuote": "Get Free Quote",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
+    "sitemap": "Sitemap",
     "learnMore": "Learn More"
   },
   "hero": {
