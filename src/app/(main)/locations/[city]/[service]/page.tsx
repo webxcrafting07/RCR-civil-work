@@ -23,6 +23,14 @@ interface ServiceLocationPageProps {
   params: Promise<{ city: string; service: string }>
 }
 
+function getDeterministicIndex(str: string, max: number): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash) % max;
+}
+
 const REGIONS = [
   {
     name: 'Western Suburbs & Palghar',
@@ -257,7 +265,11 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
           </h1>
 
           <p className="text-slate-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed mb-12">
-            RCR Enterprises offers enterprise-grade <span className="text-white font-bold">{service.title.toLowerCase()}</span> solutions across <span className="text-brandRed font-semibold">{location.name}</span>. Built strictly to BIS structural specifications and IS codes, our slab casting, column-beam framework, shuttering, and turnkey civil construction guarantee pristine concrete finishes and maximum load endurance.
+            {[
+              `RCR Enterprises offers enterprise-grade ${service.title.toLowerCase()} solutions across ${location.name}. Built strictly to BIS structural specifications and IS codes, our slab casting, column-beam framework, shuttering, and turnkey civil construction guarantee pristine concrete finishes and maximum load endurance.`,
+              `Looking for reliable ${service.title.toLowerCase()} in ${location.name}? Our seasoned engineers at RCR Enterprises deliver world-class structural execution. We adhere to the highest IS safety standards, ensuring that every inch of concrete and steel we lay withstands the test of time.`,
+              `As the leading provider of ${service.title.toLowerCase()} in the ${location.name} region, RCR Enterprises brings decades of combined expertise. From high-tensile steel grids to leak-proof shuttering, we manage all phases of civil construction with absolute precision and transparency.`
+            ][getDeterministicIndex(location.slug + service.slug + 'hero', 3)]}
           </p>
 
           {/* conversion button metrics */}
@@ -316,10 +328,18 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
                 Engineered for Infinite Longevity in <span className="text-brandRed whitespace-nowrap">{location.name}</span>
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                RCR Enterprises strictly implements standardized structural practices. For our <span className="text-slate-900 font-bold">{service.title.toLowerCase()}</span> inside <span className="text-slate-900 font-bold">{location.name}</span>, we inspect all parameters, ranging from steel binding grids to moisture control, to ensure structural strength.
+                {[
+                  `RCR Enterprises strictly implements standardized structural practices. For our ${service.title.toLowerCase()} inside ${location.name}, we inspect all parameters, ranging from steel binding grids to moisture control, to ensure structural strength.`,
+                  `Executing flawless ${service.title.toLowerCase()} in ${location.name} requires deep technical oversight. Our master masons and structural engineers rigorously verify concrete grades, steel alignment, and curing periods to achieve unmatched building strength.`,
+                  `In ${location.name}, we approach every ${service.title.toLowerCase()} project with meticulous detail. By strictly enforcing code-compliant measurements and robust material selection, we protect your structure from environmental and load-bearing stresses.`
+                ][getDeterministicIndex(location.slug + service.slug + 'spec1', 3)]}
               </p>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
-                By utilizing precise geometric shuttering formwork and state-certified high-tensile steel, we ensure zero bleedings or structural voids, leading to perfectly smooth concrete column-beam outlines and robust slab loads.
+                {[
+                  `By utilizing precise geometric shuttering formwork and state-certified high-tensile steel, we ensure zero bleedings or structural voids, leading to perfectly smooth concrete column-beam outlines and robust slab loads.`,
+                  `Our advanced formwork techniques completely prevent slurry leakage, ensuring that the concrete retains its designed M-grade density. This results in heavy-duty slabs and columns that maintain lifelong integrity.`,
+                  `We use exclusively premium 12mm waterproof plywood and MS steel plates for our shuttering layouts, eliminating honeycombing and guaranteeing that the final concrete finish is aesthetically and structurally perfect.`
+                ][getDeterministicIndex(location.slug + service.slug + 'spec2', 3)]}
               </p>
               
               <div className="flex flex-wrap gap-4">
@@ -375,7 +395,11 @@ export default async function ServiceLocationPage({ params }: ServiceLocationPag
               Professional Workmanship Benefits in <span className="text-brandRed">{location.name}</span>
             </h2>
             <p className="text-slate-600 mt-4 text-sm">
-              We focus on absolute quality control and structural safety metrics to build structural marvels.
+              {[
+                `We focus on absolute quality control and structural safety metrics to build structural marvels.`,
+                `Delivering flawless execution and uncompromising safety for every client we serve.`,
+                `Partner with us to experience hassle-free construction driven by strict engineering standards.`
+              ][getDeterministicIndex(location.slug + service.slug + 'benefit', 3)]}
             </p>
           </div>
 
