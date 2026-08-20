@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Blog from '@/models/Blog'
 import { verifyRequestToken } from '@/lib/auth'
+import { revalidateTag } from 'next/cache'
 
 export const dynamic = 'force-dynamic'
 
@@ -45,6 +46,10 @@ export async function POST(req: NextRequest) {
     }
 
     const newBlog = await Blog.create(body)
+    
+    // @ts-ignore
+    revalidateTag('blogs')
+    
     return NextResponse.json({ success: true, data: newBlog }, { status: 201 })
   } catch (error: any) {
     console.error('Create blog error:', error)

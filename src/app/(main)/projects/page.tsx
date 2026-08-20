@@ -40,7 +40,7 @@ export default function ProjectsPage() {
       if (category !== 'all') params.set('category', category)
       if (status !== 'all') params.set('status', status)
       if (search) params.set('search', search)
-      const res = await fetch(`/api/projects?${params}`)
+      const res = await fetch(`/api/projects?${params}`, { next: { tags: ['projects'] } })
       const data = await res.json()
       if (data.success && data.data && data.data.length > 0) {
         setProjects(data.data)

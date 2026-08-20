@@ -8,7 +8,7 @@ interface Props { params: Promise<{ slug: string }> }
 async function getProject(slug: string) {
   try {
     const base = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const res = await fetch(`${base}/api/projects/${slug}`, { next: { revalidate: 300 } })
+    const res = await fetch(`${base}/api/projects/${slug}`, { next: { tags: ['projects'] } })
     if (res.ok) { const d = await res.json(); if (d.success) return d.data }
   } catch {}
   return null

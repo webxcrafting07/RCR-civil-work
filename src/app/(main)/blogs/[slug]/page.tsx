@@ -48,7 +48,7 @@ const MOCK_BLOGS = [
 async function getBlog(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
-    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { cache: 'no-store' })
+    const res = await fetch(`${baseUrl}/api/blogs/${slug}`, { next: { tags: ['blogs'] } })
     if (!res.ok) throw new Error('Fetch failed')
     const json = await res.json()
     return (json.success && json.data) ? json.data : MOCK_BLOGS.find(b => b.slug === slug) || null
@@ -61,7 +61,7 @@ async function getBlog(slug: string) {
 async function getRelatedBlogs(currentSlug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000')
   try {
-    const res = await fetch(`${baseUrl}/api/blogs?limit=4&publishedOnly=true`, { cache: 'no-store' })
+    const res = await fetch(`${baseUrl}/api/blogs?limit=4&publishedOnly=true`, { next: { tags: ['blogs'] } })
     if (!res.ok) throw new Error('Fetch failed')
     const json = await res.json()
     if (!json.success || !json.data) throw new Error('No data')

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Project from '@/models/Project'
 import { verifyRequestToken } from '@/lib/auth'
+import { revalidateTag } from 'next/cache'
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,6 +51,10 @@ export async function POST(request: NextRequest) {
     const existing = await Project.findOne({ slug: body.slug })
     if (existing) return NextResponse.json({ success: false, message: 'Slug already exists' }, { status: 400 })
     const project = await Project.create(body)
+    
+    // @ts-ignore
+    revalidateTag('projects')
+    
     return NextResponse.json({ success: true, data: project }, { status: 201 })
   } catch (error) {
     console.error('Project POST error:', error)

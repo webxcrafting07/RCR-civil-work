@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Project from '@/models/Project'
 import { verifyRequestToken } from '@/lib/auth'
+import { revalidateTag } from 'next/cache'
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
@@ -25,6 +26,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     const body = await request.json()
     const project = await Project.findByIdAndUpdate(id, body, { new: true })
     if (!project) return NextResponse.json({ success: false, message: 'Project not found' }, { status: 404 })
+    
+    // @ts-ignore
+    revalidateTag('projects')
+    
     return NextResponse.json({ success: true, data: project })
   } catch {
     return NextResponse.json({ success: false, message: 'Failed to update project' }, { status: 500 })
@@ -38,6 +43,10 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     await connectDB()
     const { id } = await params
     await Project.findByIdAndDelete(id)
+    
+    // @ts-ignore
+    revalidateTag('projects')
+    
     return NextResponse.json({ success: true, message: 'Project deleted' })
   } catch {
     return NextResponse.json({ success: false, message: 'Failed to delete project' }, { status: 500 })

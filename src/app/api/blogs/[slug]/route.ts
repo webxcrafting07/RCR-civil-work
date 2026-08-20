@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Blog from '@/models/Blog'
 import { verifyRequestToken } from '@/lib/auth'
+import { revalidateTag } from 'next/cache'
 
 export async function GET(
   req: NextRequest,
@@ -55,6 +56,10 @@ export async function PUT(
     if (!blog) {
       return NextResponse.json({ success: false, message: 'Blog not found' }, { status: 404 })
     }
+    
+    // @ts-ignore
+    revalidateTag('blogs')
+
 
     return NextResponse.json({ success: true, data: blog })
   } catch (error: any) {
@@ -84,6 +89,9 @@ export async function DELETE(
     if (!deleted) {
       return NextResponse.json({ success: false, message: 'Blog not found' }, { status: 404 })
     }
+    
+    // @ts-ignore
+    revalidateTag('blogs')
 
     return NextResponse.json({ success: true, message: 'Blog deleted successfully' })
   } catch (error: any) {
