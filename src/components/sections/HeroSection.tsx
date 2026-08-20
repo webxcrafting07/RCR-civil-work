@@ -35,7 +35,7 @@ export default function HeroSection() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/images/hero_construction_bg.png)' }}
+        style={{ backgroundImage: 'url("/images/hero rcr.png")' }}
       />
       {/* Sharp Overlay - Dark Premium Look */}
       <div className="absolute inset-0 bg-slate-950/75" />

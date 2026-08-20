@@ -67,11 +67,9 @@ export default function ProcessSection() {
               >
                 {/* Circle with Image */}
                 <div className="relative mb-6 z-10 w-24 h-24 group-hover:-translate-y-2 transition-transform duration-500">
-                  <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-[0_15px_30px_-5px_rgba(192,30,46,0.15)] group-hover:shadow-[0_20px_40px_-5px_rgba(192,30,46,0.3)] transition-all duration-500 relative bg-white">
-                    {step.image && (
-                      <Image src={step.image} alt={t(`process.steps.${STEP_KEYS[i]}.title`)} fill sizes="96px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                    )}
-                    <div className="absolute inset-0 bg-brandRed/0 group-hover:bg-brandRed/10 transition-colors duration-500" />
+                  <div className="w-full h-full rounded-full overflow-hidden border-4 border-white shadow-[0_15px_30px_-5px_rgba(192,30,46,0.15)] group-hover:shadow-[0_20px_40px_-5px_rgba(192,30,46,0.3)] transition-all duration-500 relative bg-white flex items-center justify-center text-brandRed">
+                    <Icon className="w-10 h-10 group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-brandRed/0 group-hover:bg-brandRed/5 transition-colors duration-500" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-brandRed border-[3px] border-white flex items-center justify-center shadow-[0_5px_15px_rgba(192,30,46,0.4)] group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                     <span className="text-xs font-mono font-black text-white">{step.step}</span>
@@ -98,10 +96,8 @@ export default function ProcessSection() {
                 className="flex gap-5 items-start group"
               >
                 <div className="relative flex-shrink-0 w-20 h-20 group-hover:-translate-y-1 transition-transform duration-500 mt-1">
-                  <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_10px_25px_-5px_rgba(192,30,46,0.15)] bg-slate-100 group-hover:shadow-[0_15px_30px_-5px_rgba(192,30,46,0.25)] transition-all duration-500 relative">
-                    {step.image && (
-                      <Image src={step.image} alt={t(`process.steps.${STEP_KEYS[i]}.title`)} fill sizes="80px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                    )}
+                  <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-white shadow-[0_10px_25px_-5px_rgba(192,30,46,0.15)] bg-slate-100 group-hover:shadow-[0_15px_30px_-5px_rgba(192,30,46,0.25)] transition-all duration-500 relative flex items-center justify-center text-brandRed">
+                    <Icon className="w-8 h-8 group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-brandRed border-2 border-white flex items-center justify-center shadow-[0_3px_10px_rgba(192,30,46,0.3)] z-10">
                     <span className="text-[11px] font-mono font-bold text-white">{step.step}</span>

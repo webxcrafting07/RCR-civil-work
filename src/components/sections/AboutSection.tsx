@@ -36,7 +36,7 @@ export default function AboutSection() {
             {/* Main large image */}
             <div className="relative w-4/5 lg:w-[85%] h-[85%] lg:h-[90%] rounded-3xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(192,30,46,0.2)] group z-10">
               <Image
-                src="/images/rcc_steel_work.png"
+                src="/images/about_1.jpg"
                 alt="RCR Construction Quality"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-[1.5s]"
@@ -54,7 +54,7 @@ export default function AboutSection() {
               className="absolute bottom-10 lg:bottom-0 right-0 lg:-right-4 w-[60%] h-[55%] rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border-8 border-white z-20 group"
             >
               <Image
-                src="/images/slab_casting_work.png"
+                src="/images/about_2.jpg"
                 alt="RCR Concrete Work"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-[1.5s]"
